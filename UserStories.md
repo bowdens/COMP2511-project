@@ -10,8 +10,8 @@
 #### 1. The player should never be spawned ontop of a wall block
 #### 2. The walls should never completely divide a player from the exit
 ### User Story 1.3: As a player, I want to be able to move to adjacent squares that are not walled off, so that I can move around the dungeon
-#### 1. The player should always move at the same rate of blocks per unit of time or per key press
 #### Acceptance Criteria:
+#### 1. The player should always move at the same rate of blocks per unit of time or per key press
 ### Maybe should omit this as it's more of an acceptance criteria --> User Story 1.4: As a player, I want the door to be reachable, so that I can solve the maze.
 #### Acceptance Criteria:
 ### User Story 1.5: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
@@ -23,13 +23,14 @@
 ### User Story 2.1: As a player, I want there to be treasure so that I can collect it and complete the dungeon (if there are no doors)
 #### Acceptance Criteria:
 #### 1. For all levels of this type the treasure must be located in a spot where it is possible to be collected by the player
-#### 2. There must be a treasure sprite in the corner of the screen to indicate to the player that this level can be solved by collecting the treasure
+#### 2. There must be a treasure sprite in the corner of the screen to indicate to the player that collecting the treasure is the objective of the dungeon
 ### User Story 2.2: As a player, I want there to be enemies with various behaviours so that it makes the dungeon more challenging
 #### Acceptance Criteria:
 ### User Story 2.3: As a player, I want to be able to win the game by defeating all of the enemies if that is the objective of the dungeon
 #### Acceptance Criteria:
 #### 1. All levels of this type must contain the items necessary to defeat the enemies
 #### 2. All levels of this type must contain atleast one enemy
+#### 3. There must be an enemy sprite in the corner of the screen to indicate to the player that defeating all the enemies is the objective of the dungeon
 
 ### User Story 2.4: As a player, I want there to be doors with keys so that I can open the doors with the keys to progress through the dungeon
 #### Acceptance Criteria:
@@ -38,6 +39,11 @@
 ### User Story 2.5: As a player, I want to be able to see if the maze is advanced before I select to play it, so I can choose the right level for me
 #### Acceptance Criteria:
 #### 1. In the selection menu? Or the filename? It should say that the level is advanced
+### User Story 2.6: As a player, I want to be able to play levels where the objective is to activate all the floor switches, so that I can experience a variety of puzzles:
+#### Acceptance Criteria:
+#### 1. The number of boulders should equal exactly the number of switches
+#### 2. A specific combination of switches should cause a response intended by the level designer
+#### 3. There must be an floor switch sprite in the corner of the screen to indicate to the player that activating a combination of the floor switches is the objective of the dungeon
 
 ## Epic Story 3: As a designer, I want to create my own dungeon so that I can express my creativity
 ### User story 3.1: As a designer, I want to be able to give my dungeon levels a name so that I can identify them
