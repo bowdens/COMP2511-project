@@ -20,4 +20,8 @@
 
 ### User Story 8: As a player, I want there to be doors with keys so that I can open the doors with the keys to progress through the dungeon
 
-## Epic Story 2: As a designer, I want to create my own dungeon so that I can express my creativity
+## Epic Story 3: As a designer, I want to create my own dungeon so that I can express my creativity
+
+##Epic Story 4: As a user, I want the game to have graphics so that it is eaiser to play
+###USer Story 9: As a player, I want to have distinguishable sprites so that I can navingate the dungeon with ease, and complete the puzzle
+###User Story 10: As a designer, I want to have distinguishable sprites so that I can easily select the entities that I want to put into my level design
