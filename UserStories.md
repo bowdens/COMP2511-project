@@ -67,6 +67,17 @@
 2. If all switches are activated by a boulder, the level should be completed
 3. There must be an floor switch sprite in the corner of the screen to indicate to the player that activating a combination of the floor switches is the objective of the dungeon
 
+### User Story 2.7: As a player, I want there to be pits that prevent access across them, but allow boulders to be pushed into them
+#### Acceptance Criteria:
+1. Pits should be used in levels to help get past boulder obstructions, or to prevent movement in a certain direction
+
+### User Story 2.8: As a player, I want there to be a number of items I can pick up to help me finish a level
+#### Acceptance Criteria:
+1. There should be a sword the player can pick up. If a player is holding a sword and they enter a square that an enemy is on, they should destroy the enemy with an animation to show what happened. That can happen 5 times
+2. There should be arrows the player can pick up. If a player shoots an arrow, it should fly through the air and destroy any enemies it hits. When it hits an obstruction, the arrow should be destroyed
+3. There should be an invincibility potion the player can pick up. While its effects are active, enemies should flee the player, and they should be killed if hit by the player.
+4. There should be a hover potion, that allows players to fly over pits. It lasts until the end of a dungeon
+
 ## Epic Story 3: As a designer, I want to create my own dungeon so that I can express my creativity
 ### User story 3.1: As a designer, I want to be able to give my dungeon levels a name so that I can identify them
 #### Acceptance Criteria:
