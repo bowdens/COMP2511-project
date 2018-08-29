@@ -2,28 +2,28 @@
 
 ## Epic Story 1: As a player, I want to play the simple maze so that I can solve it.
 
-### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can can complete the level
+### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can can complete the level.
 
 #### Priority: 1
 
 #### Estimate: 1
 
 #### Acceptance Criteria:
-1. An exit must exist at the end of each simple maze
-2. When the player touches the exit, they go to the main menu (or next level?)
-3. The exit mustn't be completely sealed from the player by a permanent barrier
+1. An exit must exist at the end of each simple maze.
+2. When the player touches the exit, they are redirected to the main menu.
+3. The exit mustn't be completely sealed from the player by a permanent barrier.
 
 
-### User Story 1.2: As a player, I want there to be walls in the dungeon, so that it difficult to reach the exit
+### User Story 1.2: As a player, I want there to be walls in the dungeon, so that it difficult to reach the exit.
 
 #### Priority: 1
 
 #### Estimate: 2
 
 #### Acceptance Criteria:
-1. The player should never be spawned ontop of a wall block
-2. The walls should never completely divide a player from the exit
-3. The player must not be able to walk through walls
+1. The player should never be spawned ontop of a wall block.
+2. The walls should never completely divide a player from the exit.
+3. The player must not be able to walk through walls.
 
 
 ### User Story 1.3: As a player, I want to be able to move to adjacent squares that are not walled off, so that I can move around the dungeon
@@ -37,29 +37,30 @@
 2. The player sprite should be animated while walking to show movement
 3. If the player attempts to move into a wall, they should not be able to.
 
-### User Story 1.5: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
+### User Story 1.5: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me.
 
 #### Priority: 2
 
 #### Estimate: 1
 
 #### Acceptance Criteria:
-1. In the main menu there should be a mode that the player can select to play a simple maze
+1. In the main menu there should be a mode that the player can select to play a simple maze.
 
 ## Epic Story 2: As a player, I want to play the advanced dungeon so that I can solve a more challenging puzzle
 
-### User Story 2.1: As a player, I want there to be treasure so that I can collect it and complete the dungeon (if there are no doors)
+### User Story 2.1: As a player, I want there to be treasure so that I can collect it and complete the dungeon.
 
 #### Priority: 3
 
 #### Estimate: 3
 
 #### Acceptance Criteria:
-1. For all levels of this type the treasure must be located in a spot where it is possible to be collected by the player
-2. There must be a treasure sprite in the corner of the screen to indicate to the player that collecting the treasure is the objective of the dungeon
-3. If treasure collection is the main goal of the dungeon, when all treasure is collected, the dungeon should be completed and the player will be taken back to the main menu (or next level?)
+1. Only accept collecting all treasure as a win condition if there are no exit doors.
+2. For all levels of this type the treasure must be located in a spot where it is possible to be collected by the player.
+3. There must be a treasure sprite in the corner of the screen to indicate to the player that collecting the treasure is the objective of the dungeon.
+4. If treasure collection is the main goal of the dungeon, when all treasure is collected, the dungeon should be completed and the player will be redirected to the main menu.
 
-### User Story 2.2: As a player, I want there to be enemies with various behaviours so that it makes the dungeon more challenging
+### User Story 2.2: As a player, I want there to be enemies with various behaviours so that it makes the dungeon more challenging.
 
 #### Priority: 3
 
@@ -71,7 +72,7 @@
 3. Ther must be a hound that positions itself between the player and the hunter
 4. There must be a coward that tries to get close to the player when they are far away, but runs away when they are close.
 
-### User Story 2.3: As a player, I want to be able to win the game by defeating all of the enemies if that is the objective of the dungeon
+### User Story 2.3: As a player, I want to be able to win the game by defeating all of the enemies if that is the objective of the dungeon.
 
 #### Priority: 4
 
@@ -156,20 +157,9 @@
 #### Estimate: 2
 
 #### Acceptance Criteria:
-1. There should be an option on screen to save the level
-2. Dungeons should be saved as files onto the disk.
-3. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game
+1. Dungeons should be saved as files onto the disk.
+2. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game
 
-### User story 3.2: As a designer, I want to be able to publish my dungeon levels so that they are officially playable 
-
-#### Priority: 
-
-#### Estimate: 
-
-#### Acceptance Criteria:
-1. There should be an option on screen to publish the level
-2. When the designer publishes a level its current state is saved and a sanity check is performed to check if the level is playable
-3. If the level fails the sanity check, the designer should be told why
 
 ### User story 3.3: As a designer, I want to be able to add, move and delete game objects in my level with ease so I can create levels easily
 
@@ -213,7 +203,7 @@
 #### Estimate: 
 
 #### Acceptance Criteria:
-1. There must be enough weapons to defeat all the enemies - this will be ensured by a sanity check when the designer publishes the level?
+1. 
 
 ## Epic Story 4: As a user, I want the game to have graphics so that it is easy to play
 
