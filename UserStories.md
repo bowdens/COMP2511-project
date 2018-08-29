@@ -173,13 +173,15 @@
 4. A highlighted object can be moved by drag and drop
 5. A highlighted object will display a red x, which can be clicked to delete the object
 
-### User story 3.4: As a designer, I want to be able to place 
+### User story 3.4: As a designer, I want to be able to place a player object, so that my level is playable
 
 #### Priority: 
 
 #### Estimate: 
 
 #### Acceptance Criteria:
+1. Only one player object can be added to the level
+2. The player cannot be placed ontop of any other game objects
 
 ## Epic Story 4: As a user, I want the game to have graphics so that it is easy to play
 
