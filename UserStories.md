@@ -37,7 +37,7 @@
 2. The player sprite should be animated while walking to show movement
 3. If the player attempts to move towards a wall, they should not be able to.
 
-### User Story 1.5: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
+### User Story 1.4: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
 
 #### Priority: 2
 
