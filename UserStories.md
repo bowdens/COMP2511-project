@@ -168,12 +168,14 @@
 
 #### Acceptance Criteria:
 1. A side bar should display the sprites of all the game objects 
-2. All objects can be placed in the level by dragging it from the side bar and dropping it on a block
-3. Selecting a level object will highlight it
-4. A highlighted object can be moved by drag and drop
-5. A highlighted object will display a red x, which can be clicked to delete the object
+2. On the same side bar the designer can set the objective of the level by selecting a sprite of either an exit, a key, a switch, treasure, or an enemie
+3. All objects can be placed in the level by dragging it from the side bar and dropping it on a block
+4. Selecting a level object will highlight it
+5. A highlighted object can be moved by drag and drop
+6. A highlighted object will display a red x, which can be clicked to delete the object
+7. No objects can be placed or moved ontop of another
 
-### User story 3.4: As a designer, I want to be able to place a player object, so that my level is playable
+### User story 3.4: As a designer, I want to be able to place a player an exit object, so that my level is playable
 
 #### Priority: 
 
@@ -181,7 +183,26 @@
 
 #### Acceptance Criteria:
 1. Only one player object can be added to the level
-2. The player cannot be placed ontop of any other game objects
+2. Only one exit object can be added to the level
+
+### User story 3.4: As a designer, I want to be able to place walls in my level, to create a path through the dungeon
+
+#### Priority: 
+
+#### Estimate: 
+
+#### Acceptance Criteria:
+1. The perimeter of the dungeon must be sealed by wall blocks
+
+
+### User story 3.4: As a designer, I want to be able to design levels where the objective is to defeat all of the enemies
+
+#### Priority: 
+
+#### Estimate: 
+
+#### Acceptance Criteria:
+1. 
 
 ## Epic Story 4: As a user, I want the game to have graphics so that it is easy to play
 
