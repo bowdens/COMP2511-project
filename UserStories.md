@@ -159,15 +159,27 @@
 1. Dungeons should be saved as files onto the disk.
 2. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game
 
-### User story 3.3: As a designer, I want to be free to put any game object anywhere in my level, aslong as it obeys the rules of the game, so I can be creative in my level design
+
+### User story 3.3: As a designer, I want to be able to add, move and delete game objects in my level with ease so I can create levels easily
 
 #### Priority: 
 
 #### Estimate: 
 
 #### Acceptance Criteria:
-1. A side bar menu should display the sprites of all the game objects
-2. All objects can be placed in the levels block by dragging it from
+1. A side bar should display the sprites of all the game objects 
+2. All objects can be placed in the level by dragging it from the side bar and dropping it on a block
+3. Selecting a level object will highlight it
+4. A highlighted object can be moved by drag and drop
+5. A highlighted object will display a red x, which can be clicked to delete the object
+
+### User story 3.4: As a designer, I want to be able to place 
+
+#### Priority: 
+
+#### Estimate: 
+
+#### Acceptance Criteria:
 
 ## Epic Story 4: As a user, I want the game to have graphics so that it is easy to play
 
