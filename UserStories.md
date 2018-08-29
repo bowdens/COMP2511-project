@@ -4,9 +4,9 @@
 
 ### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can can complete the level
 
-### Priority: 1
+#### Priority: 1
 
-### Estimate: 1
+#### Estimate: 1
 
 #### Acceptance Criteria:
 1. An exit must exist at the end of each simple maze
@@ -16,9 +16,9 @@
 
 ### User Story 1.2: As a player, I want there to be walls in the dungeon, so that it difficult to reach the exit
 
-### Priority: 1
+#### Priority: 1
 
-### Estimate: 2
+#### Estimate: 2
 
 #### Acceptance Criteria:
 1. The player should never be spawned ontop of a wall block
@@ -28,9 +28,9 @@
 
 ### User Story 1.3: As a player, I want to be able to move to adjacent squares that are not walled off, so that I can move around the dungeon
 
-### Priority: 1
+#### Priority: 1
 
-### Estimate: 2
+#### Estimate: 2
 
 #### Acceptance Criteria:
 1. The player should always move at the same rate of blocks per unit of time or per key press
@@ -39,9 +39,9 @@
 
 ### User Story 1.5: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
 
-### Priority: 2
+#### Priority: 2
 
-### Estimate: 1
+#### Estimate: 1
 
 #### Acceptance Criteria:
 1. In the main menu there should be a mode that the player can select to play a simple maze
@@ -50,9 +50,9 @@
 
 ### User Story 2.1: As a player, I want there to be treasure so that I can collect it and complete the dungeon (if there are no doors)
 
-### Priority: 3
+#### Priority: 3
 
-### Estimate: 3
+#### Estimate: 3
 
 #### Acceptance Criteria:
 1. For all levels of this type the treasure must be located in a spot where it is possible to be collected by the player
@@ -61,9 +61,9 @@
 
 ### User Story 2.2: As a player, I want there to be enemies with various behaviours so that it makes the dungeon more challenging
 
-### Priority: 3
+#### Priority: 3
 
-### Estimate: 6
+#### Estimate: 6
 
 #### Acceptance Criteria:
 1. There must be a hunter that moves as close as possible to the player
@@ -73,9 +73,9 @@
 
 ### User Story 2.3: As a player, I want to be able to win the game by defeating all of the enemies if that is the objective of the dungeon
 
-### Priority: 4
+#### Priority: 4
 
-### Estimate: 1
+#### Estimate: 1
 
 #### Acceptance Criteria:
 1. All levels of this type must contain the items necessary to defeat the enemies (ie sword, arrows)
@@ -85,9 +85,9 @@
 
 ### User Story 2.4: As a player, I want there to be doors with keys so that I can open the doors with the keys to progress through the dungeon
 
-### Priority: 4
+#### Priority: 4
 
-### Estimate: 2
+#### Estimate: 2
 
 #### Acceptance Criteria:
 1. For each door there must be a key that is possible to obtain by the player
@@ -97,18 +97,18 @@
 
 ### User Story 2.5: As a player, I want to be able to see if the maze is advanced before I select to play it, so I can choose the right level for me
 
-### Priority: 5
+#### Priority: 5
 
-### Estimate: 1
+#### Estimate: 1
 
 #### Acceptance Criteria:
 1. In the main menu, there should be a button the player can press to play an advanced maze level
 
 ### User Story 2.6: As a player, I want to be able to play levels where the objective is to activate all the floor switches, so that I can experience a variety of puzzles:
 
-### Priority: 5
+#### Priority: 5
 
-### Estimate: 3
+#### Estimate: 3
 
 #### Acceptance Criteria:
 1. The number of boulders should equal exactly the number of switches <-Perhaps boulders >= switches?
@@ -117,9 +117,9 @@
 
 ### User Story 2.7: As a player, I want there to be pits that prevent access across them, but allow boulders to be pushed into them
 
-### Priority: 5
+#### Priority: 5
 
-### Estimate: 2
+#### Estimate: 2
 
 #### Acceptance Criteria:
 1. If included in a level, pits must be located on squares with no other objects
@@ -129,9 +129,9 @@
 
 ### User Story 2.8: As a player, I want there to be a number of items I can pick up to help me finish a level
 
-### Priority: 4
+#### Priority: 4
 
-### Estimate: 4
+#### Estimate: 4
 
 #### Acceptance Criteria:
 1. There should be a sword the player can pick up. If a player is holding a sword and they enter a square that an enemy is on, they should destroy the enemy with an animation to show what happened. That can happen 5 times
@@ -142,18 +142,18 @@
 ## Epic Story 3: As a designer, I want to create my own dungeon so that I can play my own (or others) levels.
 ### User story 3.1: As a designer, I want to be able to give my dungeon levels a name so that I can identify them
 
-### Priority: 6
+#### Priority: 6
 
-### Estimate: 5
+#### Estimate: 5
 
 #### Acceptance Criteria:
 1. When the level designer creates a level, they must be able to give it a name when they save it
 
 ### User story 3.2: As a designer, I want to be able to save a copy of my dungeon levels so that I can edit them later
 
-### Priority: 6
+#### Priority: 6
 
-### Estimate: 2
+#### Estimate: 2
 
 #### Acceptance Criteria:
 1. Dungeons should be saved as files onto the disk.
@@ -164,9 +164,9 @@
 
 ### User Story 4.1: As a user, I want to have distinguishable sprites so that I can navingate the dungeon with ease, and complete the puzzle, or design a level with them.
 
-### Priority: 4
+#### Priority: 4
 
-### Estimate: 4
+#### Estimate: 4
 
 #### Acceptance Criteria:
 1. No sprite can be too similar to each other to cause confusion
