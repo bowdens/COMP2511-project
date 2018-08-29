@@ -156,9 +156,20 @@
 #### Estimate: 2
 
 #### Acceptance Criteria:
-1. Dungeons should be saved as files onto the disk.
-2. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game
+1. There should be an option on screen to save the level
+2. Dungeons should be saved as files onto the disk.
+3. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game
 
+### User story 3.2: As a designer, I want to be able to publish my dungeon levels so that they are officially playable 
+
+#### Priority: 
+
+#### Estimate: 
+
+#### Acceptance Criteria:
+1. There should be an option on screen to publish the level
+2. When the designer publishes a level its current state is saved and a sanity check is performed to check if the level is playable
+3. If the level fails the sanity check, the designer should be told why
 
 ### User story 3.3: As a designer, I want to be able to add, move and delete game objects in my level with ease so I can create levels easily
 
@@ -202,7 +213,7 @@
 #### Estimate: 
 
 #### Acceptance Criteria:
-1. 
+1. There must be enough weapons to defeat all the enemies - this will be ensured by a sanity check when the designer publishes the level?
 
 ## Epic Story 4: As a user, I want the game to have graphics so that it is easy to play
 
