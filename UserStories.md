@@ -79,10 +79,12 @@
 #### Estimate: 1
 
 #### Acceptance Criteria:
-1. All levels of this type must contain the items necessary to defeat the enemies (ie sword, arrows)
-2. All levels of this type must contain atleast one enemy
-3. There must be an enemy sprite in the corner of the screen to indicate to the player that defeating all the enemies is the objective of the dungeon
-4. When an enemie comes into contact with the player, the player dies and the game is over 
+1. All levels of this type must contain the items necessary to defeat the enemies (ie sword, arrows).
+2. The number of weapons must provide at least as many kill opportunities as there are enemies, i.e It is not valid
+to have one sword that can be used five times but have 10 enemies in the dungeon.
+2. All levels of this type must contain at least one enemy.
+3. There must be an enemy sprite in the corner of the screen to indicate to the player that defeating all the enemies is the objective of the dungeon.
+4. When an enemy comes into contact with the player, the player dies and the game is over. 
 
 ### User Story 2.4: As a player, I want there to be doors with keys so that I can open the doors with the keys to progress through the dungeon
 
