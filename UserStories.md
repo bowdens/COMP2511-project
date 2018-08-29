@@ -81,7 +81,7 @@
 1. All levels of this type must contain the items necessary to defeat the enemies (ie sword, arrows)
 2. All levels of this type must contain atleast one enemy
 3. There must be an enemy sprite in the corner of the screen to indicate to the player that defeating all the enemies is the objective of the dungeon
-4. When an enemie comes into contact with the player, the player is dead and the game is over 
+4. When an enemie comes into contact with the player, the player dies and the game is over 
 
 ### User Story 2.4: As a player, I want there to be doors with keys so that I can open the doors with the keys to progress through the dungeon
 
@@ -111,9 +111,9 @@
 #### Estimate: 3
 
 #### Acceptance Criteria:
-1. The number of boulders should equal exactly the number of switches <-Perhaps boulders >= switches?
+1. The number of boulders should be greater than or equal to the number of switches so that the level is beatable
 2. If all switches are activated by a boulder, the level should be completed
-3. There must be an floor switch sprite in the corner of the screen to indicate to the player that activating a combination of the floor switches is the objective of the dungeon
+3. There must be floor switch sprite in the corner of the screen to indicate to the player that activating a combination of the floor switches is the objective of the dungeon
 
 ### User Story 2.7: As a player, I want there to be pits that prevent access across them, but allow boulders to be pushed into them
 
@@ -159,6 +159,15 @@
 1. Dungeons should be saved as files onto the disk.
 2. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game
 
+### User story 3.3: As a designer, I want to be free to put any game object anywhere in my level, aslong as it obeys the rules of the game, so I can be creative in my level design
+
+#### Priority: 
+
+#### Estimate: 
+
+#### Acceptance Criteria:
+1. A side bar menu should display the sprites of all the game objects
+2. All objects can be placed in the levels block by dragging it from
 
 ## Epic Story 4: As a user, I want the game to have graphics so that it is easy to play
 
