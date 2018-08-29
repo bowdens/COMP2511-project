@@ -2,7 +2,7 @@
 
 ## Epic Story 1: As a player, I want to play the simple maze so that I can solve it.
 
-### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can complete the level
+### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can can complete the level
 
 #### Priority: 1
 
@@ -11,7 +11,7 @@
 #### Acceptance Criteria:
 1. An exit must exist at the end of each simple maze
 2. When the player touches the exit, they go to the main menu (or next level?)
-3. The exit must not completely sealed from the player by a permanent barrier
+3. The exit mustn't be completely sealed from the player by a permanent barrier
 
 
 ### User Story 1.2: As a player, I want there to be walls in the dungeon, so that it difficult to reach the exit
@@ -35,9 +35,9 @@
 #### Acceptance Criteria:
 1. The player should always move at the same rate of blocks per unit of time or per key press
 2. The player sprite should be animated while walking to show movement
-3. If the player attempts to move towards a wall, they should not be able to.
+3. If the player attempts to move into a wall, they should not be able to.
 
-### User Story 1.4: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
+### User Story 1.5: As a player, I want to be able to see if the maze is simple before I select to play it, so I can choose the right level for me
 
 #### Priority: 2
 
@@ -57,7 +57,7 @@
 #### Acceptance Criteria:
 1. For all levels of this type the treasure must be located in a spot where it is possible to be collected by the player
 2. There must be a treasure sprite in the corner of the screen to indicate to the player that collecting the treasure is the objective of the dungeon
-3. If treasure collection is the main goal of the dungeon, when all treasure is collected, the dungeon should be completed and the player will be taken back to the main menu
+3. If treasure collection is the main goal of the dungeon, when all treasure is collected, the dungeon should be completed and the player will be taken back to the main menu (or next level?)
 
 ### User Story 2.2: As a player, I want there to be enemies with various behaviours so that it makes the dungeon more challenging
 
@@ -67,7 +67,7 @@
 
 #### Acceptance Criteria:
 1. There must be a hunter that moves as close as possible to the player
-2. There emust be a strategist who moves towards wherever the player is moving towards
+2. There must be a strategist who moves towards wherever the player is moving towards
 3. Ther must be a hound that positions itself between the player and the hunter
 4. There must be a coward that tries to get close to the player when they are far away, but runs away when they are close.
 
@@ -81,7 +81,7 @@
 1. All levels of this type must contain the items necessary to defeat the enemies (ie sword, arrows)
 2. All levels of this type must contain atleast one enemy
 3. There must be an enemy sprite in the corner of the screen to indicate to the player that defeating all the enemies is the objective of the dungeon
-4. All such enemies must kill the play when they are touched by the player (ie if they are on the same square)
+4. When an enemie comes into contact with the player, the player is dead and the game is over 
 
 ### User Story 2.4: As a player, I want there to be doors with keys so that I can open the doors with the keys to progress through the dungeon
 
