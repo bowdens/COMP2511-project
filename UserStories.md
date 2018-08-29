@@ -2,7 +2,7 @@
 
 ## Epic Story 1: As a player, I want to play the simple maze so that I can solve it.
 
-### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can can complete the level
+### User Story 1.1: As a player, I want to have an exit in the dungeon so that I can complete the level
 
 #### Priority: 1
 
