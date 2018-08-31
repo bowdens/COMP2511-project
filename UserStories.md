@@ -52,6 +52,8 @@
 4. If treasure collection is a goal of the dungeon when all treasure is collected and all other win conditions of the level are fulfilled, the dungeon should be completed and the player will be redirected to the main menu.
 
 
+
+
 ## Epic Story 3: As a user, I want the game to have a UI and graphics so that the game is easy to access and easy to play.
 
 ### User Story 3.1: As a user, I want the game to have a main menu so that I can view and access the various game modes availabe.
