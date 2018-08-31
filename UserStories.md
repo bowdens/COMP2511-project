@@ -2,7 +2,7 @@
 
 ## Epic Story 1: As a player, I want to play the game either in a simple maze mode or a more advanced dungeon mode so that I may enjoy the challenges of both game modes.
 
-### User Story 1.1: As a player, I want to have an exit in all simple mazes and some advanced dungeon so that I can complete each level.
+### User Story 1.1: As a player, I want to have an exit in all simple mazes and some advanced dungeons so that I can complete each level.
 
 #### Priority: 1
 
