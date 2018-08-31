@@ -50,3 +50,42 @@
 2. For all levels of this type, all treasure must be located in spots where it is possible to be collected by the player.
 3. There must be a treasure sprite in the corner of the screen to indicate to the player that collecting the treasure is an objective of the dungeon.
 4. If treasure collection is a goal of the dungeon when all treasure is collected and all other win conditions of the level are fulfilled, the dungeon should be completed and the player will be redirected to the main menu.
+
+
+## Epic Story 3: As a user, I want the game to have a UI and graphics so that the game is easy to access and easy to play.
+
+### User Story 3.1: As a user, I want the game to have a main menu so that I can view and access the various game modes availabe.
+
+### Priority: 2
+
+### Estimate: 1
+
+### Acceptance Criteria:
+1. The main menu should have a 'Menu' title to indicate it is the main menu.
+2. The main menu should have three buttons for the simple maze, advanced dungeon, and custome game modes which direct the user to a level selection menu.
+3. The main menu should have a third button for the level design mode.
+4. All three buttons should be distict.
+
+
+### User Story 3.2: As a user, I want the game to have a level selection menu both game modes so that I is easy to navigate to the level I want to play or a custom level.
+
+### Priority: 2
+
+### Estimate: 2
+
+### Acceptance Criteria:
+1. The simple maze mode,advanced dungeon mode, and custom levels should have a level selection pages accessable from the main menu.
+2. The level selection menus should have a button to access all levels for the particular game modes.
+3. Level selection menus should have a 'back' button in a corner that redirects the user back to the main menu. 
+
+
+### User Story 3.3: As a user, I want to have distinguishable sprites so that I can navingate the dungeon with ease, and complete the puzzle, or design a level with them.
+
+#### Priority: 4
+
+#### Estimate: 4
+
+#### Acceptance Criteria:
+1. No sprite can be too similar to each other to cause confusion
+2. Sprites that are enemies should portray this using "dangerous" colours - eg reds etc.2
+3. Sprites that are helpful should portray this usin
