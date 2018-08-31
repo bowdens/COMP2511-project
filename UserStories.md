@@ -235,6 +235,81 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 2. The effects of the potion should last until the player either dies or completes the level.
 3. While the potion is in effect the player should be able to move over pits safely.
 
+
+
+## Epic Story 2: As a designer, I want to create my own dungeon so that I or others can play my custom levels.
+### User story 2.1: As a designer, I want to be able to give my dungeon levels a name so that I can identify them
+
+#### Priority: 6
+
+#### Estimate: 1
+
+#### Acceptance Criteria:
+1. When the level designer creates a level, they must be able to give it a name when they save it
+
+### User story 2.2: As a designer, I want to be able to save a copy of my dungeon levels so that I can edit them later.
+
+#### Priority: 6
+
+#### Estimate: 2
+
+#### Acceptance Criteria:
+1. Dungeons should be saved as files onto the disk.
+2. Dungeon files must be able to be read so they can be edited further, or played as a dungeon in the game.
+
+
+### User story 2.3: As a designer, I want to be able to add, move and delete game objects in my level with ease so I can create levels easily
+
+#### Priority: 4
+
+#### Estimate: 3
+
+#### Acceptance Criteria:
+1. A sidebar should display the sprites of all the game objects.
+2. On the same sidebar, the designer can set the objectives of the level by selecting a sprite of either an exit, a switch, treasure, or an enemy.
+3. All objects can be placed in the level by dragging it from the sidebar and dropping it on a block.
+4. Selecting a level object will highlight it.
+5. A highlighted object can be moved by drag and drop.
+6. A highlighted object will display a red x, which can be clicked to delete the object.
+7. No objects can be placed or moved on top of another.
+8. For a door to be placed a corresponding key must also be placed.
+
+
+### User story 2.4: As a designer, I want to be able to place a player, so that my level is playable
+
+#### Priority: 4
+
+#### Estimate: 1
+
+#### Acceptance Criteria:
+1. Only one player object can be added to the level.
+
+
+### User story 2.5: As a designer, I want to be able to play my custom level before saving it, so that I may see if the level is playable.
+
+#### Priority: 4
+
+#### Estimate: 3
+
+#### Acceptance Criteria:
+1. There must be a play button the sidebar which allows the designer to play their game.
+2. The designer can only play their game if they have placed their player sprite.
+3. The designer should have an option to go back to designing at any time whilst playing.
+
+
+
+### User story 2.6: As a designer, I want my games to be saved in the custom levels menu so that I and others can access and play my games.
+
+#### Priority: 4
+
+#### Estimate: 3
+
+#### Acceptance Criteria:
+1. The game must appear with the chosen name under the custom game menu.
+
+
+
+
 ## Epic Story 3: As a user, I want the game to have a UI and graphics so that the game is easy to access and easy to play.
 
 ### User Story 3.1: As a user, I want the game to have the main menu so that I can view and access the various game modes available.
