@@ -52,6 +52,68 @@
 4. If treasure collection is a goal of the dungeon when all treasure is collected and all other win conditions of the level are fulfilled, the dungeon should be completed and the player will be redirected to the main menu.
 
 
+### User Story 1.5: As a player, I want there to be a 'hunter' enemy in some advanced dungeon levels so that completing the dungeon will be more challenging.
+
+### Priority: 3
+
+### Estimate: 1.5
+
+#### Acceptance Criteria:
+1. The hunter must move as close as possible to the player.
+2. If the hunter is as close as he can get to the player he must stop.
+3. If the player collides with the hunter then the game is over and the player must be redirected to the main menu.  
+
+
+### User Story 1.6: As a player, I want there to be a 'hound' enemy in some advanced dungeon levels so that completing the dungeon will be more challenging.
+
+### Priority: 3
+
+### Estimate: 1.5
+
+#### Acceptance Criteria:
+1. The dungeon level must have a hunter to have a hound.
+2. The hound must position itself between the hunter and the player.
+3. If the player collides with the hound then the game is over and the player must be redirected to the main menu.
+
+
+### User Story 1.7: As a player, I want there to be a 'strategist' enemy in some advanced dungeon levels so that completing the dungeon will be more challenging.
+
+### Priority: 3
+
+### Estimate: 1.5
+
+#### Acceptance Criteria:
+1. The strategist must move to a square the player is likely to move towards next.
+2. If the player collides with the strategist then the game is over and the player must be redirected to the main menu.
+
+
+### User Story 1.8: As a player, I want there to be a 'coward' enemy in some advanced dungeon levels so that completing the dungeon will be more challenging.
+
+### Priority: 3
+
+### Estimate: 1.5
+
+#### Acceptance Criteria:
+1. The coward must move towards the player until he is two grid squares away from the player after which the coward should run away.
+2. If the player collides with the coward then the game is over and the player must be redirected to the main menu.
+
+
+### User Story 1.9: As a player, I want defeating all enemies to be an objective in some advanced dungeon levels so that I can experience different challenges in completing dungeons.
+
+#### Priority: 4
+
+#### Estimate: 1
+
+#### Acceptance Criteria:
+1. Defeating all enemies must only be a win condition if there are no exits in the dungeon. 
+2. All levels of this type must contain the items necessary to defeat the enemies (ie sword, arrows).
+3. The number of weapons must provide at least as many kill opportunities as there are enemies, i.e It is not valid
+to have one sword that can be used five times but has 10 enemies in the dungeon.
+4. All levels of this type must contain at least one enemy.
+5. There must be an enemy sprite in the corner of the screen to indicate to the player that defeating all the enemies is the objective of the dungeon.
+6. When an enemy comes into contact with the player, the player dies and the game is over.
+
+
 
 
 ## Epic Story 3: As a user, I want the game to have a UI and graphics so that the game is easy to access and easy to play.
