@@ -241,7 +241,7 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 2. The effects of the potion should last until the player either dies or completes the level.
 3. While the potion is in effect the player should be able to move over pits safely.
 
-### User Story 1.18: As a player, I want to respawn when the player I am controlling dies, so that I can attempt to beat the level again
+### User Story 1.18: As a player, I want to respawn when my player dies, so that I can attempt to beat the level again
 #### Priority: 3
 
 #### Estimate: 3
