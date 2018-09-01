@@ -188,7 +188,7 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 6. Upon explosion, any boulders or enemies in the squares immediately to the left, right, above or below are destroyed. 
 7. If the player is in one of these squares they die.
 
-8. The player can drop an unlit bomb into an adjacent block by pressing the D character (the bomb will not ignite).
+~~8. The player can drop an unlit bomb into an adjacent block by pressing the D character (the bomb will not ignite).~~
 
 
 ### User Story 1.15: As a player, I want to be able to pick up sword so that I can use it to defeat enemies and help me finish the level.
