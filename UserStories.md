@@ -213,8 +213,8 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 #### Acceptance Criteria:
 1. The player should pick up an arrow if they move over the sword's grid space.
 2. When the player shoots an arrow ~~by pressing ENTER on the keyboard~~ it should fly in a straight line in the direction the player is facing and destroy any enemies it hits.
-3. After firing an arrow the player will no longer be holding an item.
-4. Arrows are destroyed upon hitting any object.
+~~3. After firing an arrow the player will no longer be holding an item.~~
+3. Arrows are destroyed upon hitting any object.
 
 
 ### User Story 1.17: As a player, I want to be able to consume an invincibility potion so that I can use it to defeat enemies and help me finish the level.
