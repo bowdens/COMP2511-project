@@ -127,10 +127,10 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 
 #### Acceptance Criteria:
 1. For each door, there must be a key the player can obtain.
-2. When the player comes into contact with the key it is added to the player's key inventory
+~~2. When the player comes into contact with the key it is added to the player's key inventory~~
 3. For each door, there must be a corresponding key.
 4. For each door/key pair, it must be apparent which key belongs to which door.
-5. A door is unlocked by the player when they walk into it while having the corresponding key in their inventory
+5. A door is unlocked by the player when they walk into it ~~while having the corresponding key in their inventory~~
 
 
 ### User Story 1.11: As a player, I want there to be pits in some advanced dungeons, so that I can experience different challenges in completing dungeon levels.
