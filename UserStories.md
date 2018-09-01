@@ -50,6 +50,7 @@
 2. For all levels of this type, all treasure must be located in spots where it is possible to be collected by the player.
 3. There must be a treasure sprite in the corner of the screen to indicate to the player that collecting the treasure is an objective of the dungeon.
 4. If treasure collection is a goal of the dungeon when all treasure is collected and all other win conditions of the level are fulfilled, the dungeon should be completed and the player will be redirected to the main menu.
+5. The treasure is collected when the player comes into contact with it.
 
 
 ### User Story 1.5: As a player, I want there to be a 'hunter' enemy in some advanced dungeon levels so that completing the dungeon will be more challenging.
@@ -126,9 +127,10 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 
 #### Acceptance Criteria:
 1. For each door, there must be a key the player can obtain.
-2. The door should seal off a location. Although there may be alternate entrances, it would be no use to have a door that the player can simply walk around.
+2. When the player comes into contact with the key it is added to the player's key inventory
 3. For each door, there must be a corresponding key.
 4. For each door/key pair, it must be apparent which key belongs to which door.
+5. A door is unlocked by the player when they walk into it while having the corresponding key in their inventory
 
 
 ### User Story 1.11: As a player, I want there to be pits in some advanced dungeons, so that I can experience different challenges in completing dungeon levels.
@@ -178,13 +180,15 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 #### Estimate: 3
 
 #### Acceptance Criteria:
-1. The player should pick up an unlit bomb if they move over the bomb's grid space.
-2. The should be an indicator that the player has an unlit bomb available.
+1. The player should pick up an unlit bomb by moving over the bomb's grid space, ~~if they aren't already holding an item.~~
+2. There should be an indicator that the player has an unlit bomb available.
 3. If the player has an unlit bomb then pressing the space bar should place a bomb in the grid square in front of the player if possible.
 4. If another object is in front of the player then the bomb should not be placed.
 5. Lit bombs should detonate in 3 seconds from when placed.
 6. Upon explosion, any boulders or enemies in the squares immediately to the left, right, above or below are destroyed. 
 7. If the player is in one of these squares they die.
+
+8. The player can drop an unlit bomb into an adjacent block by pressing the D character (the bomb will not ignite).
 
 
 ### User Story 1.15: As a player, I want to be able to pick up sword so that I can use it to defeat enemies and help me finish the level.
@@ -194,9 +198,10 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 #### Estimate: 3
 
 #### Acceptance Criteria:
-1. The player should pick up a sword if they move over the sword's grid space.
-2. If a player is holding a sword and they enter a square that an enemy is on, they should destroy the enemy with an animation to show what happened.
-3. The player can use the sword up to five times before it is destroyed.
+1. The player should pick up a sword if they move over the sword's grid space ~~and if they aren't already holding an item?~~
+2. If a player is holding a sword and they enter a square that an enemy is on, they should destroy the enemy with an animation to show what happened
+~~2 2. If the player is holding a sword and stand in a block adjacent to an enemy, they should destroy the enemy when the ENTER button is pressed on the keyboard~~
+4. The player can use the sword up to five times before it is destroyed ~~at this point the player will no longer be holidng an item~~
 
 
 ### User Story 1.16: As a player, I want to be able to pick up arrows so that I can use them to defeat enemies and help me finish the level.
@@ -206,9 +211,10 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 #### Estimate: 3
 
 #### Acceptance Criteria:
-1. The player should pick up a sword if they move over the sword's grid space.
-2. If a player shoots an arrow, it should fly in a straight line in the direction the player is facing and destroy any enemies it hits.
-3. Arrows are destroyed upon hitting any object.
+1. The player should pick up an arrow if they move over the sword's grid space.
+2. When the player shoots an arrow ~~by pressing ENTER on the keyboard~~ it should fly in a straight line in the direction the player is facing and destroy any enemies it hits.
+3. After firing an arrow the player will no longer be holding an item.
+4. Arrows are destroyed upon hitting any object.
 
 
 ### User Story 1.17: As a player, I want to be able to consume an invincibility potion so that I can use it to defeat enemies and help me finish the level.
@@ -235,7 +241,14 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 2. The effects of the potion should last until the player either dies or completes the level.
 3. While the potion is in effect the player should be able to move over pits safely.
 
+### User Story 1.18: As a player, I want to respawn when the player I am controlling dies, so that I can attempt to beat the level again
+#### Priority: 3
 
+#### Estimate: 3
+
+#### Acceptance Criteria:
+1. The player must respawn at the same spot from which they started 
+2. The player's inventory must be cleared and all items and objects are returned to their original positions
 
 ## Epic Story 2: As a designer, I want to create my own dungeon so that I or others can play my custom levels.
 ### User story 2.1: As a designer, I want to be able to give my dungeon levels a name so that I can identify them
@@ -275,7 +288,7 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 8. For a door to be placed a corresponding key must also be placed.
 
 
-### User story 2.4: As a designer, I want to be able to place a player, so that my level is playable
+### User story 2.4: As a designer, I want to be able to place a player in my level, so that my level is playable
 
 #### Priority: 4
 
@@ -307,7 +320,13 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 #### Acceptance Criteria:
 1. The game must appear with the chosen name under the custom game menu.
 
+### User Story 2.7: As a designer, I want to be able to design levels where collecting treasure is an objective, so that I can be more creative with my level design
 
+#### Priority: 
+
+#### Estimate: 
+
+#### Acceptance Criteria:
 
 
 ## Epic Story 3: As a user, I want the game to have a UI and graphics so that the game is easy to access and easy to play.
