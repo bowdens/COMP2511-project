@@ -35,6 +35,10 @@ public abstract class BoardEntity {
 	public void setCollisionBehaviour(CollisionBehaviour collisionBehaviour) {
 		this.collisionBehaviour = collisionBehaviour;
 	}
+	
+	public void collide(Player player) {
+		collisionBehaviour.collide(player, this);
+	}
 
 	public EntityType getType() {
 		return type;

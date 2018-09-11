@@ -1,5 +1,7 @@
 package project.model;
 
+import java.util.ArrayList;
+
 public class Board {
 	
 	private static int boardCount;
@@ -7,13 +9,14 @@ public class Board {
 	private String name;
 	private int height;
 	private int width;
-	private BoardEntity[][] grid;
+	private ArrayList<BoardEntity> boardEntities;
 	private int boardID = 0;
 	
 	public Board(String name, int height, int width) {
 		this.name = name;
 		this.height = height;
 		this.width = width;
+		this.boardEntities = new ArrayList<BoardEntity>();
 		this.boardID = ++boardCount;
 	}
 
@@ -40,25 +43,26 @@ public class Board {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
-	public BoardEntity[][] getGrid() {
-		return grid;
-	}
-
-	public void setGrid(BoardEntity[][] grid) {
-		this.grid = grid;
-	}
+	
+	public ArrayList<BoardEntity> getBoardEntities() {
+		return boardEntities;
+	} 
 
 	public int getBoardID() {
 		return boardID;
 	}
 	
-	public int getEntityAt(int x, int y) {
-		return getGrid()[y][x].getType().getValue();
+	public BoardEntity getEntityAt(int x, int y) {
+		for(BoardEntity entity : boardEntities) {
+			if(x == entity.getX() && y == entity.getY()) {
+				return entity;
+			}
+		}
+		return null;
 	}
 	
-	public void placeBoardEntity(BoardEntity be) {
-		getGrid()[be.getY()][be.getX()] = be;
+	public void addBoardEntity(BoardEntity be) {
+		boardEntities.add(be);
 	}
 
 }

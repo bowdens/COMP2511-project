@@ -1,10 +1,27 @@
 package project.model;
 
-public class Player extends MovingEntity {
+import java.util.ArrayList;
 
+import project.model.CollisionBehaviours.NoCollision;
+
+public class Player extends BoardEntity {
+
+	int bombs;
+	int arrows;
+	int swords;
+	boolean hover;
+	boolean invincible;
+	ArrayList<Integer> keys;
+	
+	
 	public Player(int x, int y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		bombs = 0;
+		arrows = 0;
+		swords = 0;
+		hover = false;
+		invincible = false;
+		setCollisionBehaviour(new NoCollision());
 	}
 
 }
