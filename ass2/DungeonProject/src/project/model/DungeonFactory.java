@@ -1,3 +1,5 @@
+//implement the factory pattern so we can return the entity 
+//instantiates all the types of entities for the dungeon creator to add to the board
 package project.model;
 
 public class DungeonFactory {

@@ -32,7 +32,8 @@ public class Game {
 			}
 		}
 	}
-	
+   
+   //stores all the levels into the different board ArrayLists	
 	public void loadAllBoards() {
 		boardLoader.setFilePath("src/simpleDungeons");
 		boardLoader.loadBoardFromDir(simpleDungeons, dungeonCreator);
