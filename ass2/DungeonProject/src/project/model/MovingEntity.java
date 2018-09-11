@@ -2,11 +2,16 @@ package project.model;
 
 public abstract class MovingEntity extends BoardEntity {
 	
+	private Direction direction;
 	private MovementBehaviour movementBehaviour;
 
 	public MovingEntity(int x, int y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		setDirection(Direction.DOWN);
+	}
+	
+	protected void moveTo(Board board, int x, int y) {
+		
 	}
 
 	public MovementBehaviour getMovementBehaviour() {
@@ -15,6 +20,20 @@ public abstract class MovingEntity extends BoardEntity {
 
 	public void setMovementBehaviour(MovementBehaviour movementBehaviour) {
 		this.movementBehaviour = movementBehaviour;
+	}
+
+	/**
+	 * @return the direction
+	 */
+	public Direction getDirection() {
+		return direction;
+	}
+
+	/**
+	 * @param direction the direction to set
+	 */
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 
 }
