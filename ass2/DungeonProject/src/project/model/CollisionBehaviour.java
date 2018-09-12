@@ -6,5 +6,6 @@ public interface CollisionBehaviour {
 	 * @param player The player that is colliding into the board entity
 	 * @param me The board entity itself
 	 */
-	public void collide(Player player, BoardEntity me);
+	//possibly just ue two boardEntities
+	public void collide(Board board, Player player, BoardEntity me);
 }

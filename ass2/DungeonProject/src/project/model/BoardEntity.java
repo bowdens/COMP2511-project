@@ -9,14 +9,8 @@ public abstract class BoardEntity {
 	//private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	
-<<<<<<< HEAD
-	
-	public abstract boolean canMoveOnto();
-=======
 	public abstract boolean canMoveOnto(MovingEntity entity);
-	
->>>>>>> master
-	
+
 	public BoardEntity(int x, int y) {
 		this.x = x;
 		this.y = y;

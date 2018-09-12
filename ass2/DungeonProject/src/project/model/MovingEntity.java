@@ -11,7 +11,8 @@ public abstract class MovingEntity extends BoardEntity {
 	}
 	
 	protected void moveTo(Board board, int x, int y) {
-		
+		//get object at (x,y) if any
+		//check if player canMoveOnto();
 	}
 
 	public MovementBehaviour getMovementBehaviour() {
