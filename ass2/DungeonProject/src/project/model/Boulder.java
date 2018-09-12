@@ -8,11 +8,15 @@ public class Boulder implements CollisionBehaviour {
 	}
 	
 	@Override
-	public boolean canMoveOnto(MovingEntity entity) {
-		//(assuming entity is a player) - not sure if this is true all the time -- are we gonna use this function for other MovingEntities?
-		Direction entDirection = entity.getDirection();
+	public boolean canMoveOnto(MovingEntity entity, Board board) {
+		//if entity isn't a player return false
+		if(!(entity instanceof Player)) {
+			return false;
+		}
+		
 		//get the coords of the block which the boulder will be moving onto
-		switch (entDirection):
+		Direction playerDirection = entity.getDirection();
+		switch (entDirection) {
 			case UP:
 				int newX = this.getX();
 				int newY = this.getY()-1;
@@ -29,10 +33,17 @@ public class Boulder implements CollisionBehaviour {
 				int newX = this.getX()+1;
 				int newY = this.getY();
 				break;
-		//get object that is on this coordinate
-	    //check if the boulder can move onto this object
-		//(boulder shouldn't be able to move into pickup items/treasure/exits)
+		}
 		
-	    return false;
+		//get object that is on this coordinate
+		BoardEntity movinOnto = board.getEntityAt(newX, newY);
+	    //check if the boulder can move onto this object
+		if(movinOnto.canMoveOnto(this, board)) {
+			this.setX(newX);
+			this.setY(newY);
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

@@ -9,7 +9,7 @@ public abstract class BoardEntity {
 	//private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	
-	public abstract boolean canMoveOnto(MovingEntity entity);
+	public abstract boolean canMoveOnto(MovingEntity entity, Board board);
 
 	public BoardEntity(int x, int y) {
 		this.x = x;

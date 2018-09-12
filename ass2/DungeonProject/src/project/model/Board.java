@@ -64,5 +64,15 @@ public class Board {
 	public void addBoardEntity(BoardEntity be) {
 		boardEntities.add(be);
 	}
+	
+	public void killPlayer() {
+		System.out.println("GAME OVER\n");
+		exit(0);
+	}
+	
+	public void winGame() {
+		System.out.println("YOU WIN!\n");
+		exit(0);
+	}
 
 }
