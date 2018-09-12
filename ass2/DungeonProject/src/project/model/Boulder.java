@@ -15,7 +15,7 @@ public class Boulder implements CollisionBehaviour {
 		}
 		
 		//get the coords of the block which the boulder will be moving onto
-		Direction playerDirection = entity.getDirection();
+		Direction entDirection = entity.getDirection();
 		switch (entDirection) {
 			case UP:
 				int newX = this.getX();
