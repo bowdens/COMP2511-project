@@ -1,1 +1,5 @@
-Game/bin
+ass2/DungeonProject/.gitignore
+*.class
+ass2/DungeonProject/bin
+ass2/DungeonProject/bin/*
+ass2/DungeonProject/bin/.*
