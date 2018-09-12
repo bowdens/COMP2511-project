@@ -5,7 +5,7 @@ public class FloorSwitch extends BoardEntity implements CollisionBehaviour {
 	public FloorSwitch(int x, int y) {
 		this.setX(x);
 		this.setY(y);
-		collisionBehaviour = new activateSwitchBehaviour();
+		collisionBehaviour = new ActivateSwitchCollisionBehaviour();
 	}
 	
 	@Override
