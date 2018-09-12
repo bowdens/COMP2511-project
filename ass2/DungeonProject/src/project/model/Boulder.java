@@ -4,7 +4,7 @@ public class Boulder implements CollisionBehaviour {
 	public Boulder(int x, int y) {
 		this.setX(x);
 		this.setY(y);
-		collisionBehaviour = new moveAroundBehaviour();
+		collisionBehaviour = new MoveAroundCollisionBehaviour();
 	}
 	
 	@Override
