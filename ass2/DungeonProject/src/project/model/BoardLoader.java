@@ -1,9 +1,10 @@
 package project.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BoardLoader {
 	
@@ -17,40 +18,32 @@ public class BoardLoader {
 		this.filePath = filePath;
 	}
 
-	public void loadBoardFromDir(ArrayList<Board> boards, DungeonCreator creator) {
+	public void loadBoards(ArrayList<Board> boards) {
 		File[] dir = new File(getFilePath()).listFiles();
 	    for (File file : dir) {
 	    	if (file.isFile()) {
-		    	Board newBoard = loadBoard(file, creator);
+		    	Board newBoard = load(file);
 		    	boards.add(newBoard);
 	    	}
 	    }
 	}
 	
-	private Board loadBoard(File file, DungeonCreator creator) {
-		Scanner fileSc = null;
+	private Board load(File file) {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		Board newBoard = null;
+		
 		try {
-			fileSc = new Scanner(file);
-		} catch (FileNotFoundException e) {
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			newBoard = (Board) ois.readObject();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 		
-		String boardName = fileSc.nextLine();
-		int height = fileSc.nextInt();
-		int width = fileSc.nextInt();
-		Board newBoard = new Board(boardName, height, width);
-		
-		for (int i = 0; i < height ; i++) {
-			for (int j = 0; j < width; j++) {
-				if (fileSc.hasNextInt()) {
-					int entity = fileSc.nextInt();
-					creator.setBoardEntity(newBoard, entity, j, i);
-				}
-			}
-		}
-		
-		fileSc.close();
-		return null;
+		return newBoard;
 	}
-
+	
 }

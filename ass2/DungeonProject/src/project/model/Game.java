@@ -35,12 +35,11 @@ public class Game {
 	
 	public void loadAllBoards() {
 		boardLoader.setFilePath("src/simpleDungeons");
-		boardLoader.loadBoardFromDir(simpleDungeons, dungeonCreator);
+		boardLoader.loadBoards(simpleDungeons);
 		boardLoader.setFilePath("src/advancedDungeons");
-		boardLoader.loadBoardFromDir(advancedDungeons, dungeonCreator);
+		boardLoader.loadBoards(advancedDungeons);
 		boardLoader.setFilePath("src/customDungeons");
-		boardLoader.loadBoardFromDir(customDungeons, dungeonCreator);
+		boardLoader.loadBoards(customDungeons);
 	}
 	
-
 }

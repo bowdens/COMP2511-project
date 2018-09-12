@@ -1,8 +1,9 @@
 package project.model;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.ObjectOutputStream;
 
 public class BoardWriter {
 	
@@ -17,29 +18,22 @@ public class BoardWriter {
 	}
 	
 	public void writeBoard(Board board) {
-		File outFile = new File(getFilePath() + "/" + board.getName() + ".txt");
-		PrintWriter writer = null;
+		File outFile = new File(getFilePath() 
+				+ "/" 
+				+ board.getName() 
+				+ board.getBoardID() + ".txt");
 		
+		FileOutputStream fout = null;
+		ObjectOutputStream oos = null;
+				
 		try {
-			writer = new PrintWriter(outFile);
+			fout = new FileOutputStream(outFile);
+			oos = new ObjectOutputStream(fout);
+			oos.writeObject(board);
 		} catch (IOException e) {
-			System.err.println("Caught IOException: " +  e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
-		writer.println(board.getName());
-		writer.println(board.getHeight());
-		writer.println(board.getWidth());
-		
-		for (int i = 0; i < board.getHeight(); i++) {
-			for (int j = 0; j < board.getWidth(); j++) {
-				if (i == (board.getWidth() - 1)) {
-					writer.print(board.getEntityAt(j, i));
-				} else {
-					writer.print(board.getEntityAt(j, i) + " ");					
-				}
-			}
-			writer.println();
-		}
 	}
 
 }
