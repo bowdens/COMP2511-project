@@ -25,32 +25,93 @@ public class Player extends MovingEntity {
 		setDirection(Direction.DOWN);
 	}
 	
+	/**
+	 * Tries to move the player up (decrement Y)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
 	public void moveUp(Board board) {
 		int newX = getX();
 		int newY = getY()-1;
 		moveTo(board, newY, newX);
 	}
 	
+	/**
+	 * Tries to move the player down (increment Y)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
 	public void moveDown(Board board) {
 		int newX = getX();
 		int newY = getY()+1;
 		moveTo(board, newY, newX);
 	}
 	
+	/**
+	 * Tries to move the player left (decrement X)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
 	public void moveLeft(Board board) {
 		int newX = getX()-1;
 		int newY = getY();
 		moveTo(board, newY, newX);
 	}
 	
+	/**
+	 * Tries to move the player right (increment X)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
 	public void moveRight(Board board) {
 		int newX = getX()+1;
 		int newY = getY();
 		moveTo(board, newY, newX);
 	}
 	
-	public void dropBomb() {
+	/**
+	 * If the player has a bomb, spawn an exploding bomb enity directly in front of the player
+	 * Will only spawn a bomb if the entity allows an exploding bomb to move over them
+	 * @author Tom Bowden
+	 * @param board the board
+	 * @return true if a bomb was dropped, false otherwise
+	 */
+	public boolean dropBomb(Board board) {
+		if (getBombs() <= 0) {
+			return false;
+		}
 		
+		int newX = 0, newY = 0;
+		switch (getDirection()) {
+		case UP:
+			newX = getX();
+			newY = getY() - 1;
+			break;
+		case DOWN:
+			newX = getX();
+			newY = getY() + 1;
+			break;
+		case LEFT:
+			newX = getX() - 1;
+			newY = getY();
+			break;
+		case RIGHT:
+			newX = getX() + 1;
+			newY = getY();
+			break;
+		default:
+			// enum - should never happen
+			break;
+		}
+		BoardEntity entity = board.getEntityAt(newX, newY);
+		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
+		if (entity == null || entity.canMoveOnto(bomb)) {
+			// put the bomb there
+			board.addBoardEntity(bomb);
+			addBombs(-1);
+			return true;
+		}
+		return false;
 	}
 	
 	public void fireArrow() {
@@ -58,9 +119,9 @@ public class Player extends MovingEntity {
 	}
 	
 	@Override
-	public boolean canMoveOnto(MovingEntity entity) {
-		// everything can move onto this
-		return true;
+	public boolean canMoveOnto(BoardEntity entity) {
+		// enemies can move onto this
+		return (entity instanceof Enemy);
 	}
 
 	/**

@@ -1,14 +1,20 @@
-package src.project.model;
+package project.model;
 
-public class Boulder implements CollisionBehaviour {
+import project.model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+
+public class Boulder extends BoardEntity {
 	public Boulder(int x, int y) {
-		this.setX(x);
-		this.setY(y);
-		collisionBehaviour = new MoveAroundCollisionBehaviour();
+		super(x, y);
+		setCollisionBehaviour(new MoveAroundCollisionBehaviour());
 	}
-	
+
 	@Override
-	public boolean canMoveOnto() {
-		return false;
+	public boolean canMoveOnto(BoardEntity entity) {
+		// players can move onto it, noone else
+		if (entity instanceof Player) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

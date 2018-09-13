@@ -10,7 +10,43 @@ public abstract class MovingEntity extends BoardEntity {
 		setDirection(Direction.DOWN);
 	}
 	
-	protected void moveTo(Board board, int x, int y) {
+	/**
+	 * Moves to x,y
+	 * Checks that any instance at x,y will allow this to move onto it
+	 * calls any collision behaviour specified by the entity at x,y
+	 * @param board The board
+	 * @param x The x coordinate to move onto (left=0)
+	 * @param y The y coordinate to move onto (up=0)
+	 * @return true if it moved, false if it did not
+	 * @pre Ensure that moving from the existing position to the new x,y is a valid (ie to an adjacent tile)
+	 * @author Tom Bowden
+	 */
+	public boolean moveTo(Board board, int x, int y) {
+		/*
+		 * Get enitity at x,y
+		 * if entity is null, move there
+		 * otherwise check the entities canMoveOnto if false, do not move there
+		 * otherwise move there and call entity.collision
+		 */
+		
+		BoardEntity entity = board.getEntityAt(x,y);
+		if (entity == null) {
+			// move there
+			setX(x);
+			setY(y);
+			return true;
+		} else {
+			if (entity.canMoveOnto(this)) {
+				// I can move onto it
+				setX(x);
+				setY(y);
+				// call the collision for this colliding with the entity
+				entity.collide(board, this);
+				return true;
+			} else {
+				return false;
+			}
+		}
 		
 	}
 

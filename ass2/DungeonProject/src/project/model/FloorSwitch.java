@@ -1,16 +1,17 @@
-package src.project.model;
+package project.model;
 
-public class FloorSwitch extends BoardEntity implements CollisionBehaviour {
+import project.model.CollisionBehaviours.NoCollision;
 
+public class FloorSwitch extends BoardEntity {
 	public FloorSwitch(int x, int y) {
-		this.setX(x);
-		this.setY(y);
-		collisionBehaviour = new ActivateSwitchCollisionBehaviour();
+		super(x, y);
+		setCollisionBehaviour(new NoCollision());
 	}
-	
+
 	@Override
-	public boolean canMoveOnto() {
-		return true;
+	public boolean canMoveOnto(BoardEntity entity) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

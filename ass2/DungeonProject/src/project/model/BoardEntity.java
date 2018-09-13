@@ -7,7 +7,7 @@ public abstract class BoardEntity {
 	private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	
-	public abstract boolean canMoveOnto(MovingEntity entity);
+	public abstract boolean canMoveOnto(BoardEntity entity);
 	
 	
 	public BoardEntity(int x, int y) {
@@ -39,8 +39,13 @@ public abstract class BoardEntity {
 		this.collisionBehaviour = collisionBehaviour;
 	}
 	
-	public void collide(Player player) {
-		collisionBehaviour.collide(player, this);
+	/**
+	 * Calls the collision behaviour
+	 * @param board The board
+	 * @param mover The BoardEntity moving onto this entity
+	 */
+	public void collide(Board board, BoardEntity mover) {
+		collisionBehaviour.collide(board, mover, this);
 	}
 
 	public EntityType getType() {

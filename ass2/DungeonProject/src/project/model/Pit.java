@@ -1,16 +1,23 @@
-package src.project.model;
+package project.model;
 
-public class Pit extends BoardEntity implements CollisionBehaviour {
+import project.model.CollisionBehaviours.PitKillCollisionBehaviour;
+
+public class Pit extends BoardEntity {
 	
 	public Pit(int x, int y) {
-		this.setX(x);
-		this.setY(y);
-		collisionBehaviour = new PitKillCollisionBehaviour();
+		super(x, y);
+		setCollisionBehaviour(new PitKillCollisionBehaviour());
 	}
-	
+
 	@Override
-	public boolean canMoveOnto() {
-		return true;
+	public boolean canMoveOnto(BoardEntity entity) {
+		/*
+		 * players can move onto the pit, others cannot
+		 */
+		if (entity instanceof Player) {
+			return true;
+		}
+		return false;
 	}
 
 }

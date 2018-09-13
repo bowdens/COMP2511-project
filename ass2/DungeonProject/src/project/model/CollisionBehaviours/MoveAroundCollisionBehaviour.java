@@ -1,36 +1,53 @@
 package project.model.CollisionBehaviours;
 
+import project.model.Board;
 import project.model.BoardEntity;
+import project.model.CollisionBehaviour;
+import project.model.Player;
 
-public class MoveAroundCollisionBehaviour implements CollisionBehaviour{
+public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
+
+	/**
+	 * @pre Have checked that me.canMoveOnto is true for me=Boudler and mover=player
+	 */
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
-		//should move the boulder entity infront of the player
-		switch: (player.getdirection()){
+		/*
+		 * Moves the boulder up when a player hits it
+		 * does not do anything otherwise
+		 */
+		if (!(mover instanceof Player)) {
+			// if its not a player, don't move the boulder
+			return;
+		}
+			
+		Player player = (Player) mover;
+		
+		int newX = 0, newY = 0;
+		switch (player.getDirection()){
 			case UP:
-				int newX = me.getX();
-				int newY = me.getY()-1;
-				moveTo(board, newY, newX);
+				newX = me.getX();
+				newY = me.getY()-1;
 				break;
 			case DOWN:
-				int newX = me.getX();
-				int newY = me.getY()+1;
-				moveTo(board, newY, newX);
+				newX = me.getX();
+				newY = me.getY()+1;
 				break;
 			case LEFT:
-				int newX = me.getX()-1;
-				int newY = me.getY();
-				moveTo(board, newY, newX);
+				newX = me.getX()-1;
+				newY = me.getY();
 				break;
 			case RIGHT:
-				int newX = me.getX()+1;
-				int newY = me.getY();
-				moveTo(board, newY, newX);
+				newX = me.getX()+1;
+				newY = me.getY();
 				break;
 		}
-		mover.setX(newX);
-		mover.setY(newY);
+		
+		me.setX(newX);
+		me.setY(newY);
+		
 		return;
+		
 	}
 
 }

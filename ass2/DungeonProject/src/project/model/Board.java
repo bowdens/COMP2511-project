@@ -52,6 +52,12 @@ public class Board {
 		return boardID;
 	}
 	
+	/**
+	 * returns the entity at a given x,y. Returns null if there is no entity at that x,y
+	 * @param x the x coordinate (left=0)
+	 * @param y the y coordinate (up=0)
+	 * @return null if none exists, the entity otherwise
+	 */
 	public BoardEntity getEntityAt(int x, int y) {
 		for(BoardEntity entity : boardEntities) {
 			if(x == entity.getX() && y == entity.getY()) {
@@ -61,8 +67,36 @@ public class Board {
 		return null;
 	}
 	
-	public void addBoardEntity(BoardEntity be) {
-		boardEntities.add(be);
+	/**
+	 * Adds a board entity to the board. Will not add duplicates (that is same entity at the same memory location
+	 * @param entity The board entity to add to the list of entities
+	 */
+	public void addBoardEntity(BoardEntity entity) {
+		if(!boardEntities.contains(entity)) {
+			boardEntities.add(entity);
+		}
+	}
+
+	/**
+	 * Removes an existing board entity from the board
+	 * @param entity the entity to be removed
+	 */
+	public void removeBoardEntity(BoardEntity entity) {
+		boardEntities.remove(entity);
+	}
+	
+	/**
+	 * ends the game
+	 */
+	public void endGame() {
+		// TODO end the game
+	}
+
+	/**
+	 * wins the game
+	 */
+	public void winGame() {
+		// TODO win the game
 	}
 
 }
