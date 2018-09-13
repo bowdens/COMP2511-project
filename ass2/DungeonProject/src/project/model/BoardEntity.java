@@ -1,7 +1,10 @@
 package project.model;
 
-public abstract class BoardEntity {
+import java.io.Serializable;
+
+public abstract class BoardEntity implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private EntityType type;

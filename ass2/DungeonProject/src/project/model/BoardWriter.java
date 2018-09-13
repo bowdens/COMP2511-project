@@ -9,14 +9,27 @@ public class BoardWriter {
 	
 	private String filePath;
 	
+	/**
+	 * @return the filePath
+	 */
 	public String getFilePath() {
 		return filePath;
 	}
 
+
+	/**
+	 * @param filePath the filePath to set
+	 */
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	
+
+
+	/**
+	 * This method writes a board to a file with a name 
+	 * based on the board's name and ID.
+	 * @param board
+	 */
 	public void writeBoard(Board board) {
 		File outFile = new File(getFilePath() 
 				+ "/" 

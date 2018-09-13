@@ -9,15 +9,26 @@ import java.util.ArrayList;
 public class BoardLoader {
 	
 	private String filePath;
-	
+
+	/**
+	 * @return the filePath
+	 */
 	public String getFilePath() {
 		return filePath;
 	}
 
+	/**
+	 * @param filePath the filePath to set
+	 */
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 
+	/**
+	 * This method loads all boards from a directory
+	 * into the requested ArrayList of boards.
+	 * @param boards The ArrayList of boards to load into.
+	 */
 	public void loadBoards(ArrayList<Board> boards) {
 		File[] dir = new File(getFilePath()).listFiles();
 	    for (File file : dir) {
@@ -28,6 +39,8 @@ public class BoardLoader {
 	    }
 	}
 	
+	// This method returns a board from a file with the
+	// board object. 
 	private Board load(File file) {
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
