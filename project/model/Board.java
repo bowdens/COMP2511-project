@@ -65,14 +65,18 @@ public class Board {
 		boardEntities.add(be);
 	}
 	
+	public void removeEntity(BoardEntity be) {
+		boardEntities.remove(be);
+	}
+	
 	public void killPlayer() {
 		System.out.println("GAME OVER\n");
-		exit(0);
+		//exit(0);
 	}
 	
 	public void winGame() {
 		System.out.println("YOU WIN!\n");
-		exit(0);
+		//exit(0);
 	}
 
 }
