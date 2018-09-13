@@ -9,6 +9,8 @@ import project.model.Boulder;
 
 public class PitKillCollisionBehaviour implements CollisionBehaviour{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
 		/*

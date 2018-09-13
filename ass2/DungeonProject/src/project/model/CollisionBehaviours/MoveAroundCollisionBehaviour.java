@@ -7,6 +7,8 @@ import project.model.Player;
 
 public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * @pre Have checked that me.canMoveOnto is true for me=Boudler and mover=player
 	 */

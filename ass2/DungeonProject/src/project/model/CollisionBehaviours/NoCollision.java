@@ -6,6 +6,8 @@ import project.model.CollisionBehaviour;
 
 public class NoCollision implements CollisionBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Does nothing when the player collides with it
 	 */
