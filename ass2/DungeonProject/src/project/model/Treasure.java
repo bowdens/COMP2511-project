@@ -1,14 +1,14 @@
-package src.project.model;
+package project.model;
 
-public class Treasure extends BoardEntity implements CollisionBehaviour {
+import project.model.CollisionBehaviours.pickUpTreasure;
+
+public class Treasure extends BoardEntity {
 	public Treasure(int x, int y) {
-		this.setX(x);
-		this.setY(y);
-		collisionBehaviour = new winLevelBehaviour();
+		super(x,y);
+		setCollisionBehaviour(new pickUpTreasure());
 	}
-	
 	@Override
-	public boolean canMoveOnto() {
-		return false;
+	public boolean canMoveOnto(BoardEntity entity) {
+		return (entity instanceof Player);
 	}
 }

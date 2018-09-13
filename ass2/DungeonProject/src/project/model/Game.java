@@ -18,13 +18,25 @@ public class Game {
 		this.customDungeons = new ArrayList<Board>();
 	}
 	
-	
+	/**
+	 * This method creates a new board for the game's
+	 * creation mode. The new board will be added to the
+	 * game as a custom dungeon.
+	 * @param name The name of the new board.
+	 * @param height The height of the new board.
+	 * @param width The width of the new board.
+	 */
 	public void createNewBoard(String name, int height, int width) { 
 		Board newBoard = new Board(name, height, width); 
 		dungeonCreator.setIntialBoard(newBoard);
 		customDungeons.add(newBoard);
 	}
 	
+	/**
+	 * This method saves the board with corresponding
+	 * ID by writing the board to file.
+	 * @param customBoardID The ID corresponding to the board.
+	 */
 	public void saveCustomBoard(int customBoardID) {
 		for (Board board : customDungeons) {
 			if (board.getBoardID() == customBoardID) {
@@ -32,16 +44,17 @@ public class Game {
 			}
 		}
 	}
-   
-   //stores all the levels into the different board ArrayLists	
+	
+	/**
+	 * This method loads all boards from their directories.
+	 */
 	public void loadAllBoards() {
 		boardLoader.setFilePath("src/simpleDungeons");
-		boardLoader.loadBoardFromDir(simpleDungeons, dungeonCreator);
+		boardLoader.loadBoards(simpleDungeons);
 		boardLoader.setFilePath("src/advancedDungeons");
-		boardLoader.loadBoardFromDir(advancedDungeons, dungeonCreator);
+		boardLoader.loadBoards(advancedDungeons);
 		boardLoader.setFilePath("src/customDungeons");
-		boardLoader.loadBoardFromDir(customDungeons, dungeonCreator);
+		boardLoader.loadBoards(customDungeons);
 	}
 	
-
 }

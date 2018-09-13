@@ -6,7 +6,6 @@ public abstract class Weapon extends BoardEntity {
 	
 	public Weapon(int x, int y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
 	}
 
 	public DeploymentBehaviour getDeploymentBehviour() {

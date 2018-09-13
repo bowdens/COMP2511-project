@@ -1,37 +1,39 @@
-package src.project.model;
+package project.model;
 
-public class Boulder implements CollisionBehaviour {
+import project.model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+
+public class Boulder extends BoardEntity {
 	public Boulder(int x, int y) {
-		this.setX(x);
-		this.setY(y);
-		collisionBehaviour = new moveAroundBehaviour();
+		super(x, y);
+		setCollisionBehaviour(new MoveAroundCollisionBehaviour());
 	}
-	
+
 	@Override
-	public boolean canMoveOnto(MovingEntity entity, Board board) {
-		//if entity isn't a player return false
+	public boolean canMoveOnto(BoardEntity entity) {
+		/if entity isn't a player return false
 		if(!(entity instanceof Player)) {
 			return false;
 		}
-		
+		int newX;
+		int newY;
 		//get the coords of the block which the boulder will be moving onto
 		Direction entDirection = entity.getDirection();
 		switch (entDirection) {
 			case UP:
-				int newX = this.getX();
-				int newY = this.getY()-1;
+				newX = this.getX();
+				newY = this.getY()-1;
 				break;
 			case DOWN:
-				int newX = this.getX();
-				int newY = this.getY()+1;
+				newX = this.getX();
+				newY = this.getY()+1;
 				break;
 			case LEFT:
-				int newX = this.getX()-1;
-				int newY = this.getY();
+				newX = this.getX()-1;
+				newY = this.getY();
 				break;
 			case RIGHT:
-				int newX = this.getX()+1;
-				int newY = this.getY();
+				newX = this.getX()+1;
+				newY = this.getY();
 				break;
 		}
 		
@@ -39,8 +41,6 @@ public class Boulder implements CollisionBehaviour {
 		BoardEntity movinOnto = board.getEntityAt(newX, newY);
 	    //check if the boulder can move onto this object
 		if(movinOnto.canMoveOnto(this, board)) {
-			this.setX(newX);
-			this.setY(newY);
 			return true;
 		}else {
 			return false;

@@ -1,16 +1,18 @@
 package project.model;
 
-public abstract class BoardEntity {
-	//not sure about this:
-	//might change x and y to public since it's being accessed by the entities constructor
-	//although, would there be a problem with using setX and setY in the constructors? In that case I could keep them private
+import java.io.Serializable;
+
+public abstract class BoardEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	//private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	
-	public abstract boolean canMoveOnto(MovingEntity entity, Board board);
-
+	public abstract boolean canMoveOnto(BoardEntity entity);
+	
+	
 	public BoardEntity(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -40,8 +42,13 @@ public abstract class BoardEntity {
 		this.collisionBehaviour = collisionBehaviour;
 	}
 	
-	public void collide(Player player) {
-		collisionBehaviour.collide(player, this);
+	/**
+	 * Calls the collision behaviour
+	 * @param board The board
+	 * @param mover The BoardEntity moving onto this entity
+	 */
+	public void collide(Board board, BoardEntity mover) {
+		collisionBehaviour.collide(board, mover, this);
 	}
 
 	public EntityType getType() {
