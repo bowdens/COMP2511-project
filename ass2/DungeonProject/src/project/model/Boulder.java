@@ -1,6 +1,9 @@
-package project.model;
+//package project.model;
+package model;
 
-import project.model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+//import project.model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+import model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+
 
 public class Boulder extends BoardEntity {
 	public Boulder(int x, int y) {
@@ -9,15 +12,16 @@ public class Boulder extends BoardEntity {
 	}
 
 	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
-		/if entity isn't a player return false
+	public boolean canMoveOnto(BoardEntity entity, Board board) {
+		//if entity isn't a player return false
 		if(!(entity instanceof Player)) {
 			return false;
 		}
-		int newX;
-		int newY;
+		int newX = 0;
+		int newY = 0;
 		//get the coords of the block which the boulder will be moving onto
-		Direction entDirection = entity.getDirection();
+		MovingEntity mover = (MovingEntity) entity;
+		Direction entDirection = mover.getDirection();
 		switch (entDirection) {
 			case UP:
 				newX = this.getX();

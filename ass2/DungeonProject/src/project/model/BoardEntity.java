@@ -1,4 +1,5 @@
-package project.model;
+//package project.model;
+package model;
 
 import java.io.Serializable;
 
@@ -10,7 +11,7 @@ public abstract class BoardEntity implements Serializable {
 	private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	
-	public abstract boolean canMoveOnto(BoardEntity entity);
+	public abstract boolean canMoveOnto(BoardEntity entity, Board board);
 	
 	
 	public BoardEntity(int x, int y) {

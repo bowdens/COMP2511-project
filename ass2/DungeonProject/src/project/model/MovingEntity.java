@@ -1,4 +1,5 @@
-package project.model;
+//package project.model;
+package model;
 
 public abstract class MovingEntity extends BoardEntity {
 	
@@ -36,7 +37,7 @@ public abstract class MovingEntity extends BoardEntity {
 			setY(y);
 			return true;
 		} else {
-			if (entity.canMoveOnto(this)) {
+			if (entity.canMoveOnto(this, board)) {
 				// I can move onto it
 				setX(x);
 				setY(y);

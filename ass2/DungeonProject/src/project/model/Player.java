@@ -1,8 +1,10 @@
-package project.model;
+//package project.model;
+package model;
 
 import java.util.ArrayList;
 
-import project.model.CollisionBehaviours.NoCollision;
+//import project.model.CollisionBehaviours.NoCollision;
+import model.CollisionBehaviours.NoCollision;
 
 public class Player extends MovingEntity {
 	
@@ -105,7 +107,7 @@ public class Player extends MovingEntity {
 		}
 		BoardEntity entity = board.getEntityAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
-		if (entity == null || entity.canMoveOnto(bomb)) {
+		if (entity == null || entity.canMoveOnto(bomb, board)) {
 			// put the bomb there
 			board.addBoardEntity(bomb);
 			addBombs(-1);
@@ -119,7 +121,7 @@ public class Player extends MovingEntity {
 	}
 	
 	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
+	public boolean canMoveOnto(BoardEntity entity, Board board) {
 		// enemies can move onto this
 		return (entity instanceof Enemy);
 	}

@@ -1,11 +1,16 @@
+//package project.model.CollisionBehaviours;
+package model.CollisionBehaviours;
 
-package project.model.CollisionBehaviours;
-
-import project.model.Board;
-import project.model.BoardEntity;
-import project.model.CollisionBehaviour;
-import project.model.Player;
-import project.model.Boulder;
+//import project.model.Board;
+import model.Board;
+//import project.model.BoardEntity;
+import model.BoardEntity;
+//import project.model.CollisionBehaviour;
+import model.CollisionBehaviour;
+//import project.model.Player;
+import model.Player;
+//import project.model.Boulder;
+import model.Boulder;
 
 public class PitKillCollisionBehaviour implements CollisionBehaviour{
 	
