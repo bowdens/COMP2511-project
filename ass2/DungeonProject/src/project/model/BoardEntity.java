@@ -3,6 +3,8 @@ package model;
 
 import java.io.Serializable;
 
+import project.model.CanMoveOntoDecorators.CanMoveOnto;
+
 public abstract class BoardEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -10,8 +12,7 @@ public abstract class BoardEntity implements Serializable {
 	private int y;
 	private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
-	
-	public abstract boolean canMoveOnto(BoardEntity entity, Board board);
+	private CanMoveOnto canMoveOnto;
 	
 	
 	public BoardEntity(int x, int y) {
@@ -51,9 +52,26 @@ public abstract class BoardEntity implements Serializable {
 	public void collide(Board board, BoardEntity mover) {
 		collisionBehaviour.collide(board, mover, this);
 	}
+	
+	/**
+	 * Returns true if the a particular mover can move onto this
+	 * @param board The board
+	 * @param mover The BoardEntity attempting to move onto this
+	 * @return true if it can, false if it cannot
+	 */
+	public boolean canMoveOnto(Board board, BoardEntity mover) {
+		return canMoveOnto.canMoveOnto(board, mover);
+	}
+	
+	/**
+	 * Set the canMoveOnto
+	 * @param cmo the new CanMoveOnto
+	 */
+	public void setCanMoveOnto(CanMoveOnto cmo) {
+		this.canMoveOnto = cmo;
+	}
 
 	public EntityType getType() {
 		return type;
 	}
-	
 }
