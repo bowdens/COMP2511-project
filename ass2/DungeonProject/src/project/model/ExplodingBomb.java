@@ -1,4 +1,5 @@
-package project.model;
+//package project.model;
+package model;
 
 public class ExplodingBomb extends BoardEntity {
 	private int ticks;
@@ -12,7 +13,7 @@ public class ExplodingBomb extends BoardEntity {
 	}
 
 	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
+	public boolean canMoveOnto(BoardEntity entity, Board board) {
 		// nothing can move onto a bomb
 		return false;
 	}

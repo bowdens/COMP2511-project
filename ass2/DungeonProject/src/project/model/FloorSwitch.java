@@ -1,6 +1,8 @@
-package project.model;
+//package project.model;
+package model;
 
-import project.model.CollisionBehaviours.NoCollision;
+//import project.model.CollisionBehaviours.NoCollision;
+import model.CollisionBehaviours.NoCollision;
 
 public class FloorSwitch extends BoardEntity {
 	public FloorSwitch(int x, int y) {
@@ -9,7 +11,7 @@ public class FloorSwitch extends BoardEntity {
 	}
 
 	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
+	public boolean canMoveOnto(BoardEntity entity, Board board) {
 		// TODO Auto-generated method stub
 		return false;
 	}

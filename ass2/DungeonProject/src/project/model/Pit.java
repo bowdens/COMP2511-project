@@ -1,6 +1,8 @@
-package project.model;
+//package project.model;
+package model;
 
-import project.model.CollisionBehaviours.PitKillCollisionBehaviour;
+//import project.model.CollisionBehaviours.PitKillCollisionBehaviour;
+import model.CollisionBehaviours.PitKillCollisionBehaviour;
 
 public class Pit extends BoardEntity {
 	
@@ -10,7 +12,7 @@ public class Pit extends BoardEntity {
 	}
 
 	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
+	public boolean canMoveOnto(BoardEntity entity, Board board) {
 		/*
 		 * players can move onto the pit, others cannot
 		 */

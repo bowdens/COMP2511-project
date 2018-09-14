@@ -1,11 +1,18 @@
-package project.model.CollisionBehaviours;
+//package project.model.CollisionBehaviours;
+package model.CollisionBehaviours;
 
-import project.model.Board;
-import project.model.BoardEntity;
-import project.model.CollisionBehaviour;
-import project.model.Player;
+//import project.model.Board;
+import model.Board;
+//import project.model.BoardEntity;
+import model.BoardEntity;
+//import project.model.CollisionBehaviour;
+import model.CollisionBehaviour;
+//import project.model.Player;
+import model.Player;
 
 public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @pre Have checked that me.canMoveOnto is true for me=Boudler and mover=player
