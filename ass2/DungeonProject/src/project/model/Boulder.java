@@ -11,15 +11,20 @@ public class Boulder extends BoardEntity {
 	}
 
 	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
-		//if entity isn't a player return false
-		if(!(entity instanceof Player)) {
+	public boolean canMoveOnto(Board board, BoardEntity mover) {
+		/*
+		 * since the boulder has a more complex canMoveOnto, 
+		 * i've overridden it and not use the decorators
+		 */
+		
+		// if entity isn't a player return false
+		if (!(mover instanceof Player)) {
 			return false;
 		}
-		int newX;
-		int newY;
+		int newX = -1;
+		int newY = -1;
 		//get the coords of the block which the boulder will be moving onto
-		Direction entDirection = ((Player)entity).getDirection();
+		Direction entDirection = ((Player)mover).getDirection();
 		switch (entDirection) {
 			case UP:
 				newX = this.getX();
@@ -40,11 +45,17 @@ public class Boulder extends BoardEntity {
 		}
 		
 		//get object that is on this coordinate
-		BoardEntity movinOnto = board.getEntityAt(newX, newY);
-	    //check if the boulder can move onto this object
-		if(movinOnto.canMoveOnto(this, board)) {
+		BoardEntity movingOnto = board.getEntityAt(newX, newY);
+		
+		// if there's nothing there, then you can move onto it
+		if(movingOnto == null) {
 			return true;
-		}else {
+		}
+		
+	    //check if the boulder can move onto this object
+		if (movingOnto.canMoveOnto(board, this)) {
+			return true;
+		} else {
 			return false;
 		}
 	}

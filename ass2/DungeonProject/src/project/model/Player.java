@@ -2,10 +2,13 @@ package project.model;
 
 import java.util.ArrayList;
 
+import project.model.CanMoveOntoDecorators.AllowAll;
+import project.model.CanMoveOntoDecorators.AllowNone;
 import project.model.CollisionBehaviours.NoCollision;
 
 public class Player extends MovingEntity {
 	
+	private static final long serialVersionUID = -12691224577134383L;
 	private int bombs;
 	private int arrows;
 	private int swords;
@@ -23,6 +26,7 @@ public class Player extends MovingEntity {
 		setInvincible(false);
 		setCollisionBehaviour(new NoCollision());
 		setDirection(Direction.DOWN);
+		setCanMoveOnto(new AllowAll(new AllowNone()));
 	}
 	
 	/**
@@ -105,7 +109,7 @@ public class Player extends MovingEntity {
 		}
 		BoardEntity entity = board.getEntityAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
-		if (entity == null || entity.canMoveOnto(bomb)) {
+		if (entity == null || entity.canMoveOnto(board, bomb)) {
 			// put the bomb there
 			board.addBoardEntity(bomb);
 			addBombs(-1);
@@ -116,12 +120,6 @@ public class Player extends MovingEntity {
 	
 	public void fireArrow() {
 	
-	}
-	
-	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
-		// enemies can move onto this
-		return (entity instanceof Enemy);
 	}
 
 	/**
