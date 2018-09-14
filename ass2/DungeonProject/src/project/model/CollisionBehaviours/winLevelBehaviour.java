@@ -1,8 +1,13 @@
-package project.model.CollisionBehaviours;
+//package project.model.CollisionBehaviours;
+package model.CollisionBehaviours;
 
-import project.model.Board;
-import project.model.BoardEntity;
-import project.model.CollisionBehaviour;
+
+//import project.model.Board;
+import model.Board;
+//import project.model.BoardEntity;
+import model.BoardEntity;
+//import project.model.CollisionBehaviour;
+import model.CollisionBehaviour;
 
 public class winLevelBehaviour implements CollisionBehaviour {
 

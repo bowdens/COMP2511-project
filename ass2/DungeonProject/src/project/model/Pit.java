@@ -1,4 +1,5 @@
-package project.model;
+//package project.model;
+package model;
 
 import project.model.CanMoveOntoDecorators.AllowPlayer;
 import project.model.CanMoveOntoDecorators.AllowBoulder;

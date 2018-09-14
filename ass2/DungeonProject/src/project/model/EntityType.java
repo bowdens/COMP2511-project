@@ -1,4 +1,5 @@
-package project.model;
+//package project.model;
+package model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ public enum EntityType {
 	COWARD(15),
 	SWORD(16),
 	ARROW(17),
-	INVINCIBLITY_POTION(18),
+	INVINCIBILITY_POTION(18),
 	HOVER_POTION(19);
 
     private int value;

@@ -1,4 +1,5 @@
-package project.model;
+//package project.model;
+package model;
 
 import project.model.CanMoveOntoDecorators.AllowNone;
 import project.model.CanMoveOntoDecorators.AllowPlayer;
@@ -12,6 +13,4 @@ public class Treasure extends BoardEntity {
 		setCollisionBehaviour(new pickUpTreasure());
 		setCanMoveOnto(new AllowPlayer(new AllowNone()));
 	}
-	
-	
 }
