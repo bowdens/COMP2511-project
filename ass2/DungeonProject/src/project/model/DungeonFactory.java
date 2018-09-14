@@ -10,41 +10,41 @@ public class DungeonFactory {
 			case FLOOR_TILE:
 				break;
 			case WALL:
-				break;
+				return new Wall(x,y);
 			case EXIT:
-				break;
+				return new Exit(x,y);
 			case PLAYER:
-				break;
+				return new Player(x,y);
 			case TREASURE:
-				break;
+				return new Treasure(x,y);
 			case DOOR:
-				break;
+				return new Door(x,y);
 			case KEY:
-				break;
+				return new Key(x,y);
 			case BOULDER:
-				break;
+				return new Boulder(x,y);
 			case FLOOR_SWITCH:
-				break;
+				return new FloorSwitch(x,y);
 			case UNLIT_BOMB:
-				break;
+				return new UnlitBomb(x,y);
 			case PIT:
-				break;
+				return new Pit(x,y);
 			case HUNTER:
-				break;
+				return new Hunter(x,y);
 			case STRATEGIST:
-				break;
+				return new Strategist(x,y);
 			case HOUND:
-				break;
+				return new Hound(x,y);
 			case COWARD:
-				break;
+				return new Coward(x,y);
 			case SWORD:
-				break;
+				return new Sword(x,y);
 			case ARROW:
-				break;
-			case INVINCIBLITY_POTION:
-				break;
+				return new Arrow(x,y);
+			case INVINCIBILITY_POTION:
+				return new InvincibilityPotion(x,y);
 			case HOVER_POTION:
-				break;
+				return new HoverPotion(x,y);
 			default:
 				break;
 		}

@@ -22,7 +22,7 @@ public enum EntityType {
 	COWARD(15),
 	SWORD(16),
 	ARROW(17),
-	INVINCIBLITY_POTION(18),
+	INVINCIBILITY_POTION(18),
 	HOVER_POTION(19);
 
     private int value;
