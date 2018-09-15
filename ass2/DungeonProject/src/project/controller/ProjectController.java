@@ -1,5 +1,5 @@
-package controller;
-import model.Game;
+package project.controller;
+import project.model.Game;
 
 public class ProjectController {
 	

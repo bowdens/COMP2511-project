@@ -1,8 +1,8 @@
-package model.CollisionBehaviours;
+package project.model.CollisionBehaviours;
 
-import model.Board;
-import model.BoardEntity;
-import model.CollisionBehaviour;
+import project.model.Board;
+import project.model.BoardEntity;
+import project.model.CollisionBehaviour;
 
 public class PickUpSword implements CollisionBehaviour {
 	private static final long serialVersionUID = 1L;

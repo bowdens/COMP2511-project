@@ -1,12 +1,8 @@
-//package project.model.CollisionBehaviours;
-package model.CollisionBehaviours;
+package project.model.CollisionBehaviours;
 
-//import project.model.Board;
-import model.Board;
-//import project.model.BoardEntity;
-import model.BoardEntity;
-//import project.model.CollisionBehaviour;
-import model.CollisionBehaviour;
+import project.model.Board;
+import project.model.BoardEntity;
+import project.model.CollisionBehaviour;
 
 public class NoCollision implements CollisionBehaviour {
 

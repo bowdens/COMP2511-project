@@ -1,6 +1,4 @@
-//package project.model;
-package model;
-
+package project.model;
 
 import project.model.CanMoveOntoDecorators.AllowAll;
 import project.model.CanMoveOntoDecorators.AllowNone;

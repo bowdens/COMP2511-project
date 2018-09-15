@@ -1,9 +1,9 @@
 //JUNK FILE - delete this later
 package testsrc;
 
-import model.*;
-import model.CollisionBehaviour.*;
-import controller.*;
+import project.model.*;
+import project.model.CollisionBehaviour.*;
+import project.controller.*;
 
 //import static junit.Assert.*;
 import org.junit.Test;

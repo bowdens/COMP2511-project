@@ -1,7 +1,7 @@
-package model;
+package project.model;
 
 import java.util.ArrayList;
-import model.BoardEntity;
+import project.model.BoardEntity;
 
 public class Inventory {
 	//private ArrayList<BoardEntity> items;

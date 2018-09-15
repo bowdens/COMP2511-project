@@ -1,5 +1,4 @@
-//package project.model;
-package model;
+package project.model;
 
 public class ExplodingBomb extends BoardEntity {
 	private int ticks;

@@ -1,10 +1,7 @@
-//package project.model;
-package model;
+package project.model;
 
-//import project.model.CollisionBehaviours.PickUpSword;
-import model.CollisionBehaviours.PickUpSword;
-//import project.model.DeploymentBehaviours.NoDeployment;
-import model.DeploymentBehaviours.NoDeployment;
+import project.model.CollisionBehaviours.PickUpSword;
+import project.model.DeploymentBehaviours.NoDeployment;
 
 public class Sword extends Weapon {
 
