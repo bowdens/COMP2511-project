@@ -15,6 +15,8 @@ public class Player extends MovingEntity {
 	private int swords;
 	private boolean hover;
 	private boolean invincible;
+	private int hover_time;
+	private int invincible_time;
 	private ArrayList<Integer> keys;
 	
 	
@@ -25,19 +27,56 @@ public class Player extends MovingEntity {
 		swords = 0;
 		setHover(false);
 		setInvincible(false);
+		hover_time = 0;
+		invincible_time = 0;
 		setCollisionBehaviour(new NoCollision());
 		setDirection(Direction.DOWN);
 		setCanMoveOnto(new AllowAll(new AllowNone()));
 	}
 	
-	@Override
-	public void setDirection(Direction direction) {
-		// override it to never let the player face in no direction
-		if (direction == Direction.NONE) direction = Direction.DOWN;
-		super.setDirection(direction);
+	/**
+	 * Tries to move the player up (decrement Y)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveUp(Board board) {
+		int newX = getX();
+		int newY = getY()-1;
+		moveTo(board, newY, newX);
 	}
 	
+	/**
+	 * Tries to move the player down (increment Y)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveDown(Board board) {
+		int newX = getX();
+		int newY = getY()+1;
+		moveTo(board, newY, newX);
+	}
 	
+	/**
+	 * Tries to move the player left (decrement X)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveLeft(Board board) {
+		int newX = getX()-1;
+		int newY = getY();
+		moveTo(board, newY, newX);
+	}
+	
+	/**
+	 * Tries to move the player right (increment X)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveRight(Board board) {
+		int newX = getX()+1;
+		int newY = getY();
+		moveTo(board, newY, newX);
+	}
 	
 	/**
 	 * If the player has a bomb, spawn an exploding bomb enity directly in front of the player
@@ -69,25 +108,19 @@ public class Player extends MovingEntity {
 			newX = getX() + 1;
 			newY = getY();
 			break;
-		case NONE:
-			newX = getX();
-			newY = getY();
 		default:
 			// enum - should never happen
 			break;
 		}
-		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
+		BoardEntity entity = board.getEntityAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
-		for (BoardEntity e : entities) {
-			if (e.canMoveOnto(board, bomb) == false) {
-				// we cannot place a bomb here
-				return false;
-			}
+		if (entity == null || entity.canMoveOnto(board, bomb)) {
+			// put the bomb there
+			board.addBoardEntity(bomb);
+			addBombs(-1);
+			return true;
 		}
-		// all entities on the tile will let us put a bomb there
-		board.addBoardEntity(bomb);
-		addBombs(-1);
-		return true;
+		return false;
 	}
 	
 	public void fireArrow() {
@@ -133,6 +166,7 @@ public class Player extends MovingEntity {
 	 * @param hover the hover to set
 	 */
 	public void setHover(boolean hover) {
+		hover_time = 10;
 		this.hover = hover;
 	}
 
@@ -161,6 +195,7 @@ public class Player extends MovingEntity {
 	 * @param invincible the invincible to set
 	 */
 	public void setInvincible(boolean invincible) {
+		invincible_time = 10;
 		this.invincible = invincible;
 	}
 
@@ -186,4 +221,21 @@ public class Player extends MovingEntity {
 		return keys.contains(keyID);
 	}
 
+	
+	public void update(Board board) {
+		//clock back any active effects
+		if(isHover()) {
+			hover_time--;
+			if(hover_time == 0) {
+				setHover(false);
+			}
+		}
+		if(isInvincible()) {
+			invincible_time--;
+			if(invincible_time == 0) {
+				setInvincible(false);
+			}
+		}
+		
+	}
 }
