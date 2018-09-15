@@ -9,13 +9,12 @@ import model.CanMoveOntoDecorators.AllowAll;
 import model.CanMoveOntoDecorators.AllowNone;
 //import project.model.CollisionBehaviours.NoCollision;
 import model.CollisionBehaviours.NoCollision;
+import model.Inventory;
 
 public class Player extends MovingEntity {
 	
 	private static final long serialVersionUID = -12691224577134383L;
-	private int bombs;
-	private int arrows;
-	private int swords;
+	private Inventory inventory;
 	private boolean hover;
 	private boolean invincible;
 	private ArrayList<Integer> keys;
@@ -23,9 +22,7 @@ public class Player extends MovingEntity {
 	
 	public Player(int x, int y) {
 		super(x, y);
-		bombs = 0;
-		arrows = 0;
-		swords = 0;
+		inventory = new Inventory();
 		setHover(false);
 		setInvincible(false);
 		setCollisionBehaviour(new NoCollision());
@@ -85,7 +82,7 @@ public class Player extends MovingEntity {
 	 * @return true if a bomb was dropped, false otherwise
 	 */
 	public boolean dropBomb(Board board) {
-		if (getBombs() <= 0) {
+		if (inventory.getNumBombs() <= 0) {
 			return false;
 		}
 		
@@ -116,7 +113,7 @@ public class Player extends MovingEntity {
 		if (entity == null || entity.canMoveOnto(board, bomb)) {
 			// put the bomb there
 			board.addBoardEntity(bomb);
-			addBombs(-1);
+			inventory.removeBomb();
 			return true;
 		}
 		return false;
@@ -126,33 +123,6 @@ public class Player extends MovingEntity {
 	
 	}
 
-	/**
-	 * @return the bombs
-	 */
-	public int getBombs() {
-		return bombs;
-	}
-
-	/**
-	 * @param num the bombs to increment by
-	 */
-	public void addBombs(int num) {
-		this.bombs += num;
-	}
-
-	/**
-	 * @return the arrows
-	 */
-	public int getArrows() {
-		return arrows;
-	}
-
-	/**
-	 * @param num the arrows to increment by
-	 */
-	public void addArrows(int num) {
-		this.arrows += num;
-	}
 
 	/**
 	 * @return the hover
@@ -168,19 +138,6 @@ public class Player extends MovingEntity {
 		this.hover = hover;
 	}
 
-	/**
-	 * @return the swords
-	 */
-	public int getSwords() {
-		return swords;
-	}
-
-	/**
-	 * @param num the swords to increment by
-	 */
-	public void addSwords(int num) {
-		this.swords += num;
-	}
 
 	/**
 	 * @return the invincible
