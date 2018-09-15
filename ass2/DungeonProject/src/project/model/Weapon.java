@@ -16,5 +16,9 @@ public abstract class Weapon extends BoardEntity {
 	public void setDeploymentBehviour(DeploymentBehaviour deploymentBehviour) {
 		this.deploymentBehviour = deploymentBehviour;
 	}
+	
+	public boolean performDeploy(Board board, BoardEntity deployedEntity) {
+		return getDeploymentBehaviour().deploy(board, deployedEntity);
+	}
 
 }
