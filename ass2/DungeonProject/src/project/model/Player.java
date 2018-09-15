@@ -34,50 +34,6 @@ public class Player extends MovingEntity {
 	}
 	
 	/**
-	 * Tries to move the player up (decrement Y)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveUp(Board board) {
-		int newX = getX();
-		int newY = getY()-1;
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player down (increment Y)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveDown(Board board) {
-		int newX = getX();
-		int newY = getY()+1;
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player left (decrement X)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveLeft(Board board) {
-		int newX = getX()-1;
-		int newY = getY();
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player right (increment X)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveRight(Board board) {
-		int newX = getX()+1;
-		int newY = getY();
-		moveTo(board, newY, newX);
-	}
-	
-	/**
 	 * If the player has a bomb, spawn an exploding bomb enity directly in front of the player
 	 * Will only spawn a bomb if the entity allows an exploding bomb to move over them
 	 * @author Tom Bowden
@@ -108,19 +64,23 @@ public class Player extends MovingEntity {
 			newY = getY();
 			break;
 		default:
-			// enum - should never happen
 			break;
 		}
-
-		BoardEntity entity = board.getEntityAt(newX, newY);
+		
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
-		if (entity == null || entity.canMoveOnto(board, bomb)) {
-			// put the bomb there
-			board.addBoardEntity(bomb);
-			addBombs(-1);
-			return true;
+		
+		for (BoardEntity e : entities) {
+			if (e.canMoveOnto(board, bomb) == false) {
+				// we cannot place a bomb here
+				return false;
+			}
 		}
-		return false;
+		
+		// all entities on the tile will let us put a bomb there
+		board.addBoardEntity(bomb);
+		addBombs(-1);
+		return true;
 	}
 	
 	public void fireArrow() {
@@ -167,8 +127,7 @@ public class Player extends MovingEntity {
 	 */
 	public void setHover(boolean hover) {
 		this.hover = hover;
-	}
-
+	}  
    
 	/**
 	 * @return the swords

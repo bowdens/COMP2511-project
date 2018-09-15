@@ -7,19 +7,15 @@ import project.model.Player;
 
 public class PickUpHoverPotion implements CollisionBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
 		if (mover instanceof Player) {
-			//if the player isn't already hovering, activate this effect
-			if(!((Player) mover).isHover()){
-				((Player) mover).setHover(true);
-			}
+			// make the player hover for the rest of the game
+			((Player) mover).setHover(true);
 			board.removeBoardEntity(me);
-			return;
-		} else {
-			return;
 		}
-
 	}
 
 }
