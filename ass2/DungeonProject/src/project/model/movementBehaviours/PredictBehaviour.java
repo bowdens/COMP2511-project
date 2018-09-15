@@ -5,26 +5,20 @@ import java.util.ArrayList;
 import project.model.Board;
 import project.model.BoardEntity;
 import project.model.Direction;
+import project.model.Enemy;
 import project.model.MovementBehaviour;
 import project.model.MovingEntity;
 import project.model.Player;
+import project.model.obstacles.Wall;
 
-public class RunAwayBehaviour implements MovementBehaviour {
-
+public class PredictBehaviour implements MovementBehaviour {
+	
 	@Override
 	public Direction nextDirection(Board board, MovingEntity me) {
-		/*
-		 * TODO:
-		 * 1. get players location
-		 * 2. find appropriate tile that is distant from player
-		 * 3. use dijkstra's to go to that tile
-		 * 4. return the direction that would lead to the next tile being the first move from dijkstra
-		 */
-		
 		Direction direction = Direction.NONE;
 		
 		// Makes sure if the enemy is stuck it will move even if that means getting
-		// closer to the player initially (not sure if you would want this)
+		// further from to the player initially (not sure if you would want this)
 		if (checkDirection(board, me, me.getX(), (me.getY() + 1))) {
 			direction = Direction.UP;
 		} else if (checkDirection(board, me, (me.getX() + 1), me.getY())) {
@@ -33,26 +27,45 @@ public class RunAwayBehaviour implements MovementBehaviour {
 		
 		int playerX = 0;
 		int playerY = 0;
+		int objectiveX = 0;
+		int objectiveY = 0;
 		
 		for (BoardEntity entity: board.getBoardEntities()) {
 			if (entity instanceof Player) {
 				playerX = entity.getX();
 				playerY = entity.getY();
+			} else if (!(entity instanceof Wall) && !(entity instanceof Enemy)) {
+				objectiveX = entity.getX();
+				objectiveY = entity.getY();
 			}
 		}
 		
-		int orginalDistY = Math.abs(playerY - me.getY());
-		int orginalDistX = Math.abs(playerX - me.getX());
-		int newDistY =  Math.abs(playerY - (me.getY() + 1));
-		int newDistX = Math.abs(playerX - (me.getX() + 1));
+		int objectiveDist = Math.abs(playerX - objectiveX) + Math.abs(playerY - objectiveY);
+		int newObjectiveDist = 0;
 		
-		// Goes away from the player in the vertical direction as far as possible
-		// After that it will move away in the horizontal direction
-		if (checkDirection(board, me, me.getX(), (me.getY() + 1)) && (newDistY > orginalDistY)) {
+		// find the closest non trivial board entity from the player
+		for (BoardEntity entity: board.getBoardEntities()) {
+			if (!(entity instanceof Wall) && !(entity instanceof Enemy)) {
+				newObjectiveDist = Math.abs(playerX - objectiveX) + Math.abs(playerY - objectiveY);
+				if (newObjectiveDist < objectiveDist) {
+					objectiveX = entity.getX();
+					objectiveY = entity.getY();
+					objectiveDist = newObjectiveDist;
+				}
+			}
+		}
+		
+		int orginalDistY = Math.abs(objectiveY - me.getY());
+		int orginalDistX = Math.abs(objectiveX - me.getX());
+		int newDistY =  Math.abs(objectiveY - (me.getY() + 1));
+		int newDistX = Math.abs(objectiveX - (me.getX() + 1));
+		
+		// Goes towards the closest non trivial board entity
+		if (checkDirection(board, me, me.getX(), (me.getY() + 1)) && (newDistY < orginalDistY)) {
 			direction = Direction.UP;
 		} else if (checkDirection(board, me, me.getX(), (me.getY() - 1))) {
 			direction = Direction.DOWN;
-		} else if (checkDirection(board, me, (me.getX() + 1), me.getY()) && (newDistX > orginalDistX)) {
+		} else if (checkDirection(board, me, (me.getX() + 1), me.getY()) && (newDistX < orginalDistX)) {
 			direction = Direction.RIGHT;
 		} else if (checkDirection(board, me, (me.getX() - 1), me.getY())) {
 			direction = Direction.LEFT;
@@ -71,6 +84,6 @@ public class RunAwayBehaviour implements MovementBehaviour {
 		}
 		
 		return true;
-	}
+	}	
 
 }

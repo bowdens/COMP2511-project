@@ -9,22 +9,15 @@ import project.model.MovementBehaviour;
 import project.model.MovingEntity;
 import project.model.Player;
 
-public class RunAwayBehaviour implements MovementBehaviour {
-
+public class RunTowardsBehaviour implements MovementBehaviour {
+	
 	@Override
 	public Direction nextDirection(Board board, MovingEntity me) {
-		/*
-		 * TODO:
-		 * 1. get players location
-		 * 2. find appropriate tile that is distant from player
-		 * 3. use dijkstra's to go to that tile
-		 * 4. return the direction that would lead to the next tile being the first move from dijkstra
-		 */
 		
 		Direction direction = Direction.NONE;
 		
 		// Makes sure if the enemy is stuck it will move even if that means getting
-		// closer to the player initially (not sure if you would want this)
+		// further from to the player initially (not sure if you would want this)
 		if (checkDirection(board, me, me.getX(), (me.getY() + 1))) {
 			direction = Direction.UP;
 		} else if (checkDirection(board, me, (me.getX() + 1), me.getY())) {
@@ -46,13 +39,13 @@ public class RunAwayBehaviour implements MovementBehaviour {
 		int newDistY =  Math.abs(playerY - (me.getY() + 1));
 		int newDistX = Math.abs(playerX - (me.getX() + 1));
 		
-		// Goes away from the player in the vertical direction as far as possible
+		// Goes towards the player in the vertical direction as far as possible
 		// After that it will move away in the horizontal direction
-		if (checkDirection(board, me, me.getX(), (me.getY() + 1)) && (newDistY > orginalDistY)) {
+		if (checkDirection(board, me, me.getX(), (me.getY() + 1)) && (newDistY < orginalDistY)) {
 			direction = Direction.UP;
 		} else if (checkDirection(board, me, me.getX(), (me.getY() - 1))) {
 			direction = Direction.DOWN;
-		} else if (checkDirection(board, me, (me.getX() + 1), me.getY()) && (newDistX > orginalDistX)) {
+		} else if (checkDirection(board, me, (me.getX() + 1), me.getY()) && (newDistX < orginalDistX)) {
 			direction = Direction.RIGHT;
 		} else if (checkDirection(board, me, (me.getX() - 1), me.getY())) {
 			direction = Direction.LEFT;
@@ -72,5 +65,5 @@ public class RunAwayBehaviour implements MovementBehaviour {
 		
 		return true;
 	}
-
+	
 }
