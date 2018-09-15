@@ -30,49 +30,14 @@ public class Player extends MovingEntity {
 		setCanMoveOnto(new AllowAll(new AllowNone()));
 	}
 	
-	/**
-	 * Tries to move the player up (decrement Y)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveUp(Board board) {
-		int newX = getX();
-		int newY = getY()-1;
-		moveTo(board, newY, newX);
+	@Override
+	public void setDirection(Direction direction) {
+		// override it to never let the player face in no direction
+		if (direction == Direction.NONE) direction = Direction.DOWN;
+		super.setDirection(direction);
 	}
 	
-	/**
-	 * Tries to move the player down (increment Y)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveDown(Board board) {
-		int newX = getX();
-		int newY = getY()+1;
-		moveTo(board, newY, newX);
-	}
 	
-	/**
-	 * Tries to move the player left (decrement X)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveLeft(Board board) {
-		int newX = getX()-1;
-		int newY = getY();
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player right (increment X)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveRight(Board board) {
-		int newX = getX()+1;
-		int newY = getY();
-		moveTo(board, newY, newX);
-	}
 	
 	/**
 	 * If the player has a bomb, spawn an exploding bomb enity directly in front of the player
@@ -104,19 +69,25 @@ public class Player extends MovingEntity {
 			newX = getX() + 1;
 			newY = getY();
 			break;
+		case NONE:
+			newX = getX();
+			newY = getY();
 		default:
 			// enum - should never happen
 			break;
 		}
-		BoardEntity entity = board.getEntityAt(newX, newY);
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
-		if (entity == null || entity.canMoveOnto(board, bomb)) {
-			// put the bomb there
-			board.addBoardEntity(bomb);
-			addBombs(-1);
-			return true;
+		for (BoardEntity e : entities) {
+			if (e.canMoveOnto(board, bomb) == false) {
+				// we cannot place a bomb here
+				return false;
+			}
 		}
-		return false;
+		// all entities on the tile will let us put a bomb there
+		board.addBoardEntity(bomb);
+		addBombs(-1);
+		return true;
 	}
 	
 	public void fireArrow() {

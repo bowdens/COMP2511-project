@@ -1,5 +1,7 @@
 package project.model.obstacles;
 
+import java.util.ArrayList;
+
 import project.model.Board;
 import project.model.BoardEntity;
 import project.model.Direction;
@@ -46,21 +48,26 @@ public class Boulder extends BoardEntity {
 				newX = this.getX()+1;
 				newY = this.getY();
 				break;
+			case NONE:
+				// this doesn't make sense - the player should never be able to move onto a boulder
+				// going in no direction so we'll just return false
+				return false;				
 		}
 		
 		//get object that is on this coordinate
-		BoardEntity movingOnto = board.getEntityAt(newX, newY);
+		ArrayList<BoardEntity> movingOnto = board.getEntitiesAt(newX, newY);
 		
 		// if there's nothing there, then you can move onto it
-		if(movingOnto == null) {
+		if(movingOnto.size() == 0) {
 			return true;
 		}
 		
-	    //check if the boulder can move onto this object
-		if (movingOnto.canMoveOnto(board, this)) {
-			return true;
-		} else {
-			return false;
+		// check though each entity in the space to make sure all will let this boulder move onto them
+		for (BoardEntity entity : movingOnto) {
+			if (entity.canMoveOnto(board, this) == false) {
+				return false;
+			}
 		}
+		return true;
 	}
 }
