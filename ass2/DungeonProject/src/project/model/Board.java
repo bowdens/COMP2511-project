@@ -1,4 +1,5 @@
 package project.model;
+
 import java.util.ArrayList;
 
 public class Board {

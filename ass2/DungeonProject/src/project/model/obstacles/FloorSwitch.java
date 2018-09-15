@@ -1,6 +1,5 @@
 package project.model.obstacles;
 
-
 import project.model.BoardEntity;
 import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;

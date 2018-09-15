@@ -17,6 +17,7 @@ public abstract class BoardEntity implements CanMoveOnto, Serializable {
 		this.y = y;
 	}
 	
+
 	/**
 	 * The update function is called once each turn after the player's movement.
 	 * By default it does nothing (eg a wall does nothing) but an enemy might call 
@@ -27,6 +28,7 @@ public abstract class BoardEntity implements CanMoveOnto, Serializable {
 		// default implementation - do nothing
 	}
 
+	
 	public int getX() {
 		return x;
 	}

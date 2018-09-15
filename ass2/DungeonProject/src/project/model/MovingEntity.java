@@ -86,7 +86,6 @@ public abstract class MovingEntity extends BoardEntity {
 				return false;
 			}
 		}
-		
 		// we can move onto the tile
 		setX(x);
 		setY(y);
