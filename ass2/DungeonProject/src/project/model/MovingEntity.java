@@ -1,8 +1,8 @@
-//package project.model;
-package model;
+package project.model;
 
 public abstract class MovingEntity extends BoardEntity {
 	
+	private static final long serialVersionUID = -9191910443455788417L;
 	private Direction direction;
 	private MovementBehaviour movementBehaviour;
 
@@ -37,7 +37,7 @@ public abstract class MovingEntity extends BoardEntity {
 			setY(y);
 			return true;
 		} else {
-			if (entity.canMoveOnto(this, board)) {
+			if (entity.canMoveOnto(board, this)) {
 				// I can move onto it
 				setX(x);
 				setY(y);

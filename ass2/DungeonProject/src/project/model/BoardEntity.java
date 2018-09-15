@@ -1,9 +1,8 @@
-//package project.model;
-package model;
+package project.model;
 
 import java.io.Serializable;
 
-import project.model.CanMoveOntoDecorators.CanMoveOnto;
+import project.model.canMoveOntoDecorators.CanMoveOnto;
 
 public abstract class BoardEntity implements Serializable {
 	

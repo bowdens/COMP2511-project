@@ -1,14 +1,11 @@
-//package project.model;
-package model;
+package project.model;
 
 import java.util.ArrayList;
 
-//import project.model.CanMoveOntoDecorators.AllowAll;
-import model.CanMoveOntoDecorators.AllowAll;
-//import project.model.CanMoveOntoDecorators.AllowNone;
-import model.CanMoveOntoDecorators.AllowNone;
-//import project.model.CollisionBehaviours.NoCollision;
-import model.CollisionBehaviours.NoCollision;
+import project.model.canMoveOntoDecorators.AllowAll;
+import project.model.canMoveOntoDecorators.AllowNone;
+import project.model.collisionBehaviours.NoCollision;
+import project.model.obstacles.ExplodingBomb;
 
 public class Player extends MovingEntity {
 	

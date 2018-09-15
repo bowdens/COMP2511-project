@@ -1,6 +1,9 @@
-package project.model;
+package project.model.items;
 
-import project.model.DeploymentBehaviours.NoDeployment;
+import project.model.Direction;
+import project.model.canMoveOntoDecorators.AllowNone;
+import project.model.canMoveOntoDecorators.AllowPlayer;
+import project.model.deploymentBehaviours.NoDeployment;
 
 public class Arrow extends Weapon {
 
@@ -10,19 +13,9 @@ public class Arrow extends Weapon {
 	public Arrow(int x, int y) {
 		super(x, y);
 		setDeploymentBehaviour(new NoDeployment());
-		
+		setCanMoveOnto(new AllowPlayer(new AllowNone()));
 	}
-
-	@Override
-	public boolean canMoveOnto(BoardEntity entity) {
-		// Allow only the player to move onto and collect the arrow
-		if (entity instanceof Player) {
-			return true;
-		}
-		
-		return false;
-	}
-
+	
 	public Direction getDirection() {
 		return direction;
 	}

@@ -1,6 +1,5 @@
-//package project.model;
-package model;
+package project.model;
 
 public interface DeploymentBehaviour {
-
+	public void deploy(Board board);
 }
