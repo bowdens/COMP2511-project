@@ -9,14 +9,13 @@ import project.model.obstacles.ExplodingBomb;
 
 public class Player extends MovingEntity {
 	
-	private static final long serialVersionUID = -12691224577134383L;
+	private static final long serialVersionUID = 1L;
 	private int bombs;
 	private int arrows;
 	private int swords;
 	private boolean hover;
 	private boolean invincible;
 	private ArrayList<Integer> keys;
-	
 	
 	public Player(int x, int y) {
 		super(x, y);
@@ -76,6 +75,7 @@ public class Player extends MovingEntity {
 			// enum - should never happen
 			break;
 		}
+		
 		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
 		for (BoardEntity e : entities) {

@@ -1,6 +1,8 @@
 package project.model;
 
-public interface CollisionBehaviour {
+import java.io.Serializable;
+
+public interface CollisionBehaviour extends Serializable {
 	/**
 	 * Figures out what to do when one board entity collides with another board entity
 	 * @param board The board (used for deleting objects from the board, ending the game etc)

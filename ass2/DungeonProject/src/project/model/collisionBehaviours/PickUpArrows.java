@@ -7,6 +7,8 @@ import project.model.Player;
 
 public class PickUpArrows implements CollisionBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
 		if (mover instanceof Player) {

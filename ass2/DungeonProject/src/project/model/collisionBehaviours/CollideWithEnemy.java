@@ -8,6 +8,8 @@ import project.model.Player;
 
 public class CollideWithEnemy implements CollisionBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
 		if(((Player) mover).isInvincible()){

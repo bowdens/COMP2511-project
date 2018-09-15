@@ -1,5 +1,7 @@
 package project.model;
 
+import java.util.ArrayList;
+
 public class DungeonCreator {
 	
 	private DungeonFactory factory;
@@ -41,15 +43,18 @@ public class DungeonCreator {
 	}
 	
 	/**
-	 * This method removes any board entity at the request
+	 * This method removes any board entities at the request
 	 * location.
 	 * @param board The board to modify
 	 * @param x The column coordinate to remove the entity
 	 * @param y The row coordinate to remove the entity.
 	 */
 	public void deleteBoardEntity(Board board, int x, int y) {
-		BoardEntity be = board.getEntityAt(x, y);
-		board.removeBoardEntity(be);
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(x, y);
+		
+		for  (BoardEntity entity : entities) {
+			board.removeBoardEntity(entity);
+		}
 	}
 
 }

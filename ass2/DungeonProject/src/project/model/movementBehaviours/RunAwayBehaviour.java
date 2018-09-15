@@ -11,6 +11,8 @@ import project.model.Player;
 
 public class RunAwayBehaviour implements MovementBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public Direction nextDirection(Board board, MovingEntity me) {
 		/*

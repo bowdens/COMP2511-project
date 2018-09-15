@@ -12,6 +12,8 @@ import project.model.enemies.Hunter;
 
 public class MoveBetweenBehaviour implements MovementBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public Direction nextDirection(Board board, MovingEntity me) {
 		Direction direction = Direction.NONE;

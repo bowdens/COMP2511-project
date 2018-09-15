@@ -7,7 +7,7 @@ import project.model.movementBehaviours.RunAwayBehaviour;
 
 public abstract class Enemy extends MovingEntity {
 
-	private static final long serialVersionUID = 6480653914019596180L;
+	private static final long serialVersionUID = 1L;
 	private MovementBehaviour movementBehaviour;
 	private MovementBehaviour runAway;
 	
@@ -27,11 +27,13 @@ public abstract class Enemy extends MovingEntity {
 		 */
 		Player player = board.getPlayer();
 		MovementBehaviour behaviourToUse;
+		
 		if (player.isInvincible()) {
 			behaviourToUse = runAway;
 		} else {
 			behaviourToUse = getMovementBehaviour();
 		}
+		
 		Direction direction = behaviourToUse.nextDirection(board, this);
 		switch(direction) {
 			case DOWN:

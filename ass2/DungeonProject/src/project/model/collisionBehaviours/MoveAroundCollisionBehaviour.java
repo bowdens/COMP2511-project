@@ -43,6 +43,10 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 				newX = me.getX()+1;
 				newY = me.getY();
 				break;
+			case NONE:
+				break;
+			default:
+				break;
 		}
 		
 		me.setX(newX);

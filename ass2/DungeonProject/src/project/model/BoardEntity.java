@@ -4,12 +4,11 @@ import java.io.Serializable;
 
 import project.model.canMoveOntoDecorators.CanMoveOnto;
 
-public abstract class BoardEntity implements Serializable {
+public abstract class BoardEntity implements CanMoveOnto, Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
-	private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	private CanMoveOnto canMoveOnto;
 	
@@ -78,8 +77,5 @@ public abstract class BoardEntity implements Serializable {
 	public void setCanMoveOnto(CanMoveOnto cmo) {
 		this.canMoveOnto = cmo;
 	}
-
-	public EntityType getType() {
-		return type;
-	}
+	
 }
