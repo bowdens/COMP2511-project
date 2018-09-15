@@ -1,7 +1,6 @@
 package project.model.items;
 
-import project.model.canMoveOntoDecorators.AllowNone;
-import project.model.canMoveOntoDecorators.AllowPlayer;
+import project.model.collisionBehaviours.PickUpArrows;
 
 public class Arrow extends Weapon {
 
@@ -9,6 +8,6 @@ public class Arrow extends Weapon {
 
 	public Arrow(int x, int y) {
 		super(x, y);
-		setCanMoveOnto(new AllowPlayer(new AllowNone()));
+		setCollisionBehaviour(new PickUpArrows());
 	}
 }

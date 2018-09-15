@@ -19,6 +19,7 @@ public class Player extends MovingEntity {
 	private int invincible_time;
 	private ArrayList<Integer> keys;
 	
+	public static int potionSpan = 10;
 	
 	public Player(int x, int y) {
 		super(x, y);
@@ -166,9 +167,14 @@ public class Player extends MovingEntity {
 	 * @param hover the hover to set
 	 */
 	public void setHover(boolean hover) {
+		addHover(potionSpan);
 		this.hover = hover;
 	}
 
+   public void addHover(int s){
+      hover_time += s;
+   }   
+   
 	/**
 	 * @return the swords
 	 */
@@ -194,8 +200,13 @@ public class Player extends MovingEntity {
 	 * @param invincible the invincible to set
 	 */
 	public void setInvincible(boolean invincible) {
+		addInvincibility(potionSpan);
 		this.invincible = invincible;
 	}
+
+   public void addInvincibility(int s){
+      hover_time += s;
+   }
 
 	/**
 	 * @return the keys

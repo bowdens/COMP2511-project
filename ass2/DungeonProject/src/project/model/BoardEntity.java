@@ -13,11 +13,11 @@ public abstract class BoardEntity implements Serializable {
 	private CollisionBehaviour collisionBehaviour;
 	private CanMoveOnto canMoveOnto;
 	
-	
 	public BoardEntity(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
+	
 
 	/**
 	 * The update function is called once each turn after the player's movement.
