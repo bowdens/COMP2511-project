@@ -5,11 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import project.model.Board;
-import project.model.BoardEntity;
-import project.model.Boulder;
+import project.model.obstacles.*;
 import project.model.Direction;
-import project.model.FloorSwitch;
-import project.model.Pit;
 import project.model.Player;
 
 public class CanMoveOntoTest {
