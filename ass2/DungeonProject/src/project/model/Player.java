@@ -6,6 +6,7 @@ import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;
 import project.model.collisionBehaviours.NoCollision;
 import project.model.obstacles.ExplodingBomb;
+import project.model.Board;
 
 public class Player extends MovingEntity {
 	
@@ -15,7 +16,6 @@ public class Player extends MovingEntity {
 	private int swords;
 	private boolean hover;
 	private boolean invincible;
-	private int hover_time;
 	private int invincible_time;
 	private ArrayList<Integer> keys;
 	public static int potionSpan = 10;
@@ -27,7 +27,6 @@ public class Player extends MovingEntity {
 		swords = 0;
 		setHover(false);
 		setInvincible(false);
-		hover_time = 0;
 		invincible_time = 0;
 		setCollisionBehaviour(new NoCollision());
 		setDirection(Direction.DOWN);
@@ -167,13 +166,9 @@ public class Player extends MovingEntity {
 	 * @param hover the hover to set
 	 */
 	public void setHover(boolean hover) {
-		addHover(potionSpan);
 		this.hover = hover;
 	}
 
-   public void addHover(int s){
-      hover_time += s;
-   }   
    
 	/**
 	 * @return the swords
@@ -205,7 +200,7 @@ public class Player extends MovingEntity {
 	}
 
    public void addInvincibility(int s){
-      hover_time += s;
+      this.invincible_time += s;
    }
 
 	/**
@@ -232,13 +227,7 @@ public class Player extends MovingEntity {
 
 	
 	public void update(Board board) {
-		//clock back any active effects
-		if(isHover()) {
-			hover_time--;
-			if(hover_time == 0) {
-				setHover(false);
-			}
-		}
+		//clock back if invincibility is in effect
 		if(isInvincible()) {
 			invincible_time--;
 			if(invincible_time == 0) {
