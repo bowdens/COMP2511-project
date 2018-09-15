@@ -15,6 +15,8 @@ public class Player extends MovingEntity {
 	private int swords;
 	private boolean hover;
 	private boolean invincible;
+	private int hover_time;
+	private int invincible_time;
 	private ArrayList<Integer> keys;
 	
 	
@@ -25,6 +27,8 @@ public class Player extends MovingEntity {
 		swords = 0;
 		setHover(false);
 		setInvincible(false);
+		hover_time = 0;
+		invincible_time = 0;
 		setCollisionBehaviour(new NoCollision());
 		setDirection(Direction.DOWN);
 		setCanMoveOnto(new AllowAll(new AllowNone()));
@@ -215,4 +219,23 @@ public class Player extends MovingEntity {
 		return keys.contains(keyID);
 	}
 
+	
+	public void update(Board board) {
+		//clock back any active effects
+		if(isHover()) {
+			hover_time--;
+			if(hover_time == 0) {
+				setHover(false);
+			}
+		}
+		if(isInvincible()) {
+			invincible_time--;
+			if(invincible_time == 0) {
+				setInvincible(false);
+			}
+		}
+		
+	}
 }
+
+
