@@ -1,5 +1,4 @@
-//package project.model;
-package model;
+package project.model;
 
 import java.io.File;
 import java.io.FileInputStream;

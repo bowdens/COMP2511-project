@@ -1,4 +1,4 @@
-package project.model.CanMoveOntoDecorators;
+package project.model.canMoveOntoDecorators;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
