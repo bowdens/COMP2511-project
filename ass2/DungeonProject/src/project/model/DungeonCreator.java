@@ -26,7 +26,7 @@ public class DungeonCreator {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method places the requested board entity at the
 	 * requested location on the board.

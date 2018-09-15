@@ -9,7 +9,7 @@ public abstract class BoardEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
-	private EntityType type;
+	//private EntityType type;
 	private CollisionBehaviour collisionBehaviour;
 	private CanMoveOnto canMoveOnto;
 	
@@ -18,6 +18,7 @@ public abstract class BoardEntity implements Serializable {
 		this.y = y;
 	}
 	
+
 	/**
 	 * The update function is called once each turn after the player's movement.
 	 * By default it does nothing (eg a wall does nothing) but an enemy might call 
@@ -28,6 +29,7 @@ public abstract class BoardEntity implements Serializable {
 		// default implementation - do nothing
 	}
 
+	
 	public int getX() {
 		return x;
 	}
@@ -79,7 +81,8 @@ public abstract class BoardEntity implements Serializable {
 		this.canMoveOnto = cmo;
 	}
 
-	public EntityType getType() {
+	
+	/*public EntityType getType() {
 		return type;
-	}
+	}*/
 }
