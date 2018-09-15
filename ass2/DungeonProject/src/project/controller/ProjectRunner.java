@@ -1,4 +1,4 @@
-package controller;
+package project.controller;
 
 public class ProjectRunner {
 

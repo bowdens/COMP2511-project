@@ -1,8 +1,7 @@
 package testsrc;
 
-import model.*;
-import model.CollisionBehaviour.*;
-import controller.*;
+import project.model.*;
+import project.controller.*;
 
 //import static junit.Assert.*;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package testsrc;
 
-import model.*;
+import project.model.*;
 
 import org.junit.Test;
 import org.junit.Ignore;
