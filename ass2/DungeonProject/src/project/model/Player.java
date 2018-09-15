@@ -3,9 +3,12 @@ package model;
 
 import java.util.ArrayList;
 
-import project.model.CanMoveOntoDecorators.AllowAll;
-import project.model.CanMoveOntoDecorators.AllowNone;
-import project.model.CollisionBehaviours.NoCollision;
+//import project.model.CanMoveOntoDecorators.AllowAll;
+import model.CanMoveOntoDecorators.AllowAll;
+//import project.model.CanMoveOntoDecorators.AllowNone;
+import model.CanMoveOntoDecorators.AllowNone;
+//import project.model.CollisionBehaviours.NoCollision;
+import model.CollisionBehaviours.NoCollision;
 
 public class Player extends MovingEntity {
 	

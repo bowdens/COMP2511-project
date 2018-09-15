@@ -1,6 +1,8 @@
-package project.model;
+//package project.model;
+package model;
 
-import project.model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+//import project.model.CollisionBehaviours.MoveAroundCollisionBehaviour;
+import model.CollisionBehaviours.MoveAroundCollisionBehaviour;
 
 public class Boulder extends BoardEntity {
 	private static final long serialVersionUID = 7898209246840234989L;
