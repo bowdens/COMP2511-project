@@ -2,17 +2,17 @@ package project.model.CanMoveOntoDecorators;
 
 import project.model.Board;
 import project.model.BoardEntity;
-import project.model.Player;
+import project.model.Boulder;
 
-public class AllowPlayer extends CMODecorator {
+public class AllowBoulder extends CMODecorator {
 
-	public AllowPlayer(CanMoveOnto cmoToBeDecorated) {
+	public AllowBoulder(CanMoveOnto cmoToBeDecorated) {
 		super(cmoToBeDecorated);
 	}
 	
 	@Override
 	public boolean canMoveOnto(Board board, BoardEntity mover) {
-		if (mover instanceof Player) {
+		if (mover instanceof Boulder) {
 			return true;
 		} else {
 			return super.canMoveOnto(board, mover);
