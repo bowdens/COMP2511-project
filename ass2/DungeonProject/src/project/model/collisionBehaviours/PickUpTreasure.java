@@ -12,7 +12,6 @@ public class PickUpTreasure implements CollisionBehaviour {
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
 		if (mover instanceof Player) {
-			((Player) mover).addSwords(5);
 			board.removeBoardEntity(me);
 		} else {
 			return;

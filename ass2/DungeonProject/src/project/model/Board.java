@@ -1,6 +1,7 @@
 package project.model;
 
 import java.util.ArrayList;
+import project.model.items.Treasure;
 
 public class Board {
 	
@@ -47,6 +48,17 @@ public class Board {
 	public ArrayList<BoardEntity> getBoardEntities() {
 		return boardEntities;
 	} 
+
+   //can do a treasure count in the update method to check if the player has won
+   public int howMuchTreasureLeft(){
+      int treas = 0;
+      for(BoardEntity entity : boardEntities){
+         if(entity instanceof Treasure){
+            treas++;
+         }
+      }
+      return treas;
+   }
 
 	public int getBoardID() {
 		return boardID;
