@@ -52,18 +52,19 @@ public class Board {
 	}
 	
 	/**
-	 * returns the entity at a given x,y. Returns null if there is no entity at that x,y
+	 * returns the entities at a given x,y. Returns empty list if there is no entity at that x,y
 	 * @param x the x coordinate (left=0)
 	 * @param y the y coordinate (up=0)
-	 * @return null if none exists, the entity otherwise
+	 * @return The list of entities at the x,y (empty if there are none)
 	 */
-	public BoardEntity getEntityAt(int x, int y) {
+	public ArrayList<BoardEntity> getEntitiesAt(int x, int y) {
+		ArrayList<BoardEntity> entities = new ArrayList<BoardEntity>();
 		for(BoardEntity entity : boardEntities) {
 			if(x == entity.getX() && y == entity.getY()) {
-				return entity;
+				entities.add(entity);
 			}
 		}
-		return null;
+		return entities;
 	}
 	
 	/**
@@ -96,6 +97,19 @@ public class Board {
 	 */
 	public void winGame() {
 		// TODO win the game
+	}
+
+	/**
+	 * @pre Ensure that the board only has one player
+	 * @return the player if there is one, null otherwise
+	 */
+	public Player getPlayer() {
+		for (BoardEntity entity : getBoardEntities()) {
+			if (entity instanceof Player) {
+				return (Player)entity;
+			}
+		}
+		return null;
 	}
 
 }

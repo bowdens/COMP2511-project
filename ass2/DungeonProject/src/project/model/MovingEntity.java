@@ -1,5 +1,7 @@
 package project.model;
 
+import java.util.ArrayList;
+
 public abstract class MovingEntity extends BoardEntity {
 	
 	private static final long serialVersionUID = -9191910443455788417L;
@@ -9,6 +11,50 @@ public abstract class MovingEntity extends BoardEntity {
 	public MovingEntity(int x, int y) {
 		super(x, y);
 		setDirection(Direction.DOWN);
+	}
+	
+	/**
+	 * Tries to move the player up (decrement Y)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveUp(Board board) {
+		int newX = getX();
+		int newY = getY()-1;
+		moveTo(board, newY, newX);
+	}
+	
+	/**
+	 * Tries to move the player down (increment Y)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveDown(Board board) {
+		int newX = getX();
+		int newY = getY()+1;
+		moveTo(board, newY, newX);
+	}
+	
+	/**
+	 * Tries to move the player left (decrement X)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveLeft(Board board) {
+		int newX = getX()-1;
+		int newY = getY();
+		moveTo(board, newY, newX);
+	}
+	
+	/**
+	 * Tries to move the player right (increment X)
+	 * @param board The board
+	 * @author Tom Bowden
+	 */
+	public void moveRight(Board board) {
+		int newX = getX()+1;
+		int newY = getY();
+		moveTo(board, newY, newX);
 	}
 	
 	/**
@@ -29,26 +75,22 @@ public abstract class MovingEntity extends BoardEntity {
 		 * otherwise check the entities canMoveOnto if false, do not move there
 		 * otherwise move there and call entity.collision
 		 */
-		
-		BoardEntity entity = board.getEntityAt(x,y);
-		if (entity == null) {
-			// move there
-			setX(x);
-			setY(y);
-			return true;
-		} else {
-			if (entity.canMoveOnto(board, this)) {
-				// I can move onto it
-				setX(x);
-				setY(y);
-				// call the collision for this colliding with the entity
-				entity.collide(board, this);
-				return true;
-			} else {
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(x,  y);
+		for (BoardEntity entity : entities) {
+			if (entity.canMoveOnto(board, this) == false) {
+				// we cannot move onto an entity on the tile
 				return false;
 			}
 		}
 		
+		// we can move onto the tile
+		setX(x);
+		setY(y);
+		// call the collision for this colliding with the entities on the tile
+		for (BoardEntity entity : entities) {
+			entity.collide(board, this);
+		}
+		return true;		
 	}
 
 	public MovementBehaviour getMovementBehaviour() {
