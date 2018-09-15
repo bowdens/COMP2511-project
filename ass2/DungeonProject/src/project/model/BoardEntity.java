@@ -19,6 +19,17 @@ public abstract class BoardEntity implements Serializable {
 		this.y = y;
 	}
 
+	/**
+	 * The update function is called once each turn after the player's movement.
+	 * By default it does nothing (eg a wall does nothing) but an enemy might call 
+	 * its move method or a bomb might explode
+	 * @param board The board
+	 */
+	public void update(Board board) {
+		// default implementation - do nothing
+	}
+
+	
 	public int getX() {
 		return x;
 	}
@@ -70,6 +81,7 @@ public abstract class BoardEntity implements Serializable {
 		this.canMoveOnto = cmo;
 	}
 
+	
 	/*public EntityType getType() {
 		return type;
 	}*/
