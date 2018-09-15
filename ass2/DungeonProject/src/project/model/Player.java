@@ -74,6 +74,10 @@ public class Player extends MovingEntity {
 		moveTo(board, newY, newX);
 	}
 	
+	public Inventory getInventory() {
+		return this.inventory;
+	}
+	
 	/**
 	 * If the player has a bomb, spawn an exploding bomb enity directly in front of the player
 	 * Will only spawn a bomb if the entity allows an exploding bomb to move over them
