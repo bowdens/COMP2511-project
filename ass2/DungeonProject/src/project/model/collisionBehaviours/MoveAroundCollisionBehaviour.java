@@ -1,4 +1,4 @@
-package project.model.CollisionBehaviours;
+package project.model.collisionBehaviours;
 
 import project.model.Board;
 import project.model.BoardEntity;

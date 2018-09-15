@@ -2,15 +2,17 @@ package project.model;
 
 import java.util.ArrayList;
 
-import project.model.CanMoveOntoDecorators.AllowAll;
-import project.model.CanMoveOntoDecorators.AllowNone;
-import project.model.CollisionBehaviours.NoCollision;
-import project.model.Inventory;
+import project.model.canMoveOntoDecorators.AllowAll;
+import project.model.canMoveOntoDecorators.AllowNone;
+import project.model.collisionBehaviours.NoCollision;
+import project.model.obstacles.ExplodingBomb;
 
 public class Player extends MovingEntity {
 	
 	private static final long serialVersionUID = -12691224577134383L;
-	private Inventory inventory;
+	private int bombs;
+	private int arrows;
+	private int swords;
 	private boolean hover;
 	private boolean invincible;
 	private ArrayList<Integer> keys;
@@ -18,7 +20,9 @@ public class Player extends MovingEntity {
 	
 	public Player(int x, int y) {
 		super(x, y);
-		inventory = new Inventory();
+		bombs = 0;
+		arrows = 0;
+		swords = 0;
 		setHover(false);
 		setInvincible(false);
 		setCollisionBehaviour(new NoCollision());
@@ -70,10 +74,6 @@ public class Player extends MovingEntity {
 		moveTo(board, newY, newX);
 	}
 	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
 	/**
 	 * If the player has a bomb, spawn an exploding bomb enity directly in front of the player
 	 * Will only spawn a bomb if the entity allows an exploding bomb to move over them
@@ -82,7 +82,7 @@ public class Player extends MovingEntity {
 	 * @return true if a bomb was dropped, false otherwise
 	 */
 	public boolean dropBomb(Board board) {
-		if (inventory.getNumBombs() <= 0) {
+		if (getBombs() <= 0) {
 			return false;
 		}
 		
@@ -113,7 +113,7 @@ public class Player extends MovingEntity {
 		if (entity == null || entity.canMoveOnto(board, bomb)) {
 			// put the bomb there
 			board.addBoardEntity(bomb);
-			inventory.removeBomb();
+			addBombs(-1);
 			return true;
 		}
 		return false;
@@ -123,6 +123,33 @@ public class Player extends MovingEntity {
 	
 	}
 
+	/**
+	 * @return the bombs
+	 */
+	public int getBombs() {
+		return bombs;
+	}
+
+	/**
+	 * @param num the bombs to increment by
+	 */
+	public void addBombs(int num) {
+		this.bombs += num;
+	}
+
+	/**
+	 * @return the arrows
+	 */
+	public int getArrows() {
+		return arrows;
+	}
+
+	/**
+	 * @param num the arrows to increment by
+	 */
+	public void addArrows(int num) {
+		this.arrows += num;
+	}
 
 	/**
 	 * @return the hover
@@ -138,6 +165,19 @@ public class Player extends MovingEntity {
 		this.hover = hover;
 	}
 
+	/**
+	 * @return the swords
+	 */
+	public int getSwords() {
+		return swords;
+	}
+
+	/**
+	 * @param num the swords to increment by
+	 */
+	public void addSwords(int num) {
+		this.swords += num;
+	}
 
 	/**
 	 * @return the invincible

@@ -1,4 +1,4 @@
-package project.model.CanMoveOntoDecorators;
+package project.model.canMoveOntoDecorators;
 
 import project.model.Board;
 import project.model.BoardEntity;

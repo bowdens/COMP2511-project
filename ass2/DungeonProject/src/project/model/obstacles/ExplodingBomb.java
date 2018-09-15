@@ -1,6 +1,11 @@
-package project.model;
+package project.model.obstacles;
+
+import project.model.BoardEntity;
+import project.model.canMoveOntoDecorators.AllowNone;
 
 public class ExplodingBomb extends BoardEntity {
+
+	private static final long serialVersionUID = -6117469224835281543L;
 	private int ticks;
 	
 	/**
@@ -9,14 +14,9 @@ public class ExplodingBomb extends BoardEntity {
 	public ExplodingBomb(int x, int y, int ticksTillExploded) {
 		super(x, y);
 		setTicks(ticksTillExploded);
+		setCanMoveOnto(new AllowNone());
 	}
-
-	@Override
-	public boolean canMoveOnto(BoardEntity entity, Board board) {
-		// nothing can move onto a bomb
-		return false;
-	}
-
+	
 	/**
 	 * @return the ticks
 	 */

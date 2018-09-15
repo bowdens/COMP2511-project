@@ -1,4 +1,7 @@
 package project.model;
+import project.model.obstacles.*;
+import project.model.items.*;
+import project.model.enemies.*;
 
 public class DungeonFactory {
 	 

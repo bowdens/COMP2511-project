@@ -1,12 +1,11 @@
-package project.model.CollisionBehaviours;
-
+package project.model.collisionBehaviours;
+import project.model.Player;
 import project.model.Board;
 import project.model.BoardEntity;
+import project.model.obstacles.Boulder;
 import project.model.CollisionBehaviour;
-import project.model.Player;
-import project.model.Boulder;
 
-public class PitKillCollisionBehaviour implements CollisionBehaviour{
+public class PitKillCollisionBehaviour implements CollisionBehaviour {
 	
 	private static final long serialVersionUID = 1L;
 

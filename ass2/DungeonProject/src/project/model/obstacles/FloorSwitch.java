@@ -1,8 +1,9 @@
-package project.model;
+package project.model.obstacles;
 
-import project.model.CanMoveOntoDecorators.AllowAll;
-import project.model.CanMoveOntoDecorators.AllowNone;
-import project.model.CollisionBehaviours.NoCollision;
+import project.model.BoardEntity;
+import project.model.canMoveOntoDecorators.AllowAll;
+import project.model.canMoveOntoDecorators.AllowNone;
+import project.model.collisionBehaviours.NoCollision;
 
 public class FloorSwitch extends BoardEntity {
 	private static final long serialVersionUID = 7418595553809873920L;

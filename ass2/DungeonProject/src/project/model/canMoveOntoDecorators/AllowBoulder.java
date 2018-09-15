@@ -1,8 +1,8 @@
-package project.model.CanMoveOntoDecorators;
+package project.model.canMoveOntoDecorators;
 
 import project.model.Board;
 import project.model.BoardEntity;
-import project.model.Boulder;
+import project.model.obstacles.Boulder;
 
 public class AllowBoulder extends CMODecorator {
 

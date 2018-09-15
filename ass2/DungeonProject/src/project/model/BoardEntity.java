@@ -2,7 +2,7 @@ package project.model;
 
 import java.io.Serializable;
 
-import project.model.CanMoveOntoDecorators.CanMoveOnto;
+import project.model.canMoveOntoDecorators.CanMoveOnto;
 
 public abstract class BoardEntity implements Serializable {
 	
@@ -70,7 +70,7 @@ public abstract class BoardEntity implements Serializable {
 		this.canMoveOnto = cmo;
 	}
 
-	public EntityType getType() {
+	/*public EntityType getType() {
 		return type;
-	}
+	}*/
 }
