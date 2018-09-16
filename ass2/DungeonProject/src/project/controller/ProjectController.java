@@ -23,12 +23,24 @@ public class ProjectController extends JPanel implements KeyListener {
 	}
 
 	public void start() { 
-		//getGame().loadAllBoards();
+		getGame().loadAllBoards();
 		JFrame frame = new JFrame();
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,400);
 		frame.setVisible(true);
+	}
+	
+	public void makeNewBoard(String name, int height, int width) {
+		game.createNewBoard(name, height, width);
+	}
+	
+	public void addRequestedEntity(int entity, int x, int y) {
+		game.addEntityToBoard(entity, x, y);
+	}
+	
+	public void removeRequestedEntity(int x, int y) {
+		game.removeEntityAt(x, y);
 	}
 
 	@Override
@@ -65,21 +77,11 @@ public class ProjectController extends JPanel implements KeyListener {
 	// some or all of the ones above down here
 	@Override
 	public void keyReleased(KeyEvent key) {
-		int code = key.getKeyCode();
-		
-		if (code == KeyEvent.VK_DOWN){
-			System.out.println("Tic");
-		}
 	}
 
 	// Not sure we need this
 	@Override
 	public void keyTyped(KeyEvent key) {
-		int code = key.getKeyCode();
-		
-		if (code == KeyEvent.VK_DOWN){
-			System.out.println("Tic");
-		}
 	}
 
 

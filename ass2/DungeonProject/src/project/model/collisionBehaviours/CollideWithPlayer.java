@@ -8,6 +8,8 @@ import project.model.Player;
 
 public class CollideWithPlayer implements CollisionBehaviour {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * @pre me must be a player
 	 */

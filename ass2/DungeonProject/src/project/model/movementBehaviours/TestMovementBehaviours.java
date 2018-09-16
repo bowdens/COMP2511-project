@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import project.model.Board;
 import project.model.Direction;
 import project.model.Player;
+import project.model.enemies.Coward;
+import project.model.enemies.Hunter;
 import project.model.enemies.Strategist;
 import project.model.obstacles.Wall;
 
@@ -22,17 +24,17 @@ public class TestMovementBehaviours {
 	@Test
 	void testRunAwayBehaviourSimple() {
 		// create enemy, give it runAway behaviour
-		Strategist strategist = new Strategist(2,2);
-		strategist.setMovementBehaviour(new RunAwayBehaviour());
-		board.addBoardEntity(strategist);
+		Coward coward = new Coward(2,2);
+		coward.setMovementBehaviour(new RunAwayBehaviour());
+		board.addBoardEntity(coward);
 		Player player = new Player(2, 0);
 		board.addBoardEntity(player);
 		/*
 		 * player is directly above the strategist, it should move either down, or left, or right - not up
 		 */
-		strategist.update(board);
+		coward.update(board);
 		
-		assertFalse(strategist.getX() == 2 && strategist.getY() == 1);
+		assertFalse(coward.getX() == 2 && coward.getY() == 1);
 	}
 	
 	@Test
@@ -47,9 +49,9 @@ public class TestMovementBehaviours {
 		 * 4 _ _ _ W _ <- will end up at this tile
 		 */
 		// create enemy, give it runAway behaviour
-		Strategist strategist = new Strategist(2,3);
-		strategist.setMovementBehaviour(new RunAwayBehaviour());
-		board.addBoardEntity(strategist);
+		Coward coward = new Coward(2,3);
+		coward.setRegularMovement(new RunAwayBehaviour()); // make it always run away for this test
+		board.addBoardEntity(coward);
 		Player player = new Player(2, 2);
 		board.addBoardEntity(player);
 		
@@ -62,17 +64,17 @@ public class TestMovementBehaviours {
 		board.addBoardEntity(new Wall(3, 3));
 		board.addBoardEntity(new Wall(3, 4));
 
-		strategist.update(board);
-		assertEquals(2, strategist.getX());
-		assertEquals(4, strategist.getY());
+		coward.update(board);
+		assertEquals(2, coward.getX());
+		assertEquals(4, coward.getY());
 		
 		for (int i = 0; i < 20; i++) {
-			strategist.update(board);
-			System.out.println("At " + strategist.getX() + "," + strategist.getY());
+			coward.update(board);
+			System.out.println("At " + coward.getX() + "," + coward.getY());
 		}
 		
-		assertEquals(4, strategist.getX());
-		assertEquals(4, strategist.getY());
+		assertEquals(4, coward.getX());
+		assertEquals(4, coward.getY());
 	}
 	
 	@Test
@@ -81,20 +83,19 @@ public class TestMovementBehaviours {
 		 * board:
 		 *   0 1 2 3 4
 		 * 0 _ _ _ _ _
-		 * 1 _ S P _ _
+		 * 1 _ H P _ _
 		 * 2 _ _ _ _ _
 		 * 3 _ _ _ _ _
 		 * 4 _ _ _ _ _
 		 */
-		Strategist strategist = new Strategist(1,1);
-		strategist.setMovementBehaviour(new GoTowardsPlayer());
+		Hunter hunter = new Hunter(1,1);
 		Player player = new Player(2,1);
-		board.addBoardEntity(strategist);
+		board.addBoardEntity(hunter);
 		board.addBoardEntity(player);
 		
-		strategist.update(board);
-		assertEquals(2, strategist.getX());
-		assertEquals(1, strategist.getY());
+		hunter.update(board);
+		assertEquals(2, hunter.getX());
+		assertEquals(1, hunter.getY());
 	}
 	
 	@Test
@@ -103,25 +104,24 @@ public class TestMovementBehaviours {
 		 * board:
 		 *   0 1 2 3 4
 		 * 0 _ _ _ _ _
-		 * 1 _ S _ _ _
+		 * 1 _ H _ _ _
 		 * 2 _ _ _ _ _
 		 * 3 _ _ _ _ _
 		 * 4 _ P _ _ _
 		 */
-		Strategist strategist = new Strategist(1,1);
-		strategist.setMovementBehaviour(new GoTowardsPlayer());
+		Hunter hunter = new Hunter(1,1);
 		Player player = new Player(1,4);
-		board.addBoardEntity(strategist);
+		board.addBoardEntity(hunter);
 		board.addBoardEntity(player);
 		
-		strategist.update(board);
-		assertEquals(1, strategist.getX());
-		assertEquals(2, strategist.getY());
+		hunter.update(board);
+		assertEquals(1, hunter.getX());
+		assertEquals(2, hunter.getY());
 		for(int i = 0; i < 5; i++) {
-			strategist.update(board);
+			hunter.update(board);
 		}
-		assertEquals(1, strategist.getX());
-		assertEquals(4, strategist.getY());
+		assertEquals(1, hunter.getX());
+		assertEquals(4, hunter.getY());
 	}
 	
 	@Test
@@ -129,16 +129,15 @@ public class TestMovementBehaviours {
 		/*
 		 * board:
 		 *   0 1 2 3 4
-		 * 0 _ _ S W P
+		 * 0 _ _ H W P
 		 * 1 _ W W _ _
 		 * 2 _ _ W W _
 		 * 3 W _ W _ _
 		 * 4 W _ _ _ W
 		 */
-		Strategist strategist = new Strategist(2,0);
-		strategist.setMovementBehaviour(new GoTowardsPlayer());
+		Hunter hunter = new Hunter(2,0);
 		Player player = new Player(4,0);
-		board.addBoardEntity(strategist);
+		board.addBoardEntity(hunter);
 		board.addBoardEntity(player);
 		
 		board.addBoardEntity(new Wall(3,0));
@@ -152,16 +151,16 @@ public class TestMovementBehaviours {
 		board.addBoardEntity(new Wall(4,4));
 		
 		
-		strategist.update(board);
-		System.out.println("strategist: " + strategist.getX() + "," + strategist.getY());
+		hunter.update(board);
+		System.out.println("strategist: " + hunter.getX() + "," + hunter.getY());
 		//assertEquals(1, strategist.getX());
 		//assertEquals(0, strategist.getY());
 		for(int i = 0; i < 15; i++) {
-			strategist.update(board);
-			System.out.println("strategist: " + strategist.getX() + "," + strategist.getY());
+			hunter.update(board);
+			System.out.println("strategist: " + hunter.getX() + "," + hunter.getY());
 		}
-		assertEquals(4, strategist.getX());
-		assertEquals(0, strategist.getY());
+		assertEquals(4, hunter.getX());
+		assertEquals(0, hunter.getY());
 	}
 	
 	@Test
@@ -177,7 +176,6 @@ public class TestMovementBehaviours {
 		 * player looking to the right
 		 */
 		Strategist strategist = new Strategist(2,1);
-		strategist.setMovementBehaviour(new PredictBehaviour());
 		Player player = new Player(1,2);
 		player.setDirection(Direction.RIGHT);
 		board.addBoardEntity(strategist);
@@ -191,6 +189,10 @@ public class TestMovementBehaviours {
 		strategist.update(board);
 		assertEquals(2, strategist.getX());
 		assertEquals(2, strategist.getY());
+	}
+	
+	@Test
+	void testMoveBetweenBehaviour() {
 		
 	}
 }
