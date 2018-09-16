@@ -7,9 +7,9 @@ import project.model.obstacles.Wall;
 //import org.junit.jupiter.api.Test;
 //import org.junit.Ignore;
 //import org.junit.jupiter.api.BeforeEach;
+//import org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-//import org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJunitSimpleDungeon {
@@ -74,7 +74,6 @@ public class TestJunitSimpleDungeon {
 	   assertEquals(player.getY(),1);
 	   
 	   player.moveDown(board);
-	   //System.out.println("PLayer is at ("+player.getX()+","+player.getY()+") -- should be (1,2)\n");
 	   //attempt to move into a wall placed by the developer
 	   player.moveRight(board);
 	   assertEquals(player.getX(),1);
