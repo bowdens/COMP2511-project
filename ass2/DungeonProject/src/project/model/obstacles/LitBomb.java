@@ -32,18 +32,20 @@ public class LitBomb extends BoardEntity {
 	
 	private void explode(Board board) {
 		ArrayList<BoardEntity> entitiesToKill = new ArrayList<BoardEntity>();
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				// get each object around this
-				entitiesToKill.addAll(board.getEntitiesAt(getX() + i, getY() + j));
-			}
-		}
+		entitiesToKill.addAll(board.getEntitiesAt(getX() + 1, getY()));
+		entitiesToKill.addAll(board.getEntitiesAt(getX() - 1, getY()));
+		entitiesToKill.addAll(board.getEntitiesAt(getX(), getY() + 1));
+		entitiesToKill.addAll(board.getEntitiesAt(getX(), getY() - 1));
+		entitiesToKill.addAll(board.getEntitiesAt(getX(), getY()));
+		
+		System.out.println(entitiesToKill);
 		// kill player, enemies and boulders
 		for (BoardEntity entity : entitiesToKill) {
 			if (entity instanceof Player) {
 				// if it's a player, end the game
+				board.removeBoardEntity(entity);
 				board.endGame();
-			} else if ((entity instanceof Enemy) || (entity instanceof Boulder)) {
+			} else if ((entity instanceof Enemy) || (entity instanceof Boulder) || (entity instanceof LitBomb)) {
 				board.removeBoardEntity(entity);
 			}
 		}

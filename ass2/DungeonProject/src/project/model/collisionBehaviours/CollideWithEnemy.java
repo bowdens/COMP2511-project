@@ -13,16 +13,21 @@ public class CollideWithEnemy implements CollisionBehaviour {
 
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
-		if(((Player) mover).isInvincible()){
-			board.removeBoardEntity(me);
-		} else if(((Player) mover).getSwords() > 0 ) {
-			board.removeBoardEntity(me);
-			((Player) mover).addSwords(-1);
+		if (mover instanceof Player) {
+			Player player = (Player) mover;
+			if(player.isInvincible()){
+				board.removeBoardEntity(me);
+			} else if(player.getSwords() > 0 ) {
+				board.removeBoardEntity(me);
+				((Player) mover).addSwords(-1);
+			} else {
+				board.endGame();
+			}
 		} else if (mover instanceof FlyingArrow) {
 			board.removeBoardEntity(me);
 			board.removeBoardEntity(mover);
 		} else {
-			board.endGame();
+			// do nothing - not an arrow, not a player
 		}
 		
 	}
