@@ -2,7 +2,7 @@ package project.model.items;
 
 import project.model.collisionBehaviours.PickUpSword;
 
-public class Sword extends Weapon {
+public class Sword extends Item {
 
 	private static final long serialVersionUID = 1L;
 

@@ -14,9 +14,6 @@ public class PickUpArrows implements CollisionBehaviour {
 		if (mover instanceof Player) {
 			((Player) mover).addArrows(1);
 			board.removeBoardEntity(me);
-		} else {
-			// do nothing
-			return;
 		}
 	}
 

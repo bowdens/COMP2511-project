@@ -7,8 +7,8 @@ import project.model.canMoveOntoDecorators.AllowNone;
 import project.model.collisionBehaviours.PitKillCollisionBehaviour;
 
 public class Pit extends BoardEntity {
-	
-	private static final long serialVersionUID = 2747927405051690137L;
+
+	private static final long serialVersionUID = 1L;
 
 	public Pit(int x, int y) {
 		super(x, y);

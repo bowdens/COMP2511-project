@@ -14,8 +14,6 @@ public class PickUpSword implements CollisionBehaviour {
 		if (mover instanceof Player) {
 			((Player) mover).addSwords(5);
 			board.removeBoardEntity(me);
-		} else {
-			return;
 		}
 	}
 
