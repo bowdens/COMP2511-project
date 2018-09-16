@@ -26,6 +26,9 @@ public class CollideWithPlayer implements CollisionBehaviour {
 			if (player.isInvincible()) {
 				// kill the mover (the enemy)
 				board.removeBoardEntity(mover);
+			} else if (player.getSwords() > 0) {
+				board.removeBoardEntity(mover);
+				player.addSwords(-1);
 			} else {
 				board.endGame();
 			}
