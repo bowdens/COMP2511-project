@@ -65,6 +65,16 @@ public class Board {
       }
       return treas;
    }
+   
+   public int howManyEnemiesLeft(){
+      int enems = 0;
+      for(BoardEntity entity: boardEntities){
+         if(entity instanceof Enemy){
+            enems++;
+         }
+      }
+      return enems;
+   }
 
 	public int getBoardID() {
 		return boardID;
@@ -165,5 +175,18 @@ public class Board {
 	public boolean validY(int y) {
 		return (y >= 0 && y < getHeight());
 	}
+
+   
+   public void updateBoard(){
+      //checks if the player has won
+      if(howMuchTreasureLeft() == 0 || howManyEnemiesLeft() == 0) {
+    	  winGame();
+      }else {
+    	  //update all the entities
+    	  for(BoardEntity ent : boardEntities) {
+    		  ent.update(this);
+    	  }
+      }
+   }
 
 }
