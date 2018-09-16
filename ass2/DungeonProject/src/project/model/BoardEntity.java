@@ -13,8 +13,8 @@ public abstract class BoardEntity implements CanMoveOnto, Serializable {
 	private CanMoveOnto canMoveOnto;
 	
 	public BoardEntity(int x, int y) {
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 	}
 	
 
