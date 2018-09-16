@@ -17,7 +17,6 @@ public class Player extends MovingEntity {
 	private boolean hover;
 	private int invincibleTime;
 	private ArrayList<Integer> keys;
-	public static int potionSpan = 10;
 
 	public Player(int x, int y) {
 		super(x, y);
