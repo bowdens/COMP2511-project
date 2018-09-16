@@ -90,6 +90,7 @@ public class TestJunitSimpleDungeon {
 	   player.moveRight(board);
 	   assertEquals(player.getX(),3);
 	   assertEquals(player.getY(),3);
-	   //still need to test that the game has been won
+	   //winGame() is called
+	   assertEquals(board.getGameStatus(), 1);
    }
 }

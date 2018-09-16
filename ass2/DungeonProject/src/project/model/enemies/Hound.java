@@ -1,6 +1,7 @@
 package project.model.enemies;
 
 import project.model.Enemy;
+import project.model.movementBehaviours.MoveBetweenBehaviour;
 
 public class Hound extends Enemy {
 
@@ -8,6 +9,7 @@ public class Hound extends Enemy {
 
 	public Hound(int x, int y) {
 		super(x, y);
+		setMovementBehaviour(new MoveBetweenBehaviour());
 	}
 
 }

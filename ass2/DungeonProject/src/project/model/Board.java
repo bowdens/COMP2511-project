@@ -13,12 +13,18 @@ public class Board {
 	private ArrayList<BoardEntity> boardEntities;
 	private int boardID = 0;
 	
+	//currently for testing purposes only
+	//0 means in play, 1 means the game has been won, 2 means the game has been lost
+	//this value is changed by the winGame and endGame methods
+	private int gameStatus;
+	
 	public Board(String name, int height, int width) {
 		this.name = name;
 		this.height = height;
 		this.width = width;
 		this.boardEntities = new ArrayList<BoardEntity>();
 		this.boardID = ++boardCount;
+		this.gameStatus = 0;
 	}
 
 	public String getName() {
@@ -59,9 +65,30 @@ public class Board {
       }
       return treas;
    }
+   
+   public int howManyEnemiesLeft(){
+      int enems = 0;
+      for(BoardEntity entity: boardEntities){
+         if(entity instanceof Enemy){
+            enems++;
+         }
+      }
+      return enems;
+   }
 
 	public int getBoardID() {
 		return boardID;
+	}
+	
+	public boolean canMoveOnto(BoardEntity entity, int x, int y) {
+		ArrayList<BoardEntity> entities = getEntitiesAt(x, y);
+		for (BoardEntity otherEntity : entities) {
+			// return false if the other entity is not the same as this entity and it cannot be moved onto
+			if (entity != otherEntity && !otherEntity.canMoveOnto(this, entity)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -72,10 +99,7 @@ public class Board {
 	 */
 	public ArrayList<BoardEntity> getEntitiesAt(int x, int y) {
 		ArrayList<BoardEntity> entities = new ArrayList<BoardEntity>();
-		
-		//System.out.println("Number of board entities: "+boardEntities.size()+"\n");
-		
-		for(BoardEntity entity : boardEntities) {
+		for(BoardEntity entity : getBoardEntities()) {
 			if(x == entity.getX() && y == entity.getY()) {
 				entities.add(entity);
 			}
@@ -87,10 +111,12 @@ public class Board {
 	 * Adds a board entity to the board. Will not add duplicates (that is same entity at the same memory location
 	 * @param entity The board entity to add to the list of entities
 	 */
-	public void addBoardEntity(BoardEntity entity) {
+	public boolean addBoardEntity(BoardEntity entity) {
 		if(!boardEntities.contains(entity)) {
 			boardEntities.add(entity);
-		}
+			return true;
+		} 
+		return false;
 	}
 
 	/**
@@ -105,16 +131,20 @@ public class Board {
 	 * ends the game
 	 */
 	public void endGame() {
-		// TODO end the game
+		this.gameStatus = 2;
 	}
 
 	/**
 	 * wins the game
 	 */
 	public void winGame() {
-		// TODO win the game
+		this.gameStatus = 1;
 	}
 
+	public int getGameStatus() {
+		return this.gameStatus;
+	}
+	
 	/**
 	 * @pre Ensure that the board only has one player
 	 * @return the player if there is one, null otherwise
@@ -127,5 +157,36 @@ public class Board {
 		}
 		return null;
 	}
+	
+	/**
+	 * checks if an x coordinate is valid on this board
+	 * @param x an x coordinate
+	 * @return true if 0 <= x < width
+	 */
+	public boolean validX(int x) {
+		return (x >= 0 && x < getWidth());
+	}
+	
+	/**
+	 * checks if a y coordinate is valid on this board
+	 * @param y a y position
+	 * @return true if 0 <= y < height
+	 */
+	public boolean validY(int y) {
+		return (y >= 0 && y < getHeight());
+	}
+
+   
+   public void updateBoard(){
+      //checks if the player has won
+      if(howMuchTreasureLeft() == 0 || howManyEnemiesLeft() == 0) {
+    	  winGame();
+      }else {
+    	  //update all the entities
+    	  for(BoardEntity ent : boardEntities) {
+    		  ent.update(this);
+    	  }
+      }
+   }
 
 }

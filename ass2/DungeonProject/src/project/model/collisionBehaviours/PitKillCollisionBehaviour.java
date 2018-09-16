@@ -1,5 +1,6 @@
 package project.model.collisionBehaviours;
 import project.model.Player;
+import project.model.enemies.FlyingArrow;
 import project.model.Board;
 import project.model.BoardEntity;
 import project.model.obstacles.Boulder;
@@ -15,6 +16,10 @@ public class PitKillCollisionBehaviour implements CollisionBehaviour {
 		 *  gameover if mover entity is a player
 		 *  kills a boulder that falls in the pit
 		 */
+		
+		if (mover instanceof FlyingArrow) {
+			board.removeBoardEntity(mover);
+		}
 
 		if (mover instanceof Player) {
 			board.endGame();

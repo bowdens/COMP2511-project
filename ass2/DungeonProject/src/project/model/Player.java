@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;
-import project.model.collisionBehaviours.NoCollision;
+import project.model.enemies.FlyingArrow;
+import project.model.collisionBehaviours.CollideWithPlayer;
 import project.model.obstacles.LitBomb;
-import project.model.Board;
 
 public class Player extends MovingEntity {
 	
@@ -15,20 +15,17 @@ public class Player extends MovingEntity {
 	private int arrows;
 	private int swords;
 	private boolean hover;
-	private boolean invincible;
-	private int invincible_time;
+	private int invincibleTime;
 	private ArrayList<Integer> keys;
-	public static int potionSpan = 10;
 
 	public Player(int x, int y) {
 		super(x, y);
 		bombs = 0;
 		arrows = 0;
 		swords = 0;
-		setHover(false);
-		setInvincible(false);
-		invincible_time = 0;
-		setCollisionBehaviour(new NoCollision());
+		hover = false;
+		invincibleTime = 0;
+		setCollisionBehaviour(new CollideWithPlayer());
 		setDirection(Direction.DOWN);
 		setCanMoveOnto(new AllowAll(new AllowNone()));
 	}
@@ -63,28 +60,38 @@ public class Player extends MovingEntity {
 			newX = getX() + 1;
 			newY = getY();
 			break;
+		case NONE:
+			newX = getX();
+			newY = getY();
 		default:
 			break;
 		}
-		
-		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
+
 		BoardEntity bomb = new LitBomb(newX, newY, 3);
-		
-		for (BoardEntity e : entities) {
-			if (e.canMoveOnto(board, bomb) == false) {
-				// we cannot place a bomb here
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
+		for (BoardEntity entity : entities) {
+			if (entity.canMoveOnto(board, bomb) == false) {
+				// cant't put a bomb there
 				return false;
 			}
 		}
-		
-		// all entities on the tile will let us put a bomb there
+		// put the bomb there
 		board.addBoardEntity(bomb);
 		addBombs(-1);
 		return true;
 	}
 	
-	public void fireArrow() {
-	
+	public boolean shootArrow(Board board) {
+		FlyingArrow arrow = new FlyingArrow(getX(), getY()); 
+		arrow.setDirection(getDirection());
+		board.addBoardEntity(arrow);
+		arrow.update(board);
+		
+		if (board.getBoardEntities().contains(arrow)) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**
@@ -125,9 +132,9 @@ public class Player extends MovingEntity {
 	/**
 	 * @param hover the hover to set
 	 */
-	public void setHover(boolean hover) {
-		this.hover = hover;
-	}  
+	public void startHovering() {
+		this.hover = true;
+	}
    
 	/**
 	 * @return the swords
@@ -144,24 +151,26 @@ public class Player extends MovingEntity {
 	}
 
 	/**
-	 * @return the invincible
+	 * @return wether the player is invincible
 	 */
 	public boolean isInvincible() {
-		return invincible;
+		return (invincibleTime > 0);
+	}
+	
+	/*
+	 * @return the invincible time remaining
+	 */
+	public int getInvincibleTime() {
+		return this.invincibleTime;
 	}
 
 	/**
-	 * @param invincible the invincible to set
+	 * @param invincible the invincible to add
 	 */
-	public void setInvincible(boolean invincible) {
-		addInvincibility(potionSpan);
-		this.invincible = invincible;
+	public void addInvincibleTime(int invincible) {
+		this.invincibleTime += invincible;
 	}
-
-   public void addInvincibility(int s){
-      this.invincible_time += s;
-   }
-
+	
 	/**
 	 * @return the keys
 	 */
@@ -188,12 +197,8 @@ public class Player extends MovingEntity {
 	public void update(Board board) {
 		//clock back if invincibility is in effect
 		if(isInvincible()) {
-			invincible_time--;
-			if(invincible_time == 0) {
-				setInvincible(false);
-			}
+			this.addInvincibleTime(-1);
 		}
-		
 	}
 }
 

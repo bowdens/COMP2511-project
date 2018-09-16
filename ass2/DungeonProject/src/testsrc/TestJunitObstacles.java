@@ -38,7 +38,8 @@ public class TestJunitObstacles {
 		Pit pit = new Pit(2,1);
 		board.addBoardEntity(pit);
 		player.moveRight(board);
-		//test if game over
+		//endGame() is called
+		assertEquals(board.getGameStatus(), 2);
 	}
 	
 	//test US1.13
@@ -86,9 +87,6 @@ public class TestJunitObstacles {
 		//boulder is nowhere on the board
 		
 		for(BoardEntity ent : entities) {
-			if(ent instanceof Boulder) {
-				System.out.println("Entity at ("+ent.getX()+","+ent.getY()+") is a Boulder");
-			}
 			assertFalse(ent instanceof Boulder);
 		}
 		//player has advanced 1 block right and is the only entity at (2,1)

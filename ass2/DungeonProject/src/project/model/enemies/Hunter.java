@@ -1,6 +1,7 @@
 package project.model.enemies;
 
 import project.model.Enemy;
+import project.model.movementBehaviours.GoTowardsPlayer;
 
 public class Hunter extends Enemy {
 
@@ -8,6 +9,7 @@ public class Hunter extends Enemy {
 
 	public Hunter(int x, int y) {
 		super(x, y);
+		setMovementBehaviour(new GoTowardsPlayer());
 	}
 
 }

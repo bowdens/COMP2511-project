@@ -1,13 +1,14 @@
 package project.model.movementBehaviours;
 
-import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 import project.model.Board;
-import project.model.BoardEntity;
 import project.model.Direction;
 import project.model.MovementBehaviour;
 import project.model.MovingEntity;
 import project.model.Player;
+import project.model.movementBehaviours.dijkstra.Dijkstra;
 
 public class RunAwayBehaviour implements MovementBehaviour {
 
@@ -18,61 +19,62 @@ public class RunAwayBehaviour implements MovementBehaviour {
 		/*
 		 * TODO:
 		 * 1. get players location
-		 * 2. find appropriate tile that is distant from player
-		 * 3. use dijkstra's to go to that tile
-		 * 4. return the direction that would lead to the next tile being the first move from dijkstra
+		 * 2. see if moving in each direction will result in a lower distance
 		 */
-		
-		Direction direction = Direction.NONE;
-		
-		// Makes sure if the enemy is stuck it will move even if that means getting
-		// closer to the player initially (not sure if you would want this)
-		if (checkDirection(board, me, me.getX(), (me.getY() + 1))) {
-			direction = Direction.UP;
-		} else if (checkDirection(board, me, (me.getX() + 1), me.getY())) {
-			direction = Direction.RIGHT;
+		Player player = board.getPlayer();
+		if (player == null) {
+			return Direction.NONE;
+		}
+		int playerX = player.getX(), playerY = player.getY();
+		int meX = me.getX(), meY = me.getY();
+		int currentDist = Dijkstra.distance(board, me, meX, meY, playerX, playerY);
+		Map<Direction, Integer> nextDistances = new Hashtable<Direction, Integer>();
+		// if we were to not move, the distance would be current
+		nextDistances.put(Direction.NONE, currentDist);
+		// add each distance for every possible move into the map
+		// if we can't move there, treat the distance to the player as 0
+		int upX = meX, upY = meY-1;
+		if (board.canMoveOnto(me, upX, upY) && board.validX(upX) && board.validY(upY)) {
+			int upDist = Dijkstra.distance(board, me, upX, upY, playerX, playerY);
+			nextDistances.put(Direction.UP, upDist);
+		} else {
+			nextDistances.put(Direction.UP, 0);
 		}
 		
-		int playerX = 0;
-		int playerY = 0;
+		int downX = meX, downY = meY+1;
+		if (board.canMoveOnto(me, downX, downY) && board.validX(downX) && board.validY(downY)) {
+			int downDist = Dijkstra.distance(board, me, downX, downY, playerX, playerY);
+			nextDistances.put(Direction.DOWN, downDist);
+		} else {
+			nextDistances.put(Direction.DOWN, 0);
+		}
 		
-		for (BoardEntity entity: board.getBoardEntities()) {
-			if (entity instanceof Player) {
-				playerX = entity.getX();
-				playerY = entity.getY();
+		int leftX = meX-1, leftY = meY;
+		if (board.canMoveOnto(me, leftX, leftY) && board.validX(leftX) && board.validY(leftY)) {
+			int leftDist = Dijkstra.distance(board, me, leftX, leftY, playerX, playerY);
+			nextDistances.put(Direction.LEFT, leftDist);
+		} else {
+			nextDistances.put(Direction.LEFT, 0);
+		}
+		
+		int rightX = meX+1, rightY = meY;
+		if (board.canMoveOnto(me, rightX, rightY) && board.validX(rightX) && board.validY(rightY)) {
+			int rightDist = Dijkstra.distance(board, me, rightX, rightY, playerX, playerY);
+			nextDistances.put(Direction.RIGHT, rightDist);
+		} else {
+			nextDistances.put(Direction.RIGHT, 0);
+		}
+		
+		Direction best = Direction.NONE;
+		for (Direction dir : nextDistances.keySet()) {
+			if (nextDistances.get(dir) > nextDistances.get(best)) {
+				best = dir;
 			}
 		}
 		
-		int orginalDistY = Math.abs(playerY - me.getY());
-		int orginalDistX = Math.abs(playerX - me.getX());
-		int newDistY =  Math.abs(playerY - (me.getY() + 1));
-		int newDistX = Math.abs(playerX - (me.getX() + 1));
+		//System.out.println(nextDistances + " best is " + best);
 		
-		// Goes away from the player in the vertical direction as far as possible
-		// After that it will move away in the horizontal direction
-		if (checkDirection(board, me, me.getX(), (me.getY() + 1)) && (newDistY > orginalDistY)) {
-			direction = Direction.UP;
-		} else if (checkDirection(board, me, me.getX(), (me.getY() - 1))) {
-			direction = Direction.DOWN;
-		} else if (checkDirection(board, me, (me.getX() + 1), me.getY()) && (newDistX > orginalDistX)) {
-			direction = Direction.RIGHT;
-		} else if (checkDirection(board, me, (me.getX() - 1), me.getY())) {
-			direction = Direction.LEFT;
-		}
-		
-		return direction;
-	}
-	
-	private boolean checkDirection(Board board, BoardEntity me, int x, int y) {
-		ArrayList<BoardEntity> entities = board.getEntitiesAt(x, y);
-		
-		for (BoardEntity entity : entities) {
-			if (entity != null && entity.canMoveOnto(board, me) == false) {
-				return false;
-			}
-		}
-		
-		return true;
+		return best;
 	}
 
 }

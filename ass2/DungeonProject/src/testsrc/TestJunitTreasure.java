@@ -15,33 +15,32 @@ public class TestJunitTreasure {
 	
 	private Board board;
 	private Player player;
-	private Treasure treasure;
+	private Treasure treasure1, treasure2;
 	
 	@Before
 	public void setUp() {
 		Game game = new Game();
-		game.createNewBoard("testBoard1", 5, 5);
-		this.board = game.getCustomDungeonByName("testTreasure");
-		//place a player on the board
+		game.createNewBoard("testBoard1", 4, 4);
+		this.board = game.getCustomDungeonByName("testBoard1");
+		this.player = new Player(1,1);
+		this.treasure1 = new Treasure(2,1);
+		this.treasure2 = new Treasure(2,2);
 		board.addBoardEntity(player);
-		board.addBoardEntity(treasure);
-		this.player = new Player(3,3);
-		//place treasure
-		
+		board.addBoardEntity(treasure1);
+		board.addBoardEntity(treasure2);
 	}
 	
 	//Tests US1.4
+	//-collects two pieces of treasure
+	//-wins game
 	@Test
 	public void testCollectTreasure() {	
 		
-		TestJunitTreasure test = new TestJunitTreasure();
-		test.setUp();
-		//collect treasure
-		this.treasure = new Treasure(4,4);
-		
-		this.player.moveDown(board);
+		assertEquals(board.howMuchTreasureLeft(), 2);
 		this.player.moveRight(board);
-		
+		assertEquals(board.howMuchTreasureLeft(), 1);
+		this.player.moveDown(board);
+		assertEquals(board.howMuchTreasureLeft(), 0);
 		//win game
 	}
 }
