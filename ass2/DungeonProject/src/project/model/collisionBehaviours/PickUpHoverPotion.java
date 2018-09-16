@@ -13,7 +13,7 @@ public class PickUpHoverPotion implements CollisionBehaviour {
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
 		if (mover instanceof Player) {
 			// make the player hover for the rest of the game
-			((Player) mover).setHover(true);
+			((Player) mover).startHovering();
 			board.removeBoardEntity(me);
 		}
 	}

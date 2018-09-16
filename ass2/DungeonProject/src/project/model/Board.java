@@ -13,12 +13,18 @@ public class Board {
 	private ArrayList<BoardEntity> boardEntities;
 	private int boardID = 0;
 	
+	//currently for testing purposes only
+	//0 means in play, 1 means the game has been won, 2 means the game has been lost
+	//this value is changed by the winGame and endGame methods
+	private int gameStatus;
+	
 	public Board(String name, int height, int width) {
 		this.name = name;
 		this.height = height;
 		this.width = width;
 		this.boardEntities = new ArrayList<BoardEntity>();
 		this.boardID = ++boardCount;
+		this.gameStatus = 0;
 	}
 
 	public String getName() {
@@ -115,16 +121,20 @@ public class Board {
 	 * ends the game
 	 */
 	public void endGame() {
-		// TODO end the game
+		this.gameStatus = 2;
 	}
 
 	/**
 	 * wins the game
 	 */
 	public void winGame() {
-		// TODO win the game
+		this.gameStatus = 1;
 	}
 
+	public int getGameStatus() {
+		return this.gameStatus;
+	}
+	
 	/**
 	 * @pre Ensure that the board only has one player
 	 * @return the player if there is one, null otherwise
