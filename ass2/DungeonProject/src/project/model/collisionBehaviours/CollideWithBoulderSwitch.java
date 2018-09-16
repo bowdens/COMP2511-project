@@ -1,19 +1,21 @@
 package project.model.collisionBehaviours;
 
+import java.util.ArrayList;
+
 import project.model.Board;
 import project.model.BoardEntity;
 import project.model.CollisionBehaviour;
 import project.model.Player;
 import project.model.enemies.FlyingArrow;
+import project.model.obstacles.Boulder;
+import project.model.obstacles.FloorSwitch;
 
-import java.util.ArrayList;
+public class CollideWithBoulderSwitch implements CollisionBehaviour {
 
-public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
-
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3145762904749920690L;
 
 	/**
-	 * @pre Have checked that me.canMoveOnto is true for me=Boudler and mover=player
+	 * @pre have already confirmed that the boulder will be able to spawn wherever it needs to
 	 */
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
@@ -27,7 +29,7 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 		}
 		
 		if (!(mover instanceof Player)) {
-			// if its not a player, don't move the boulder
+			// if its not a player, don't do anything
 			return;
 		}
 			
@@ -57,17 +59,25 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 				break;
 		}
 		
+		Boulder newBoulder = new Boulder(newX, newY);
+		board.addBoardEntity(newBoulder);
+		
 		ArrayList<BoardEntity> ents = board.getEntitiesAt(newX, newY);
-		me.setX(newX);
-		me.setY(newY);
 		//if the boulder is moving onto a pit, call the pit's collide method to destroy the boulder
 		for (BoardEntity entity : ents) {
-			entity.collide(board, me);
+			entity.collide(board, newBoulder);
 			if (!board.getBoardEntities().contains(me)) {
 				// if i'm dead (fell down a pit) - that is to say, i'm not in the board's list of entities; then break
 				break;
 			}
 		}
+		
+		FloorSwitch floorSwitch = new FloorSwitch(me.getX(), me.getY());
+		board.addBoardEntity(floorSwitch);
+		
+		board.removeBoardEntity(me);
+		
 		return;	
 	}
+
 }
