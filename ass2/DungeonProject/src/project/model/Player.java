@@ -25,6 +25,7 @@ public class Player extends MovingEntity {
 		swords = 0;
 		hover = false;
 		invincibleTime = 0;
+		keys = new ArrayList<Integer>();
 		setCollisionBehaviour(new CollideWithPlayer());
 		setDirection(Direction.DOWN);
 		setCanMoveOnto(new AllowAll(new AllowNone()));
