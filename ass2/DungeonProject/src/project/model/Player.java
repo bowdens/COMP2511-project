@@ -5,20 +5,19 @@ import java.util.ArrayList;
 import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;
 import project.model.collisionBehaviours.CollideWithPlayer;
-import project.model.obstacles.ExplodingBomb;
+import project.model.obstacles.LitBomb;
 
 public class Player extends MovingEntity {
 	
-	private static final long serialVersionUID = -12691224577134383L;
+	private static final long serialVersionUID = 1L;
 	private int bombs;
 	private int arrows;
 	private int swords;
 	private boolean hover;
 	private int invincibleTime;
 	private ArrayList<Integer> keys;
-	
 	public static int potionSpan = 10;
-	
+
 	public Player(int x, int y) {
 		super(x, y);
 		bombs = 0;
@@ -65,10 +64,10 @@ public class Player extends MovingEntity {
 			newX = getX();
 			newY = getY();
 		default:
-			// enum - should never happen
 			break;
 		}
-		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
+
+		BoardEntity bomb = new LitBomb(newX, newY, 3);
 		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
 		for (BoardEntity entity : entities) {
 			if (entity.canMoveOnto(board, bomb) == false) {
@@ -162,7 +161,7 @@ public class Player extends MovingEntity {
 	public void addInvincibleTime(int invincible) {
 		this.invincibleTime += invincible;
 	}
-
+	
 	/**
 	 * @return the keys
 	 */
@@ -187,7 +186,7 @@ public class Player extends MovingEntity {
 
 	
 	public void update(Board board) {
-		//clock back any active effects
+		//clock back if invincibility is in effect
 		if(isInvincible()) {
 			this.addInvincibleTime(-1);
 		}

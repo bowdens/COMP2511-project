@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import project.model.Board;
+import project.model.BoardEntity;
 import project.model.Direction;
 import project.model.MovementBehaviour;
 import project.model.MovingEntity;
@@ -11,6 +12,8 @@ import project.model.Player;
 import project.model.movementBehaviours.dijkstra.Dijkstra;
 
 public class RunAwayBehaviour implements MovementBehaviour {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public Direction nextDirection(Board board, MovingEntity me) {

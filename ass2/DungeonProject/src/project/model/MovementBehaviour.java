@@ -1,5 +1,7 @@
 package project.model;
 
-public interface MovementBehaviour {
+import java.io.Serializable;
+
+public interface MovementBehaviour extends Serializable {
 	Direction nextDirection(Board board, MovingEntity me);
 }

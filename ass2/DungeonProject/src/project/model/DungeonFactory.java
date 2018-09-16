@@ -20,15 +20,15 @@ public class DungeonFactory {
 			case TREASURE:
 				return new Treasure(x,y);
 			case DOOR:
-				return new Door(x,y);
+				//return new Door(x,y);
 			case KEY:
-				return new Key(x,y);
+				//return new Key(x,y);
 			case BOULDER:
 				return new Boulder(x,y);
 			case FLOOR_SWITCH:
 				return new FloorSwitch(x,y);
 			case UNLIT_BOMB:
-				return new UnlitBomb(x,y);
+				//return new UnlitBomb(x,y);
 			case PIT:
 				return new Pit(x,y);
 			case HUNTER:

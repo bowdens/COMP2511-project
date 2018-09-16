@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class MovingEntity extends BoardEntity {
 	
-	private static final long serialVersionUID = -9191910443455788417L;
+	private static final long serialVersionUID = 1L;
 	private Direction direction;
 	private MovementBehaviour movementBehaviour;
 
@@ -14,46 +14,50 @@ public abstract class MovingEntity extends BoardEntity {
 	}
 	
 	/**
-	 * Tries to move the player up (decrement Y)
+	 * Tries to move the entity up (decrement Y)
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
 	public boolean moveUp(Board board) {
 		int newX = getX();
 		int newY = getY()-1;
+		setDirection(Direction.UP);
 		return moveTo(board, newX, newY);
 	}
 	
 	/**
-	 * Tries to move the player down (increment Y)
+	 * Tries to move the entity down (increment Y)
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
 	public boolean moveDown(Board board) {
 		int newX = getX();
 		int newY = getY()+1;
+		setDirection(Direction.DOWN);
 		return moveTo(board, newX, newY);
 	}
 	
 	/**
-	 * Tries to move the player left (decrement X)
+	 * Tries to move the entity left (decrement X)
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
 	public boolean moveLeft(Board board) {
 		int newX = getX()-1;
 		int newY = getY();
+		setDirection(Direction.LEFT);
 		return moveTo(board, newX, newY);
 	}
 	
 	/**
-	 * Tries to move the player right (increment X)
+	 * Tries to move the entity right (increment X)
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
 	public boolean  moveRight(Board board) {
 		int newX = getX()+1;
 		int newY = getY();
+		setDirection(Direction.RIGHT);
 		return moveTo(board, newX, newY);
 	}
 	
@@ -70,7 +74,7 @@ public abstract class MovingEntity extends BoardEntity {
 	 */
 	public boolean moveTo(Board board, int x, int y) {
 		/*
-		 * Get enitity at x,y
+		 * Get entity at x,y
 		 * if entity is null, move there
 		 * otherwise check the entities canMoveOnto if false, do not move there
 		 * otherwise move there and call entity.collision
@@ -90,6 +94,7 @@ public abstract class MovingEntity extends BoardEntity {
 		for (BoardEntity entity : entities) {
 			entity.collide(board, this);
 		}
+		
 		return true;		
 	}
 

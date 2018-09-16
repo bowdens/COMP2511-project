@@ -6,7 +6,8 @@ import project.model.canMoveOntoDecorators.AllowPlayer;
 import project.model.collisionBehaviours.PickUpTreasure;
 
 public class Treasure extends BoardEntity {
-	private static final long serialVersionUID = 1608755959712296850L;
+
+	private static final long serialVersionUID = 1L;
 
 	public Treasure(int x, int y) {
 		super(x,y);

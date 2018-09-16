@@ -8,15 +8,15 @@ import project.model.Enemy;
 import project.model.Player;
 import project.model.canMoveOntoDecorators.AllowNone;
 
-public class ExplodingBomb extends BoardEntity {
+public class LitBomb extends BoardEntity {
 
-	private static final long serialVersionUID = -6117469224835281543L;
+	private static final long serialVersionUID = 1L;
 	private int ticks;
 	
 	/**
 	 * @param ticksTillExploded the number of turns the bomb willt take to explode
 	 */
-	public ExplodingBomb(int x, int y, int ticksTillExploded) {
+	public LitBomb(int x, int y, int ticksTillExploded) {
 		super(x, y);
 		setTicks(ticksTillExploded);
 		setCanMoveOnto(new AllowNone());
@@ -38,13 +38,13 @@ public class ExplodingBomb extends BoardEntity {
 				entitiesToKill.addAll(board.getEntitiesAt(getX() + i, getY() + j));
 			}
 		}
-		// kill them all
+		// kill player, enemies and boulders
 		for (BoardEntity entity : entitiesToKill) {
 			if (entity instanceof Player) {
 				// if it's a player, end the game
 				board.endGame();
-			} else if(entity instanceof Enemy) {
-				board.removeBoardEntity(entity);	
+			} else if ((entity instanceof Enemy) || (entity instanceof Boulder)) {
+				board.removeBoardEntity(entity);
 			}
 		}
 	}
