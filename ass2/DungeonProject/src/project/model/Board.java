@@ -75,6 +75,16 @@ public class Board {
       }
       return enems;
    }
+   /*
+   public int howManySwitchesLeft() {
+	   int switches = 0;
+	      for(BoardEntity entity: boardEntities){
+	         if(entity instanceof Switch){
+	            switches++;
+	         }
+	      }
+	   return switches;
+   }*/
 
 	public int getBoardID() {
 		return boardID;
@@ -178,14 +188,9 @@ public class Board {
 
    
    public void updateBoard(){
-      //checks if the player has won
-      if(howMuchTreasureLeft() == 0 || howManyEnemiesLeft() == 0) {
-    	  winGame();
-      }else {
-    	  //update all the entities
-    	  for(BoardEntity ent : boardEntities) {
+      //update all the entities
+    	for(BoardEntity ent : boardEntities) {
     		  ent.update(this);
-    	  }
       }
    }
 

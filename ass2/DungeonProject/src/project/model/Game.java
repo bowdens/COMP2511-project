@@ -76,6 +76,10 @@ public class Game {
 		this.currentBoard = currentBoard;
 	}
 
+	public void setGamePlayer(GamePlayer gp) {
+		this.gamePlayer = gp;
+	}
+	
 	/**
 	 * This method creates a new board for the game's
 	 * creation mode. The new board will be added to the
@@ -162,6 +166,20 @@ public class Game {
 	}
 
 	public void newTurn() {
+		//checks if any of the game's objectives have been met
+		if((currentBoard.howManyEnemiesLeft() == 0) && (gamePlayer.getNumEnemyObjectives() != -1)) {
+			currentBoard.winGame();
+			return;
+		}
+		if((currentBoard.howMuchTreasureLeft() == 0) && (gamePlayer.getNumTreasureObjectives() != -1)) {
+			currentBoard.winGame();
+			return;
+		}
+		/*
+		if((currentBoard.howManySwitchesLeft() == 0) && (gamePlayer.getNumSwitchObjectives() != -1)) {
+			currentBoard.winGame();
+			return;
+		}*/
 		currentBoard.updateBoard();
 	}
 	

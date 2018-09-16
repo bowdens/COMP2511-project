@@ -12,14 +12,17 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJunitObstacles {
+	private Game game;
+	private GamePlayer gamePlayer;
 	private Player player;
 	private Board board;
 	
 	@Before
 	public void setUp() {
-		Game game = new Game();
+		this.game = new Game();
 		game.createNewBoard("testBoard1", 4, 9);
 		this.board = game.getCustomDungeonByName("testBoard1");
+		game.setCurrentBoard(board);
 		this.player = new Player(1,1);
 		board.addBoardEntity(player);
 		
@@ -35,30 +38,37 @@ public class TestJunitObstacles {
 	//tests US1.11 AND US1.19
 	@Test
 	public void testPitFall() {
+		this.gamePlayer = new GamePlayer(board);
+		game.setGamePlayer(gamePlayer);
 		Pit pit = new Pit(2,1);
 		board.addBoardEntity(pit);
-		player.moveRight(board);
-		//endGame() is called
+		
+		game.movePlayer("Right");
+		game.newTurn();
+		
+		//endGame() is called, gameStatus is set to 2
 		assertEquals(board.getGameStatus(), 2);
 	}
 	
 	//test US1.13
 	@Test
 	public void testMoveBoulder() {
+		this.gamePlayer = new GamePlayer(board);
+		game.setGamePlayer(gamePlayer);
 		Boulder boulder = new Boulder(2,1);
 		board.addBoardEntity(boulder);
 		//player moves right 5 times, pushing the boulder to the end of the dungeon
-		player.moveRight(board);
-		player.moveRight(board);
-		player.moveRight(board);
-		player.moveRight(board);
-		player.moveRight(board);
+		game.movePlayer("Right");game.newTurn();
+		game.movePlayer("Right");game.newTurn();
+		game.movePlayer("Right");game.newTurn();
+		game.movePlayer("Right");game.newTurn();
+		game.movePlayer("Right");game.newTurn();
 		assertEquals(player.getX(),6);
 		assertEquals(player.getY(),1);
 		assertEquals(boulder.getX(),7);
 		assertEquals(boulder.getY(),1);
 		//player can't move right again as the boulder can't move into the wall
-		player.moveRight(board);
+		game.movePlayer("Right");game.newTurn();
 		assertEquals(player.getX(),6);
 		assertEquals(player.getY(),1);
 		assertEquals(boulder.getX(),7);
@@ -73,12 +83,15 @@ public class TestJunitObstacles {
 	
 	@Test
 	public void testBoulderPit() {
+		this.gamePlayer = new GamePlayer(board);
+		game.setGamePlayer(gamePlayer);
+		
 		Boulder boulder = new Boulder(2,1);
 		board.addBoardEntity(boulder);
 		Pit pit = new Pit(3,1);
 		board.addBoardEntity(pit);
 		
-		player.moveRight(board);
+		game.movePlayer("Right");game.newTurn();
 		assertEquals(player.getX(),2);
 		assertEquals(player.getY(),1);
 		
