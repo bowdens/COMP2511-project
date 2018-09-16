@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;
+import project.model.enemies.FlyingArrow;
 import project.model.collisionBehaviours.CollideWithPlayer;
 import project.model.obstacles.LitBomb;
 
@@ -80,8 +81,17 @@ public class Player extends MovingEntity {
 		return true;
 	}
 	
-	public void fireArrow() {
-	
+	public boolean shootArrow(Board board) {
+		FlyingArrow arrow = new FlyingArrow(getX(), getY()); 
+		arrow.setDirection(getDirection());
+		board.addBoardEntity(arrow);
+		arrow.update(board);
+		
+		if (board.getBoardEntities().contains(arrow)) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**

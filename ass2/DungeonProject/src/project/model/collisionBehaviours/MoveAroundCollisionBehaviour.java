@@ -4,6 +4,7 @@ import project.model.Board;
 import project.model.BoardEntity;
 import project.model.CollisionBehaviour;
 import project.model.Player;
+import project.model.enemies.FlyingArrow;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,10 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 		 * Moves the boulder up when a player hits it
 		 * does not do anything otherwise
 		 */
+		if (mover instanceof FlyingArrow) {
+			board.removeBoardEntity(mover);
+		}
+		
 		if (!(mover instanceof Player)) {
 			// if its not a player, don't move the boulder
 			return;
