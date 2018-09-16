@@ -38,6 +38,10 @@ public class ProjectController extends JPanel implements KeyListener {
 	public void addRequestedEntity(int entity, int x, int y) {
 		game.addEntityToBoard(entity, x, y);
 	}
+	
+	public void removeRequestedEntity(int x, int y) {
+		game.removeEntityAt(x, y);
+	}
 
 	@Override
 	public void keyPressed(KeyEvent key) {

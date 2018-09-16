@@ -106,7 +106,11 @@ public class Game {
 	public void addEntityToBoard(int entity, int x, int y){
 	   dungeonCreator.setBoardEntity(getCurrentBoard(), entity, x, y);
 	}
-  
+	
+  	public void removeEntityAt(int x, int y) {
+		dungeonCreator.deleteBoardEntity(currentBoard, x, y);
+	}
+  	
 	/**
 	 * This method saves the board with corresponding
 	 * ID by writing the board to file.
@@ -164,5 +168,7 @@ public class Game {
 	public void newTurn() {
 		// TODO
 	}
+
+
 	
 }
