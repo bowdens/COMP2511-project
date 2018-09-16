@@ -16,6 +16,7 @@ public class Game {
 		this.simpleDungeons = new ArrayList<Board>();
 		this.advancedDungeons = new ArrayList<Board>();
 		this.customDungeons = new ArrayList<Board>();
+		this.dungeonCreator = new DungeonCreator();
 	}
 	
 	/**
@@ -32,7 +33,8 @@ public class Game {
 		customDungeons.add(newBoard);
 	}
 	
-	public Board getCustomDungeonByName(String name){
+	//can change this to get any dungeon by name when we start storing dungeons on disk
+	private Board getCustomDungeonByName(String name){
 	   for(Board board : customDungeons){
 	      if(board.getName().equals(name)){
 	         return board;
@@ -41,7 +43,12 @@ public class Game {
 	   return null;
 	}
 	
-	//need a method that will allow you to use dungeonCreator's
+	//uses dungeonCreator to add an entity (specified by the appropriate enum int) to the board (specified by a String)
+	public void addEntitiyToBoard(String boardName, int entity, int x, int y){
+	   Board b = getCustomDungeonByName(boardName);
+	   dungeonCreator.setBoardEntity(b, entity, x, y);
+	}
+	
 	
 	/**
 	 * This method saves the board with corresponding
