@@ -32,6 +32,17 @@ public class Game {
 		customDungeons.add(newBoard);
 	}
 	
+	public Board getCustomDungeonByName(String name){
+	   for(Board board : customDungeons){
+	      if(board.getName().equals(name)){
+	         return board;
+	      }
+	   }
+	   return null;
+	}
+	
+	//need a method that will allow you to use dungeonCreator's
+	
 	/**
 	 * This method saves the board with corresponding
 	 * ID by writing the board to file.
