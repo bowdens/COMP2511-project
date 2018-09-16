@@ -88,6 +88,7 @@ public class Game {
 		Board newBoard = new Board(name, height, width); 
 		dungeonCreator.setIntialBoard(newBoard);
 		customDungeons.add(newBoard);
+		setCurrentBoard(newBoard);
 	}
 	
 	//can change this to get any dungeon by name when we start storing dungeons on disk
@@ -101,10 +102,9 @@ public class Game {
 	}
 	
 
-	//uses dungeonCreator to add an entity (specified by the appropriate enum int) to the board (specified by a String)
-	public void addEntityToBoard(String boardName, int entity, int x, int y){
-	   Board b = getCustomDungeonByName(boardName);
-	   dungeonCreator.setBoardEntity(b, entity, x, y);
+	//uses dungeonCreator to add an entity (specified by the appropriate enum int) to the current board.
+	public void addEntityToBoard(int entity, int x, int y){
+	   dungeonCreator.setBoardEntity(getCurrentBoard(), entity, x, y);
 	}
   
 	/**
