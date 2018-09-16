@@ -5,6 +5,8 @@ import project.model.BoardEntity;
 import project.model.CollisionBehaviour;
 import project.model.Player;
 
+import java.util.ArrayList;
+
 public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 
 	private static final long serialVersionUID = 1L;
@@ -14,6 +16,7 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 	 */
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
+		//this is called when the boulder can move to where the player is moving it to
 		/*
 		 * Moves the boulder up when a player hits it
 		 * does not do anything otherwise
@@ -49,8 +52,13 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 				break;
 		}
 		
+		ArrayList<BoardEntity> ents = board.getEntitiesAt(newX, newY);
 		me.setX(newX);
 		me.setY(newY);
+		//if the boulder is moving onto a pit, call the pit's collide method to destroy the boulder
+				if(ents.size() != 0) {
+					ents.get(0).collide(board, me);
+				}
 		
 		return;
 		
