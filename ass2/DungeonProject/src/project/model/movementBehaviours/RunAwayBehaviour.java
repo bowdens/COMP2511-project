@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import project.model.Board;
-import project.model.BoardEntity;
 import project.model.Direction;
 import project.model.MovementBehaviour;
 import project.model.MovingEntity;
@@ -73,7 +72,7 @@ public class RunAwayBehaviour implements MovementBehaviour {
 			}
 		}
 		
-		System.out.println(nextDistances + " best is " + best);
+		//System.out.println(nextDistances + " best is " + best);
 		
 		return best;
 	}
