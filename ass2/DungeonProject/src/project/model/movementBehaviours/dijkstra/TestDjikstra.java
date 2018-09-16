@@ -11,7 +11,6 @@ import project.model.Board;
 import project.model.BoardEntity;
 import project.model.obstacles.*;
 import project.model.Direction;
-import project.model.Player;
 import project.model.enemies.Strategist;
 
 public class TestDjikstra {
@@ -23,6 +22,7 @@ public class TestDjikstra {
 		// create board size 5,5
 		board = new Board("Test board", 5, 5);
 		strategist = new Strategist(2, 3);
+		board.addBoardEntity(strategist);
 	}
 	
 	@Test
@@ -91,7 +91,6 @@ public class TestDjikstra {
 		
 		for (int i = 0; i < 14; i++) {
 			Direction dir = Dijkstra.getNextMove(board, strategist, 4, 4);
-			System.out.println("(" + strategist.getX() + ", " + strategist.getY() + ") moving " + dir);
 			switch (dir) {
 			case DOWN:
 				assertTrue(strategist.moveDown(board));
@@ -114,10 +113,8 @@ public class TestDjikstra {
 			}
 			// check that the strategist is the only entity on its square
 			ArrayList<BoardEntity> entities = board.getEntitiesAt(strategist.getX(), strategist.getY());
-			System.out.println("on the strategists tile: " + entities);
 			assertEquals(entities.size(), 1);
 		}
-		System.out.println("final position: (" + strategist.getX() + ", " + strategist.getY() + ")");
 		assertEquals(strategist.getX(), 4);
 		assertEquals(strategist.getY(), 4);
 	}
@@ -148,5 +145,34 @@ public class TestDjikstra {
 
 		Direction dir = Dijkstra.getNextMove(board, strategist, 4, 4);
 		assertEquals(dir, Direction.RIGHT);
+	}
+	
+	@Test
+	void testDijkstraOntoObstruction() {
+		/*
+		 *   0 1 2 3 4
+		 * 0 E B _ _ _
+		 * 1 _ B _ B _
+		 * 2 _ B _ B _
+		 * 3 _ _ _ B _
+		 * 4 B B B B _
+		 * trying to get to (3,4)
+		 */
+		strategist.setX(0);
+		strategist.setY(0);
+		board.addBoardEntity(new Boulder(1, 0));
+		board.addBoardEntity(new Boulder(1, 1));
+		board.addBoardEntity(new Boulder(1, 2));
+		board.addBoardEntity(new Boulder(0, 4));
+		board.addBoardEntity(new Boulder(1, 4));
+		board.addBoardEntity(new Boulder(2, 4));
+		board.addBoardEntity(new Boulder(3, 4));
+		board.addBoardEntity(new Boulder(3, 3));
+		board.addBoardEntity(new Boulder(3, 2));
+		board.addBoardEntity(new Boulder(3, 1));
+
+		Direction dir = Dijkstra.getNextMove(board, strategist, 3, 4);
+		System.out.println(dir);
+		assertEquals(Direction.NONE, dir);
 	}
 }

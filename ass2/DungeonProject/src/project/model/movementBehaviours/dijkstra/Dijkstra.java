@@ -10,18 +10,21 @@ import project.model.Direction;
 
 public class Dijkstra {
 	/**
-	 * 
-	 * @param fromX left=0
-	 * @param fromY top=0
+	 * gets the next direction to move into.
+	 * @param entity The entity that is moving
 	 * @param toX left=0
 	 * @param toY top=0
-	 * @return the direction that you need to take next to get to your destination
+	 * @return the direction that you need to take next to get to your destination, NONE if we are there, NONE if there is no path there
 	 */
 	public static Direction getNextMove(Board board, BoardEntity entity, int toX, int toY) {
 		int fromX = entity.getX();
 		int fromY = entity.getY();
 		System.out.println("going from (" + fromX + ", " + fromY + ") to (" + toX + ", " + toY + ")");
 		if (fromX == toX && fromY == toY) {
+			return Direction.NONE;
+		}
+		if(!board.canMoveOnto(entity, toX, toY)) {
+			// if we can't get to the final square, return NONE
 			return Direction.NONE;
 		}
 		
@@ -50,6 +53,19 @@ public class Dijkstra {
 		// System.out.println("The next pos is (" + nextX + ", " + nextY +"), dir = " + direction);
 		
 		return direction;
+	}
+	
+	public static int distance(Board board, BoardEntity entity, int fromX, int fromY, int toX, int toY) {
+		if (fromX == toX && fromY == toY) {
+			// we are there
+			return 0;
+		}
+		if(!board.canMoveOnto(entity, toX, toY)) {
+			// it's not possible to get there
+			return -1;
+		}
+		
+		return dijkstra(board, entity, fromX, fromY, toX, toY).size();
 	}
 	
 	private static int fromCoordToIndex(Board board, int x, int y) {
@@ -148,7 +164,7 @@ public class Dijkstra {
 			current = prev[current];
 			count++;
 			if(count > size*2) {
-				// System.out.println("breaking due to too much repetition");
+				System.out.println("Dijkstra breaking due to too much repetition - something went wrong");
 				break;
 			}
 		}

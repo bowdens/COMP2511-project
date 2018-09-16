@@ -52,6 +52,17 @@ public class Board {
 		return boardID;
 	}
 	
+	public boolean canMoveOnto(BoardEntity entity, int x, int y) {
+		ArrayList<BoardEntity> entities = getEntitiesAt(x, y);
+		for (BoardEntity otherEntity : entities) {
+			// return false if the other entity is not the same as this entity and it cannot be moved onto
+			if (entity != otherEntity && !otherEntity.canMoveOnto(this, entity)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * returns the entities at a given x,y. Returns empty list if there is no entity at that x,y
 	 * @param x the x coordinate (left=0)
@@ -60,7 +71,7 @@ public class Board {
 	 */
 	public ArrayList<BoardEntity> getEntitiesAt(int x, int y) {
 		ArrayList<BoardEntity> entities = new ArrayList<BoardEntity>();
-		for(BoardEntity entity : boardEntities) {
+		for(BoardEntity entity : getBoardEntities()) {
 			if(x == entity.getX() && y == entity.getY()) {
 				entities.add(entity);
 			}
@@ -72,10 +83,12 @@ public class Board {
 	 * Adds a board entity to the board. Will not add duplicates (that is same entity at the same memory location
 	 * @param entity The board entity to add to the list of entities
 	 */
-	public void addBoardEntity(BoardEntity entity) {
+	public boolean addBoardEntity(BoardEntity entity) {
 		if(!boardEntities.contains(entity)) {
 			boardEntities.add(entity);
-		}
+			return true;
+		} 
+		return false;
 	}
 
 	/**
@@ -111,6 +124,24 @@ public class Board {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * checks if an x coordinate is valid on this board
+	 * @param x an x coordinate
+	 * @return true if 0 <= x < width
+	 */
+	public boolean validX(int x) {
+		return (x >= 0 && x < getWidth());
+	}
+	
+	/**
+	 * checks if a y coordinate is valid on this board
+	 * @param y a y position
+	 * @return true if 0 <= y < height
+	 */
+	public boolean validY(int y) {
+		return (y >= 0 && y < getHeight());
 	}
 
 }

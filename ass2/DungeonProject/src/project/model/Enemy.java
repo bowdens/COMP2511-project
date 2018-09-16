@@ -26,6 +26,10 @@ public abstract class Enemy extends MovingEntity {
 		 * if not, goes according to their movement behaviour
 		 */
 		Player player = board.getPlayer();
+		if (player == null) {
+			// if the player isn't there, do nothing
+			return;
+		}
 		MovementBehaviour behaviourToUse;
 		if (player.isInvincible()) {
 			behaviourToUse = runAway;

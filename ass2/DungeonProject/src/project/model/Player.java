@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;
-import project.model.collisionBehaviours.NoCollision;
+import project.model.collisionBehaviours.CollideWithPlayer;
 import project.model.obstacles.ExplodingBomb;
 
 public class Player extends MovingEntity {
@@ -14,9 +14,7 @@ public class Player extends MovingEntity {
 	private int arrows;
 	private int swords;
 	private boolean hover;
-	private boolean invincible;
-	private int hover_time;
-	private int invincible_time;
+	private int invincibleTime;
 	private ArrayList<Integer> keys;
 	
 	public static int potionSpan = 10;
@@ -26,57 +24,11 @@ public class Player extends MovingEntity {
 		bombs = 0;
 		arrows = 0;
 		swords = 0;
-		setHover(false);
-		setInvincible(false);
-		hover_time = 0;
-		invincible_time = 0;
-		setCollisionBehaviour(new NoCollision());
+		hover = false;
+		invincibleTime = 0;
+		setCollisionBehaviour(new CollideWithPlayer());
 		setDirection(Direction.DOWN);
 		setCanMoveOnto(new AllowAll(new AllowNone()));
-	}
-	
-	/**
-	 * Tries to move the player up (decrement Y)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveUp(Board board) {
-		int newX = getX();
-		int newY = getY()-1;
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player down (increment Y)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveDown(Board board) {
-		int newX = getX();
-		int newY = getY()+1;
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player left (decrement X)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveLeft(Board board) {
-		int newX = getX()-1;
-		int newY = getY();
-		moveTo(board, newY, newX);
-	}
-	
-	/**
-	 * Tries to move the player right (increment X)
-	 * @param board The board
-	 * @author Tom Bowden
-	 */
-	public void moveRight(Board board) {
-		int newX = getX()+1;
-		int newY = getY();
-		moveTo(board, newY, newX);
 	}
 	
 	/**
@@ -109,19 +61,25 @@ public class Player extends MovingEntity {
 			newX = getX() + 1;
 			newY = getY();
 			break;
+		case NONE:
+			newX = getX();
+			newY = getY();
 		default:
 			// enum - should never happen
 			break;
 		}
-		BoardEntity entity = board.getEntityAt(newX, newY);
 		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
-		if (entity == null || entity.canMoveOnto(board, bomb)) {
-			// put the bomb there
-			board.addBoardEntity(bomb);
-			addBombs(-1);
-			return true;
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
+		for (BoardEntity entity : entities) {
+			if (entity.canMoveOnto(board, bomb) == false) {
+				// cant't put a bomb there
+				return false;
+			}
 		}
-		return false;
+		// put the bomb there
+		board.addBoardEntity(bomb);
+		addBombs(-1);
+		return true;
 	}
 	
 	public void fireArrow() {
@@ -166,14 +124,9 @@ public class Player extends MovingEntity {
 	/**
 	 * @param hover the hover to set
 	 */
-	public void setHover(boolean hover) {
-		addHover(potionSpan);
-		this.hover = hover;
+	public void startHovering() {
+		this.hover = true;
 	}
-
-   public void addHover(int s){
-      hover_time += s;
-   }   
    
 	/**
 	 * @return the swords
@@ -190,23 +143,25 @@ public class Player extends MovingEntity {
 	}
 
 	/**
-	 * @return the invincible
+	 * @return wether the player is invincible
 	 */
 	public boolean isInvincible() {
-		return invincible;
+		return (invincibleTime > 0);
+	}
+	
+	/*
+	 * @return the invincible time remaining
+	 */
+	public int getInvincibleTime() {
+		return this.invincibleTime;
 	}
 
 	/**
-	 * @param invincible the invincible to set
+	 * @param invincible the invincible to add
 	 */
-	public void setInvincible(boolean invincible) {
-		addInvincibility(potionSpan);
-		this.invincible = invincible;
+	public void addInvincibleTime(int invincible) {
+		this.invincibleTime += invincible;
 	}
-
-   public void addInvincibility(int s){
-      hover_time += s;
-   }
 
 	/**
 	 * @return the keys
@@ -233,19 +188,9 @@ public class Player extends MovingEntity {
 	
 	public void update(Board board) {
 		//clock back any active effects
-		if(isHover()) {
-			hover_time--;
-			if(hover_time == 0) {
-				setHover(false);
-			}
-		}
 		if(isInvincible()) {
-			invincible_time--;
-			if(invincible_time == 0) {
-				setInvincible(false);
-			}
+			this.addInvincibleTime(-1);
 		}
-		
 	}
 }
 

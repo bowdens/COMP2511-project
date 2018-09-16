@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import project.model.Board;
 import project.model.BoardEntity;
+import project.model.Enemy;
 import project.model.Player;
 import project.model.canMoveOntoDecorators.AllowNone;
 
@@ -42,8 +43,9 @@ public class ExplodingBomb extends BoardEntity {
 			if (entity instanceof Player) {
 				// if it's a player, end the game
 				board.endGame();
+			} else if(entity instanceof Enemy) {
+				board.removeBoardEntity(entity);	
 			}
-			board.removeBoardEntity(entity);
 		}
 	}
 	
