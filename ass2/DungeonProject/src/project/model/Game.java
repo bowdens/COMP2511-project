@@ -162,7 +162,7 @@ public class Game {
 	}
 
 	public void newTurn() {
-		// TODO
+		currentBoard.updateBoard();
 	}
 	
 }
