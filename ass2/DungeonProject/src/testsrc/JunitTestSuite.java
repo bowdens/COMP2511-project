@@ -1,4 +1,4 @@
-package project.testsrc;
+package testsrc;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

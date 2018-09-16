@@ -4,9 +4,12 @@ import project.model.*;
 import project.model.obstacles.Exit;
 import project.model.obstacles.Wall;
 
-import org.junit.jupiter.api.Test;
-import org.junit.Ignore;
-import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import org.junit.Ignore;
+//import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
+import org.junit.Test;
+//import org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJunitSimpleDungeon {
@@ -16,14 +19,14 @@ public class TestJunitSimpleDungeon {
 	private Wall wall;
 	private Exit exit;
 	
-   @BeforeEach
-   public void setup() throws Exception {
+   @Before
+   public void setUp() {
 	   Game game = new Game();
 	   game.createNewBoard("testBoard1", 5, 5);
-	   Board board = game.getCustomDungeonByName("testBoard1");
-	   Player player = new Player(1,1);
-	   Exit exit = new Exit(3,3);
-	   Wall wall = new Wall(2,2);
+	   this.board = game.getCustomDungeonByName("testBoard1");
+	   this.player = new Player(1,1);
+	   this.exit = new Exit(3,3);
+	   this.wall = new Wall(2,2);
 	   board.addBoardEntity(player);
 	   board.addBoardEntity(exit);
 	   board.addBoardEntity(wall);
@@ -36,6 +39,7 @@ public class TestJunitSimpleDungeon {
 		 * 3 _ _ E
 		 */
    }
+   
    
    //tests US1.3
    // - player can move in all directions
@@ -70,6 +74,7 @@ public class TestJunitSimpleDungeon {
 	   assertEquals(player.getY(),1);
 	   
 	   player.moveDown(board);
+	   //System.out.println("PLayer is at ("+player.getX()+","+player.getY()+") -- should be (1,2)\n");
 	   //attempt to move into a wall placed by the developer
 	   player.moveRight(board);
 	   assertEquals(player.getX(),1);
@@ -84,6 +89,8 @@ public class TestJunitSimpleDungeon {
 	   player.moveDown(board);
 	   player.moveRight(board);
 	   player.moveRight(board);
-	   //assert player wins?
+	   assertEquals(player.getX(),3);
+	   assertEquals(player.getY(),3);
+	   //still need to test that the game has been won
    }
 }
