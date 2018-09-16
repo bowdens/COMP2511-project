@@ -22,7 +22,7 @@ public abstract class MovingEntity extends BoardEntity {
 		int newX = getX();
 		int newY = getY()-1;
 		setDirection(Direction.UP);
-		moveTo(board, newY, newX);
+		moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public abstract class MovingEntity extends BoardEntity {
 		int newX = getX();
 		int newY = getY()+1;
 		setDirection(Direction.DOWN);
-		moveTo(board, newY, newX);
+		moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public abstract class MovingEntity extends BoardEntity {
 		int newX = getX()-1;
 		int newY = getY();
 		setDirection(Direction.LEFT);
-		moveTo(board, newY, newX);
+		moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public abstract class MovingEntity extends BoardEntity {
 		int newX = getX()+1;
 		int newY = getY();
 		setDirection(Direction.RIGHT);
-		moveTo(board, newY, newX);
+		moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public abstract class MovingEntity extends BoardEntity {
 		 * otherwise check the entities canMoveOnto if false, do not move there
 		 * otherwise move there and call entity.collision
 		 */
-		ArrayList<BoardEntity> entities = board.getEntitiesAt(x,  y);
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(x,y);
 		for (BoardEntity entity : entities) {
 			if (entity.canMoveOnto(board, this) == false) {
 				// we cannot move onto an entity on the tile

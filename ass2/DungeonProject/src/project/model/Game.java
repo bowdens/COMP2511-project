@@ -34,7 +34,7 @@ public class Game {
 	}
 	
 	//can change this to get any dungeon by name when we start storing dungeons on disk
-	private Board getCustomDungeonByName(String name){
+	public Board getCustomDungeonByName(String name){
 	   for(Board board : customDungeons){
 	      if(board.getName().equals(name)){
 	         return board;
@@ -44,7 +44,7 @@ public class Game {
 	}
 	
 	//uses dungeonCreator to add an entity (specified by the appropriate enum int) to the board (specified by a String)
-	public void addEntitiyToBoard(String boardName, int entity, int x, int y){
+	public void addEntityToBoard(String boardName, int entity, int x, int y){
 	   Board b = getCustomDungeonByName(boardName);
 	   dungeonCreator.setBoardEntity(b, entity, x, y);
 	}

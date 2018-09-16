@@ -72,6 +72,9 @@ public class Board {
 	 */
 	public ArrayList<BoardEntity> getEntitiesAt(int x, int y) {
 		ArrayList<BoardEntity> entities = new ArrayList<BoardEntity>();
+		
+		//System.out.println("Number of board entities: "+boardEntities.size()+"\n");
+		
 		for(BoardEntity entity : boardEntities) {
 			if(x == entity.getX() && y == entity.getY()) {
 				entities.add(entity);

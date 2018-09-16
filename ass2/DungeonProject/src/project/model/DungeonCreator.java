@@ -22,7 +22,7 @@ public class DungeonCreator {
 			for (int col = 0; col < newBoard.getWidth(); col++) {
 				if (row == 0 || row == (newBoard.getHeight() - 1) || 
 						col == 0 || col == (newBoard.getWidth() - 1)) {
-					entity = factory.makeBoardEntity(1, col, row);
+					entity = factory.makeBoardEntity(2, col, row);
 					newBoard.addBoardEntity(entity);
 				}	
 			}
