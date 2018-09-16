@@ -8,6 +8,7 @@ import project.model.Board;
 import project.model.obstacles.*;
 import project.model.Direction;
 import project.model.Player;
+import project.model.enemies.Strategist;
 
 public class CanMoveOntoTest {
 	private Player player;
@@ -113,7 +114,39 @@ public class CanMoveOntoTest {
 		
 		// the player should be able to move onto the boulder
 		assertTrue(boulder.canMoveOnto(board, player));
-		
+	}
+	
+	@Test
+	void testMovingEnemyOntoPlayer() {
+		/*
+		 * board looks like this:
+		 *   0 1 2 3 4
+		 * 0 _ _ _ _ _
+		 * 1 _ _ _ _ _
+		 * 2 _ S P _ _
+		 * 3 _ _ _ _ _
+		 * 4 _ _ _ _ _
+		 */
+		Strategist strategist = new Strategist(1, 2);
+		board.addBoardEntity(strategist);
+		assertTrue(player.canMoveOnto(board, strategist));
+	}
+	
+	@Test
+	void testEnemyMovingOntoPlayer() {
+
+		/*
+		 * board looks like this:
+		 *   0 1 2 3 4
+		 * 0 _ _ _ _ _
+		 * 1 _ _ _ _ _
+		 * 2 _ S P _ _
+		 * 3 _ _ _ _ _
+		 * 4 _ _ _ _ _
+		 */
+		Strategist strategist = new Strategist(1, 2);
+		board.addBoardEntity(strategist);
+		assertTrue(strategist.canMoveOnto(board, player));
 	}
 	
 	

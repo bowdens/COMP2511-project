@@ -19,12 +19,13 @@ public class Dijkstra {
 	public static Direction getNextMove(Board board, BoardEntity entity, int toX, int toY) {
 		int fromX = entity.getX();
 		int fromY = entity.getY();
-		System.out.println("going from (" + fromX + ", " + fromY + ") to (" + toX + ", " + toY + ")");
+		//System.out.println("going from (" + fromX + ", " + fromY + ") to (" + toX + ", " + toY + ")");
 		if (fromX == toX && fromY == toY) {
 			return Direction.NONE;
 		}
 		if(!board.canMoveOnto(entity, toX, toY)) {
 			// if we can't get to the final square, return NONE
+			System.out.println("cant get to " + toX + "," + toY + " entities on point: " + board.getEntitiesAt(toX, toY));
 			return Direction.NONE;
 		}
 		
@@ -50,7 +51,7 @@ public class Dijkstra {
 			direction = Direction.NONE;
 		}
 		
-		// System.out.println("The next pos is (" + nextX + ", " + nextY +"), dir = " + direction);
+		 //System.out.println("The next pos is (" + nextX + ", " + nextY +"), dir = " + direction);
 		
 		return direction;
 	}
