@@ -9,7 +9,8 @@ import project.model.Player;
 import project.model.collisionBehaviours.MoveAroundCollisionBehaviour;
 
 public class Boulder extends BoardEntity {
-	private static final long serialVersionUID = 7898209246840234989L;
+
+	private static final long serialVersionUID = 1L;
 
 	public Boulder(int x, int y) {
 		super(x, y);

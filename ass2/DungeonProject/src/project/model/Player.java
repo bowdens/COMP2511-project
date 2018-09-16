@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import project.model.canMoveOntoDecorators.AllowAll;
 import project.model.canMoveOntoDecorators.AllowNone;
 import project.model.collisionBehaviours.NoCollision;
-import project.model.obstacles.ExplodingBomb;
+import project.model.obstacles.LitBomb;
 import project.model.Board;
 
 public class Player extends MovingEntity {
@@ -68,7 +68,7 @@ public class Player extends MovingEntity {
 		}
 		
 		ArrayList<BoardEntity> entities = board.getEntitiesAt(newX, newY);
-		BoardEntity bomb = new ExplodingBomb(newX, newY, 3);
+		BoardEntity bomb = new LitBomb(newX, newY, 3);
 		
 		for (BoardEntity e : entities) {
 			if (e.canMoveOnto(board, bomb) == false) {

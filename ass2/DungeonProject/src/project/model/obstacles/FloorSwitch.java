@@ -6,7 +6,8 @@ import project.model.canMoveOntoDecorators.AllowNone;
 import project.model.collisionBehaviours.NoCollision;
 
 public class FloorSwitch extends BoardEntity {
-	private static final long serialVersionUID = 7418595553809873920L;
+	
+	private static final long serialVersionUID = 1L;
 
 	public FloorSwitch(int x, int y) {
 		super(x, y);

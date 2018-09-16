@@ -22,6 +22,5 @@ public class PitKillCollisionBehaviour implements CollisionBehaviour {
 			// allow
 			board.removeBoardEntity(mover);
 		}
-		return;
 	}
 }
