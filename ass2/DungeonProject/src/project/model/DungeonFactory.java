@@ -9,8 +9,6 @@ public class DungeonFactory {
 		EntityType newEntity = EntityType.valueOf(entity);
 		
 		switch (newEntity) {
-			case FLOOR_TILE:
-				break;
 			case WALL:
 				return new Wall(x,y);
 			case EXIT:
@@ -28,7 +26,7 @@ public class DungeonFactory {
 			case FLOOR_SWITCH:
 				return new FloorSwitch(x,y);
 			case UNLIT_BOMB:
-				//return new UnlitBomb(x,y);
+				return new UnlitBomb(x,y);
 			case PIT:
 				return new Pit(x,y);
 			case HUNTER:
