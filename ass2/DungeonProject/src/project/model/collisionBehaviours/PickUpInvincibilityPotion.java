@@ -17,13 +17,7 @@ public class PickUpInvincibilityPotion implements CollisionBehaviour {
 		}
 		
 		if (mover instanceof Player) {
-			//if the player is already hovering, then extend the hover time
-			if(((Player) mover).isInvincible()){
-				((Player) mover).addInvincibility(Player.potionSpan);
-			}else {
-				((Player) mover).setInvincible(true);
-			}
-			
+			((Player) mover).addInvincibleTime(10);
 			board.removeBoardEntity(me);
 		}
 	}

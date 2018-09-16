@@ -24,7 +24,7 @@ public class PitKillCollisionBehaviour implements CollisionBehaviour {
 		if (mover instanceof Player) {
 			board.endGame();
 		} else if (mover instanceof Boulder) {
-			// allow
+			//allow
 			board.removeBoardEntity(mover);
 		}
 	}

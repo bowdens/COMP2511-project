@@ -18,11 +18,11 @@ public abstract class MovingEntity extends BoardEntity {
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
-	public void moveUp(Board board) {
+	public boolean moveUp(Board board) {
 		int newX = getX();
 		int newY = getY()-1;
 		setDirection(Direction.UP);
-		moveTo(board, newY, newX);
+		return moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -30,11 +30,11 @@ public abstract class MovingEntity extends BoardEntity {
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
-	public void moveDown(Board board) {
+	public boolean moveDown(Board board) {
 		int newX = getX();
 		int newY = getY()+1;
 		setDirection(Direction.DOWN);
-		moveTo(board, newY, newX);
+		return moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -42,11 +42,11 @@ public abstract class MovingEntity extends BoardEntity {
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
-	public void moveLeft(Board board) {
+	public boolean moveLeft(Board board) {
 		int newX = getX()-1;
 		int newY = getY();
 		setDirection(Direction.LEFT);
-		moveTo(board, newY, newX);
+		return moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -54,11 +54,11 @@ public abstract class MovingEntity extends BoardEntity {
 	 * @param board The board
 	 * @author Tom Bowden
 	 */
-	public void moveRight(Board board) {
+	public boolean  moveRight(Board board) {
 		int newX = getX()+1;
 		int newY = getY();
 		setDirection(Direction.RIGHT);
-		moveTo(board, newY, newX);
+		return moveTo(board, newX, newY);
 	}
 	
 	/**
@@ -79,6 +79,7 @@ public abstract class MovingEntity extends BoardEntity {
 		 * otherwise check the entities canMoveOnto if false, do not move there
 		 * otherwise move there and call entity.collision
 		 */
+		
 		ArrayList<BoardEntity> entities = board.getEntitiesAt(x,  y);
 		for (BoardEntity entity : entities) {
 			if (entity.canMoveOnto(board, this) == false) {
