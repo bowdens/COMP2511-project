@@ -188,6 +188,44 @@ public class TestJunitEnemy {
 	//tests UC1.8
 	@Test
 	public void testCowardKillsPlayer() {
-		//player moves straight towards the coward and dies
+		Game game = new Game();
+		game.createNewBoard("testBoard1",5, 3);
+		Board board = game.getCustomDungeonByName("testBoard1");
+		game.setCurrentBoard(board);
+		Player player = new Player(1,1);
+		Coward coward = new Coward(4,1);
+		board.addBoardEntity(player);
+		board.addBoardEntity(coward);
+		GamePlayer gamePlayer = new GamePlayer(board);
+		game.setGamePlayer(gamePlayer);
+		
+		gamePlayer.movePlayer("Right");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.movePlayer("Right");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.movePlayer("Right");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		gamePlayer.newTurn();
+		System.out.println("Player @ ("+player.getX()+","+player.getY()+")\n");
+		System.out.println("Coward @ ("+coward.getX()+","+coward.getY()+")\n");
+		
 	}
 }
