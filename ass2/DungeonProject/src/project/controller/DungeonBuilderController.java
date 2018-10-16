@@ -26,15 +26,60 @@ public class DungeonBuilderController extends Controller {
 	
 	@FXML
 	private ImageView binIcon;
-	
-	@FXML
-	private ImageView playerSprite;
-	
-	@FXML
-	private ImageView wallSprite;
-	
-	@FXML
-	private ImageView exitSprite;
+
+    @FXML
+    private ImageView playerSprite;
+
+    @FXML
+    private ImageView wallSprite;
+
+    @FXML
+    private ImageView exitSprite;
+
+    @FXML
+    private ImageView pitSprite;
+
+    @FXML
+    private ImageView boulderSprite;
+
+    @FXML
+    private ImageView switchSprite;
+
+    @FXML
+    private ImageView doorSprite;
+
+    @FXML
+    private ImageView keySprite;
+
+    @FXML
+    private ImageView treasureSprite;
+
+    @FXML
+    private ImageView bombSprite;
+
+    @FXML
+    private ImageView swordSprite;
+
+    @FXML
+    private ImageView arrowSprite;
+
+    @FXML
+    private ImageView hunterSprite;
+
+    @FXML
+    private ImageView houndSprite;
+
+    @FXML
+    private ImageView strategistSprite;
+
+    @FXML
+    private ImageView cowardSprite;
+
+    @FXML
+    private ImageView ipSprite;
+
+    @FXML
+    private ImageView hpSprite;
 	
 	public DungeonBuilderController(Stage stage, Game game) {
 		super(stage);
@@ -76,7 +121,7 @@ public class DungeonBuilderController extends Controller {
 	private void addEntity(ImageView iv, StackPane sp) {
 		Integer col = GridPane.getColumnIndex(sp);
 		Integer row = GridPane.getRowIndex(sp);
-		int entityNumber = -1;
+		int entityNumber = 0;
 		
 		// Check to make sure only one player is placed
 		if (draggedSprite == "player") { 
@@ -92,22 +137,64 @@ public class DungeonBuilderController extends Controller {
 		
         switch (draggedSprite) {
 	        case "player":
-	        	System.out.println("Player");
-	        	entityNumber = 4;
+	        	entityNumber = 1;
 	            break;
 	        case "wall":
-	        	System.out.println("Wall");
 	        	entityNumber = 2;
 	            break;
 	        case "exit":
-	        	System.out.println("Exit");
 	        	entityNumber = 3;
-	            break;	            
+	        	break;
+	        case "pit":
+	        	entityNumber = 4;
+	            break;
+	        case "boulder":
+	        	entityNumber = 5;
+	            break;
+	        case "switch":
+	        	entityNumber = 6;
+	        	break;
+	        case "door":
+	        	entityNumber = 7;
+	            break;
+	        case "key":
+	        	entityNumber = 8;
+	            break;
+	        case "treasure":
+	        	entityNumber = 9;
+	            break;
+	        case "bomb":
+	        	entityNumber = 10;
+	            break;
+	        case "sword":
+	        	entityNumber = 11;
+	            break;
+	        case "arrow":
+	        	entityNumber = 12;
+	            break;		 	            
+	        case "hunter":
+	        	entityNumber = 13;
+	            break;
+	        case "hound":
+	        	entityNumber = 14;
+	            break;
+	        case "strategist":
+	        	entityNumber = 15;
+	            break;
+	        case "coward":
+	        	entityNumber = 16;
+	            break;	
+	        case "invincibility potion":
+	        	entityNumber = 17;
+	            break;	
+	        case "hover potion":
+	        	entityNumber = 18;
+	            break;		            
 	        default:
 	            break;
         }
         
-        if (entityNumber >= 0) {
+        if (entityNumber > 0) {
         	game.addEntityToBoard(entityNumber, col.intValue(), row.intValue());
         }
 	}
@@ -142,23 +229,113 @@ public class DungeonBuilderController extends Controller {
 		// place holder till I make the screen or pop up to enter board name
 		game.createNewBoard("new_game", 17, 17);
 	}
-	
-    @FXML
-    public void dragDetectedPlayer(MouseEvent event) {
-    	setDraggedSprite("player");
-        dragDetected(event, playerSprite);
-    }
     
     @FXML
-    public void dragDetectedWall(MouseEvent event) {
-    	setDraggedSprite("wall");
-        dragDetected(event, wallSprite);
+    public void dragDetectedArrow(MouseEvent event) {
+    	setDraggedSprite("arrow");
+    	dragDetected(event, arrowSprite);
     }
-    
+
+    @FXML
+    public void dragDetectedBomb(MouseEvent event) {
+    	setDraggedSprite("bomb");
+    	dragDetected(event, bombSprite);
+    }
+
+    @FXML
+    public void dragDetectedBoulder(MouseEvent event) {
+    	setDraggedSprite("boulder");
+    	dragDetected(event, boulderSprite);
+    }
+
+    @FXML
+    public void dragDetectedCoward(MouseEvent event) {
+    	setDraggedSprite("coward");
+    	dragDetected(event, cowardSprite);
+    }
+
+    @FXML
+    public void dragDetectedDoor(MouseEvent event) {
+    	setDraggedSprite("door");
+    	dragDetected(event, doorSprite);
+    }
+
     @FXML
     public void dragDetectedExit(MouseEvent event) {
     	setDraggedSprite("exit");
-        dragDetected(event, exitSprite);
+    	dragDetected(event, exitSprite);
+    }
+
+    @FXML
+    public void dragDetectedHound(MouseEvent event) {
+    	setDraggedSprite("hound");
+    	dragDetected(event, houndSprite);
+    }
+
+    @FXML
+    public void dragDetectedHp(MouseEvent event) {
+    	setDraggedSprite("hover potion");
+    	dragDetected(event, hpSprite);
+    }
+
+    @FXML
+    public void dragDetectedHunter(MouseEvent event) {
+    	setDraggedSprite("hunter");
+    	dragDetected(event, hunterSprite);
+    }
+
+    @FXML
+    public void dragDetectedIp(MouseEvent event) {
+    	setDraggedSprite("invincibility potion");
+    	dragDetected(event, ipSprite);
+    }
+
+    @FXML
+    public void dragDetectedKey(MouseEvent event) {
+    	setDraggedSprite("key");
+    	dragDetected(event, keySprite);
+    }
+
+    @FXML
+    public void dragDetectedPit(MouseEvent event) {
+    	setDraggedSprite("pit");
+    	dragDetected(event, pitSprite);
+    }
+
+    @FXML
+    public void dragDetectedPlayer(MouseEvent event) {
+    	setDraggedSprite("player");
+    	dragDetected(event, playerSprite);
+    }
+
+    @FXML
+    public void dragDetectedStrat(MouseEvent event) {
+    	setDraggedSprite("strategist");
+    	dragDetected(event, strategistSprite);
+    }
+
+    @FXML
+    public void dragDetectedSwitch(MouseEvent event) {
+    	setDraggedSprite("switch");
+    	dragDetected(event, switchSprite);
+    }
+
+    @FXML
+    void dragDetectedSword(MouseEvent event) {
+    	setDraggedSprite("sword");
+    	dragDetected(event, swordSprite);
+    }
+
+    @FXML
+    void dragDetectedTreasure(MouseEvent event) {
+    	setDraggedSprite("treasure");
+    	dragDetected(event, treasureSprite);
+    }
+
+    @FXML
+    void dragDetectedWall(MouseEvent event) {
+    	setDraggedSprite("wall");
+    	dragDetected(event, wallSprite);
     }
     
     @FXML
