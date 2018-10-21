@@ -3,8 +3,10 @@ package testsrc;
 import java.util.ArrayList;
 
 import project.model.*;
+import project.model.enemies.Hunter;
 import project.model.items.Key;
 import project.model.obstacles.Pit;
+import project.model.obstacles.Trap;
 import project.model.obstacles.Wall;
 import project.model.obstacles.Boulder;
 import project.model.obstacles.BoulderSwitch;
@@ -252,5 +254,55 @@ public class TestJunitObstacles {
 		entities = board.getEntitiesAt(1,2);
 		assertEquals(1, entities.size());
 		assertTrue(entities.get(0) instanceof Boulder);
+	}
+	
+	@Test
+	public void testPlayerTrap() {
+		/*   0 1 2
+		 * 0 _ _ _ 
+		 * 1 P T _
+		 * 2 _ _ _
+		 */
+		board = new Board("test", 3, 3);
+		player = new Player(0, 1);
+		player.setDirection(Direction.RIGHT);
+		board.addBoardEntity(player);
+		Trap trap = new Trap(1, 1);
+		board.addBoardEntity(trap);
+		
+		assertTrue(player.moveRight(board));
+		// game state should be 2 (game is lost)
+		assertEquals(board.getGameStatus(), 2);
+		
+	}
+	
+	@Test
+	public void testEnemyTrap() {
+		/*   0 1 2
+		 * 0 _ E _ 
+		 * 1 E T _
+		 * 2 _ _ _
+		 */
+		board = new Board("test", 3, 3);
+		Enemy enemy1 = new Hunter(0, 1);
+		Enemy enemy2 = new Hunter(1, 0);
+		enemy1.setDirection(Direction.RIGHT);
+		enemy2.setDirection(Direction.DOWN);
+		board.addBoardEntity(enemy1);
+		board.addBoardEntity(enemy2);
+		Trap trap = new Trap(1, 1);
+		board.addBoardEntity(trap);
+		
+		assertTrue(enemy1.moveRight(board));
+		
+		ArrayList<BoardEntity> entities = board.getEntitiesAt(1, 1);
+		assertEquals(entities.size(), 0);
+		
+		assertTrue(enemy2.moveDown(board));
+		
+		entities = board.getEntitiesAt(1, 1);
+		assertEquals(entities.size(), 1);
+		assertTrue(entities.contains(enemy2));
+		
 	}
 }
