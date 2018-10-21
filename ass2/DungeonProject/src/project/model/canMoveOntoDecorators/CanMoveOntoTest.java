@@ -20,6 +20,7 @@ public class CanMoveOntoTest {
 		board = new Board("Test board", 5, 5);
 		// create player at 5,5
 		player = new Player(2, 2);
+		
 		board.addBoardEntity(player);
 	}
 	
@@ -27,6 +28,7 @@ public class CanMoveOntoTest {
 	void testPlayerMovingOntoPit() {
 		Pit pit = new Pit(2, 3);
 		
+		// test moving player
 		assertTrue(pit.canMoveOnto(board, player));
 	}
 	
@@ -35,6 +37,7 @@ public class CanMoveOntoTest {
 		Pit pit = new Pit(2,3);
 		Boulder boulder = new Boulder(3, 3);
 		
+		// test moving boulder
 		assertTrue(pit.canMoveOnto(board, boulder));
 	}
 	
@@ -44,6 +47,7 @@ public class CanMoveOntoTest {
 		Boulder boulder2 = new Boulder(2, 1);
 		board.addBoardEntity(boulder1);
 		board.addBoardEntity(boulder2);
+		// boulder can't move into together
 		assertFalse(boulder1.canMoveOnto(board, boulder2));
 	}
 	
@@ -82,8 +86,8 @@ public class CanMoveOntoTest {
 		 */
 		
 		player.setDirection(Direction.LEFT);
-		player.setX(3);
 		player.setY(3);
+		player.setX(3);
 		Boulder boulder1 = new Boulder(2, 3);
 		Boulder boulder2 = new Boulder(2, 4);
 		board.addBoardEntity(boulder1);

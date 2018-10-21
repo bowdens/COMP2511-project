@@ -19,10 +19,10 @@ public class CollideWithBoulderSwitch implements CollisionBehaviour {
 	 */
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
-		//this is called when the boulder can move to where the player is moving it to
+		//this is called as the boulder can move to where the player is moving it to
 		/*
-		 * Moves the boulder up when a player hits it
-		 * does not do anything otherwise
+		 * when a player hits it, moves the boulder up 
+		 * do nothing otherwise
 		 */
 		if (mover instanceof FlyingArrow) {
 			board.removeBoardEntity(mover);
@@ -37,14 +37,6 @@ public class CollideWithBoulderSwitch implements CollisionBehaviour {
 		
 		int newX = 0, newY = 0;
 		switch (player.getDirection()){
-			case UP:
-				newX = me.getX();
-				newY = me.getY()-1;
-				break;
-			case DOWN:
-				newX = me.getX();
-				newY = me.getY()+1;
-				break;
 			case LEFT:
 				newX = me.getX()-1;
 				newY = me.getY();
@@ -52,6 +44,14 @@ public class CollideWithBoulderSwitch implements CollisionBehaviour {
 			case RIGHT:
 				newX = me.getX()+1;
 				newY = me.getY();
+				break;
+			case UP:
+				newX = me.getX();
+				newY = me.getY()-1;
+				break;
+			case DOWN:
+				newX = me.getX();
+				newY = me.getY()+1;
 				break;
 			case NONE:
 				break;
@@ -63,7 +63,7 @@ public class CollideWithBoulderSwitch implements CollisionBehaviour {
 		board.addBoardEntity(newBoulder);
 		
 		ArrayList<BoardEntity> ents = board.getEntitiesAt(newX, newY);
-		//if the boulder is moving onto a pit, call the pit's collide method to destroy the boulder
+		//when the boulder is moving onto a pit, call the pit's collide method to destroy the boulder
 		for (BoardEntity entity : ents) {
 			entity.collide(board, newBoulder);
 			if (!board.getBoardEntities().contains(me)) {

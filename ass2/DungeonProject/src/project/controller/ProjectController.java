@@ -40,7 +40,7 @@ public class ProjectController extends JPanel implements KeyListener {
 	}
 	
 	public void removeRequestedEntity(int x, int y) {
-		game.removeEntityAt(x, y);
+		game.removeEntitiesAt(x, y);
 	}
 
 	@Override

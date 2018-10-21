@@ -49,7 +49,7 @@ public class DungeonCreator {
 	 * @param x The column coordinate to remove the entity
 	 * @param y The row coordinate to remove the entity.
 	 */
-	public void deleteBoardEntity(Board board, int x, int y) {
+	public void deleteBoardEntities(Board board, int x, int y) {
 		ArrayList<BoardEntity> entities = board.getEntitiesAt(x, y);
 		
 		for  (BoardEntity entity : entities) {
