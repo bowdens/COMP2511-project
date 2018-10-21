@@ -9,8 +9,10 @@ import project.model.Board;
 import project.model.Direction;
 import project.model.Player;
 import project.model.enemies.Coward;
+import project.model.enemies.DoorProtector;
 import project.model.enemies.Hunter;
 import project.model.enemies.Strategist;
+import project.model.obstacles.Exit;
 import project.model.obstacles.Wall;
 
 public class TestMovementBehaviours {
@@ -73,7 +75,6 @@ public class TestMovementBehaviours {
 		// display coward current position
 		for (int i = 0; i < 20; i++) {
 			coward1.update(board);
-			System.out.println("At " + coward1.getX() + "," + coward1.getY());
 		}
 		
 		assertEquals(4, coward1.getX());
@@ -197,6 +198,31 @@ public class TestMovementBehaviours {
 		
 		assertEquals(2, strategist.getY());
 		assertEquals(2, strategist.getX());
+	}
+	
+	@Test
+	void testMoveTowardsDoor() {
+		/*   0 1 2
+		 * 0 P _ P 
+		 * 1 _ _ _
+		 * 2 _ _ E
+		 */
+		board = new Board("test",3,3);
+		DoorProtector dp = new DoorProtector(0,0);
+		Exit exit = new Exit(2, 2);
+		Player player = new Player(0,2);
+		
+		board.addBoardEntity(dp);
+		board.addBoardEntity(exit);
+		board.addBoardEntity(player);
+		
+		dp.update(board);
+		dp.update(board);
+		dp.update(board);
+		dp.update(board);
+
+		// dp should be on either 1,2 or 2,1
+		assertTrue((dp.getX() == 1 && dp.getY() == 2) || (dp.getX() == 2 && dp.getY() == 1));
 	}
 	
 	@Test
