@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -17,10 +18,10 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 	 */
 	@Override
 	public void collide(Board board, BoardEntity mover, BoardEntity me) {
-		//this is called when the boulder can move to where the player is moving it to
+		//this is called if the boulder can move to where the player is moving it to
 		/*
-		 * Moves the boulder up when a player hits it
-		 * does not do anything otherwise
+		 * Moves the boulder up if a player hits it
+		 * do nothing otherwise
 		 */
 		if (mover instanceof FlyingArrow) {
 			board.removeBoardEntity(mover);
@@ -33,23 +34,23 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 			
 		Player player = (Player) mover;
 		
-		int newX = 0, newY = 0;
+		int new_X = 0, new_Y = 0;
 		switch (player.getDirection()){
 			case UP:
-				newX = me.getX();
-				newY = me.getY()-1;
+				new_X = me.getX();
+				new_Y = me.getY()-1;
 				break;
 			case DOWN:
-				newX = me.getX();
-				newY = me.getY()+1;
+				new_X = me.getX();
+				new_Y = me.getY()+1;
 				break;
 			case LEFT:
-				newX = me.getX()-1;
-				newY = me.getY();
+				new_X = me.getX()-1;
+				new_Y = me.getY();
 				break;
 			case RIGHT:
-				newX = me.getX()+1;
-				newY = me.getY();
+				new_X = me.getX()+1;
+				new_Y = me.getY();
 				break;
 			case NONE:
 				break;
@@ -57,14 +58,16 @@ public class MoveAroundCollisionBehaviour implements CollisionBehaviour {
 				break;
 		}
 		
-		ArrayList<BoardEntity> ents = board.getEntitiesAt(newX, newY);
-		me.setX(newX);
-		me.setY(newY);
-		//if the boulder is moving onto a pit, call the pit's collide method to destroy the boulder
+		ArrayList<BoardEntity> ents = board.getEntitiesAt(new_X, new_Y);
+		me.setX(new_X);
+		me.setY(new_Y);
+		
+		//when the boulder is moving onto a pit, call the pit's collide method to destroy the boulder
 		for (BoardEntity entity : ents) {
 			entity.collide(board, me);
 			if (!board.getBoardEntities().contains(me)) {
-				// if i'm dead (fell down a pit) - that is to say, i'm not in the board's list of entities; then break
+				
+				// when i'm dead (fell down a pit) - that is to say, i'm not in the board's list of entities; then break
 				break;
 			}
 		}

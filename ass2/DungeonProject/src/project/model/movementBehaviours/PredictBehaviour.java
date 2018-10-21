@@ -18,40 +18,40 @@ public class PredictBehaviour implements MovementBehaviour {
 			return Direction.NONE;
 		}
 		
-		int guessX = player.getX(), guessY = player.getY();
+		int guess_X = player.getX(), guess_Y = player.getY();
 		
-		// guess where the player is moving next based on their direction
+		// guess where the player is moving in the next step based on their direction
 		switch(player.getDirection()) {
 			case DOWN:
-				guessY += 1;
+				guess_Y += 1;
 				break;
 			case LEFT:
-				guessX -= 1;
+				guess_X -= 1;
 				break;
 			case RIGHT:
-				guessX += 1;
+				guess_X += 1;
 				break;
 			case UP:
-				guessY -=1;
+				guess_Y -=1;
 				break;
 			default:
-				// keep as getX and getY
+				// keep as getx and gety
 				break;
 		}
 		
-		if (board.canMoveOnto(me, guessX, guessY) == false || board.canMoveOnto(player, guessX, guessY) == false) {
-			// wont try to move there if the player can't, just moves towards the player
-			// TODO: change this to still predict a different square to move to where the player might go
-			guessX = player.getX();
-			guessY = player.getY();
+		if (board.canMoveOnto(me, guess_X, guess_Y) == false || board.canMoveOnto(player, guess_X, guess_Y) == false) {
+			// wont try to move there when the player can't, just moves towards the player
+			// TODO: change this to still predict a different square to move where the player might go
+			guess_X = player.getX();
+			guess_Y = player.getY();
 			}
-		if (board.validX(guessX) == false || board.validY(guessY) == false) {
-			// won't try to move somewhere where the x,y is invalid
-			guessX = player.getX();
-			guessY = player.getY();
+		if (board.validX(guess_X) == false || board.validY(guess_Y) == false) {
+			// won't try to move the place where the x,y is invalid
+			guess_X = player.getX();
+			guess_Y = player.getY();
 		}
 		
-		Direction next = Dijkstra.getNextMove(board, me, guessX, guessY);
+		Direction next = Dijkstra.getNextMove(board, me, guess_X, guess_Y);
 		return next;
 	}
 }

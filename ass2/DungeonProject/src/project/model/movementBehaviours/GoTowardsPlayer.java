@@ -18,6 +18,7 @@ public class GoTowardsPlayer implements MovementBehaviour {
 			return Direction.NONE;
 		}
 		
+		// get the direction by using Dijkstra algorithm
 		Direction next = Dijkstra.getNextMove(board, me, player.getX(), player.getY());
 		
 		return next;

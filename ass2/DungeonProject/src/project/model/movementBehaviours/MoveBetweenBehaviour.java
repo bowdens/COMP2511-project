@@ -16,8 +16,8 @@ public class MoveBetweenBehaviour implements MovementBehaviour {
 	@Override
 	public Direction nextDirection(Board board, MovingEntity me) {
 		/*
-		 * move to the point between the hunter and the player
-		 * if the entity cannot move to that location, go towards the hunter (if there is one) instead
+		 * move to the point between the player and hunter
+		 * when the entity cannot move to that location, go towards the hunter (if there is one) instead
 		 */
 		Hunter hunter = null;
 		Player player = board.getPlayer();
@@ -27,37 +27,38 @@ public class MoveBetweenBehaviour implements MovementBehaviour {
 			}
 		}
 		
-		int targetX = 0, targetY = 0;
+		int target_X = 0, target_Y = 0;
 		
 		if (hunter != null && player != null) {
-			targetX = (hunter.getX() + player.getX())/2;
-			targetY = (hunter.getY() + player.getY())/2;
+			target_X = (hunter.getX() + player.getX())/2;
+			target_Y = (hunter.getY() + player.getY())/2;
 			
-			if (!board.canMoveOnto(me, targetX, targetY) || !board.validX(targetX) || !board.validY(targetY)) {
+			if (!board.canMoveOnto(me, target_X, target_Y) || !board.validX(target_X) || !board.validY(target_Y)) {
 				// I can't get to the mid point - go to the hunter instead (make the hunter null)
 				hunter = null;
 			}
 		}
 		
-		if (hunter == null && player == null) {
+		if ( player == null && hunter == null) {
 			// just go towards the player instead
 			return Direction.NONE;
 		} 
 		
-		if (player == null) {
-			// go to the hunter
-			targetX = hunter.getX();
-			targetY = hunter.getY();
-		} 
 		if (hunter == null) {
-			// go to the player
-			targetX = player.getX();
-			targetY = player.getY();
+			// go to the player if hunter is null
+			target_X = player.getX();
+			target_Y = player.getY();
 		}
 		
-		// we now have a valid targetX and targetY - whether its the midpoint, the player, or the hunter (or we have already returned)
+		if (player == null) {
+			// go to the hunter if player is null
+			target_X = hunter.getX();
+			target_Y = hunter.getY();
+		} 
 		
-		Direction next = Dijkstra.getNextMove(board, me, targetX, targetY);
+		// we now have a valid target_X and target_Y - whether its the midpoint, the player, or the hunter (or we have already returned)
+		
+		Direction next = Dijkstra.getNextMove(board, me, target_X, target_Y);
 		
 		return next;
 	}

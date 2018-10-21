@@ -236,7 +236,7 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 2. The effects of the potion should last until the player either dies or completes the level.
 3. While the potion is in effect the player should be able to move over pits safely.
 
-### User Story 1.18: As a player, I want to respawn when my player dies, so that I can attempt to beat the level again
+### User Story 1.19: As a player, I want to respawn when my player dies, so that I can attempt to beat the level again
 #### Priority: 3
 
 #### Estimate: 3
@@ -244,6 +244,25 @@ to have one sword that can be used five times but has 10 enemies in the dungeon.
 #### Acceptance Criteria:
 1. The player must respawn at the same spot from which they started 
 2. The player's inventory must be cleared and all items and objects are returned to their original positions
+
+### User Story 1.20: As a player, I want there to be a door guardian enemy, so it will make it harder to reach the door in some levels. (EXTENSION)
+#### Priority 8
+
+#### Estimate: 2
+
+#### Acceptance Criteria:
+1. The door guardian should start at any location within the level and move towards the door to protect it
+2. The door guardian should work the same as any other enemy - the player can kill it with a weapon, otherwise it will kill the player
+
+### User Story 1.21: As a player, I want there to be a trap obstacle in levels which will kill the first player or enemy to move onto it, so that it makes levels harder, but also lets players lure enemies into the trap (EXTENSION)
+#### Priority 8
+
+#### Estimate: 2
+
+#### Acceptance Criteria:
+1. The trap can be placed in advanced dungeons
+2. The trap should kill the first player or enemy to move onto it
+3. After one player or enemy has moved onto it, it should disappear from the dungeon so that it can't hurt any character again
 
 ## Epic Story 2: As a designer, I want to create my own dungeon so that I or others can play my custom levels.
 ### User story 2.1: As a designer, I want to be able to give my dungeon levels a name so that I can identify them
