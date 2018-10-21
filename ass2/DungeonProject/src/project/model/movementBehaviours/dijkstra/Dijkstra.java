@@ -16,6 +16,7 @@ public class Dijkstra {
 	 * @param toY top=0
 	 * @return the direction that you need to take next to get to your destination, NONE if we are there, NONE if there is no path there
 	 */
+	
 	public static Direction getNextMove(Board board, BoardEntity entity, int toX, int toY) {
 		int fromX = entity.getX();
 		int fromY = entity.getY();
@@ -23,11 +24,14 @@ public class Dijkstra {
 		if (fromX == toX && fromY == toY) {
 			return Direction.NONE;
 		}
+		/*
+		 * We won't check to see if the entity can get to the object at the last step
 		if(!board.canMoveOnto(entity, toX, toY)) {
 			// if we can't get to the final square, return NONE
 			System.out.println("cant get to " + toX + "," + toY + " entities on point: " + board.getEntitiesAt(toX, toY));
 			return Direction.NONE;
 		}
+		*/
 		
 		ArrayList<Integer> moves = Dijkstra.dijkstra(board, entity, fromX, fromY, toX, toY);
 		int next = moves.get(0);
@@ -89,7 +93,7 @@ public class Dijkstra {
 		for (int i = 0; i < board.getWidth(); i++) {
 			for (int j = 0; j < board.getHeight(); j++) {
 				// add all vertexes where this entity can move onto them
-				if (board.canMoveOnto(entity, i, j)) {
+				if (board.canMoveOnto(entity, i, j) || (i == toX && j == toY)) {
 					int index = Dijkstra.fromCoordToIndex(board, i, j);
 					dist[index] = Integer.MAX_VALUE;
 					prev[index] = -1;
@@ -115,26 +119,27 @@ public class Dijkstra {
 			int nextY = Dijkstra.fromIndexToY(board, nextVertex);
 			ArrayList<Integer> neighbours = new ArrayList<Integer>();
 			// quick and dirty way to add each neighbour up, down, left, right
+			// checks that you can move onto it (or will let you if its the final move)
 			// also checks to make sure the x,y are within the board
-			if(board.canMoveOnto(entity, nextX-1, nextY)) {
+			if(board.canMoveOnto(entity, nextX-1, nextY) || (nextX-1 == toX && nextY == toY)) {
 				int index = Dijkstra.fromCoordToIndex(board, nextX-1, nextY);
 				if (board.validX(nextX-1) && board.validY(nextY)) {
 					neighbours.add(index);
 				}
 			}
-			if(board.canMoveOnto(entity, nextX+1, nextY)) {
+			if(board.canMoveOnto(entity, nextX+1, nextY) || (nextX+1 == toX && nextY == toY)) {
 				int index = Dijkstra.fromCoordToIndex(board, nextX+1, nextY);
 				if (board.validX(nextX+1) && board.validY(nextY)) {
 					neighbours.add(index);
 				}
 			}
-			if(board.canMoveOnto(entity, nextX, nextY-1)) {
+			if(board.canMoveOnto(entity, nextX, nextY-1) || (nextX == toX && nextY-1 == toY)) {
 				int index = Dijkstra.fromCoordToIndex(board, nextX, nextY-1);
 				if (board.validX(nextX) && board.validY(nextY-1)) {
 					neighbours.add(index);
 				}
 			}
-			if(board.canMoveOnto(entity, nextX, nextY+1)) {
+			if(board.canMoveOnto(entity, nextX, nextY+1) || (nextX == toX && nextY+1 == toY)) {
 				int index = Dijkstra.fromCoordToIndex(board, nextX, nextY+1);
 				if (board.validX(nextX) && board.validY(nextY+1)) {
 					neighbours.add(index);
